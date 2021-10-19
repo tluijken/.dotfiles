@@ -21,7 +21,7 @@ set noshowmode
 set completeopt=menuone,noinsert,noselect
 set signcolumn=yes
 
-set colorcolumn=80
+" set colorcolumn=80
 
 call plug#begin('~/.vim/plugged')
 
@@ -43,6 +43,6 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
-colorscheme dracula
+colorschem dracula
 
 highlight Normal guibg=none
