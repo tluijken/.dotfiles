@@ -8,3 +8,5 @@ do
     stow $folder
 done
 popd
+
+chsh -s $(which zsh)
