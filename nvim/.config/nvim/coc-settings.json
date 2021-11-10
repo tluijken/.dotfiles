@@ -1,1 +1,4 @@
-{"rust-analyzer.server.path": "/home/thomas/.local/bin/rust-analyzer"}                                                 
+{
+    "omnisharp.path": "/home/thomas/.cache/omnisharp-vim/omnisharp-roslyn",
+    "rust-analyzer.server.path": "/home/thomas/.local/bin/rust-analyzer"
+}                                                 
