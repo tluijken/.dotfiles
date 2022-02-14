@@ -118,6 +118,7 @@ source $ZSH/oh-my-zsh.sh
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
+export _JAVA_AWT_WM_NONREPARENTING=1
 alias change-cluster=~/.config/kube-switch/kube-switch
 alias vim="nvim"
 alias vi="nvim"

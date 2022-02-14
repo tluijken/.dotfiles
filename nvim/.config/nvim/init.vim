@@ -1,4 +1,6 @@
-" General settings
+" ====================================================================
+" 			Vim Core Configuration				
+" ====================================================================
 set exrc
 set relativenumber
 set nohlsearch
@@ -19,10 +21,11 @@ set termguicolors
 set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
-set signcolumn=yes
-set colorcolumn=100
+" set signcolumn=yes
+" set colorcolumn=100
+set clipboard+=unnamedplus		" Enable copy to system clipboard
 highlight ColorColumn ctermbg=0 guibg=grey
-
+set nocompatible
 syntax enable
 filetype plugin indent on
 
@@ -34,7 +37,11 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/popup.nvim'
 
 " Theming.
-Plug 'Mofiqul/dracula.nvim'
+" Plug 'Mofiqul/dracula.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
+"Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'hoob3rt/lualine.nvim'					" Fancy new statusline
+Plug 'tpope/vim-fugitive'					" git branch in status line
 
 " Code completion.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
@@ -68,16 +75,19 @@ Plug 'hrsh7th/vim-vsnip'
 
 Plug 'rust-lang/rust.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+Plug 'sbdchd/neoformat'
 " C sharp
 Plug 'omnisharp/omnisharp-vim'
 
+" org mode
+Plug 'nvim-orgmode/orgmode'
+
+" Task and Wiki
+Plug 'vimwiki/vimwiki'
+Plug 'tbabej/taskwiki'
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
-
-
-:packadd termdebug
-:let termdebugger="rust-gdb"
 
 " remaps
 let mapleader = " "
@@ -87,6 +97,7 @@ let mapleader = " "
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fd <cmd>lua require('telescope.builtin').file_browser()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 
@@ -176,6 +187,105 @@ cmp.setup({
 })
 EOF
 
-colorschem dracula
 
-highlight Normal guibg=none
+
+" Lualine configuration
+lua <<EOF
+require'lualine'.setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = {'|', '|'},
+    section_separators = {'', ''},
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {'filetype'},
+    lualine_x = {'encoding', 'fileformat'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {
+	  lualine_a = {'filename'},
+	  lualine_b = {},
+	  lualine_c = {},
+	  lualine_x = {},
+	  lualine_y = {},
+	  lualine_z = {}
+	  },
+  extensions = {}
+}
+EOF
+
+
+" ====================================================================
+"           Templates
+" ====================================================================
+
+" Advent of code
+function ApplyAoC()
+   :read ~/.vim/templates/advent-of-code.rs
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Splits and Tabbed Files
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set splitbelow splitright
+
+" Remap splits navigation to just CTRL + hjkl
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Make adjusing split sizes a bit more friendly
+noremap <silent> <C-Left> :vertical resize +3<CR>
+noremap <silent> <C-Right> :vertical resize -3<CR>
+noremap <silent> <C-Up> :resize +3<CR>
+noremap <silent> <C-Down> :resize -3<CR>
+
+" Change 2 split windows from vert to horiz or horiz to vert
+map <Leader>th <C-w>t<C-w>H
+map <Leader>tk <C-w>t<C-w>K
+
+" Removes pipes | that act as seperators on splits
+set fillchars+=vert:\ 
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Mouse Scrolling
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set mouse=nicr
+set mouse=a
+
+" ====================================================================
+" 			Vim Color Configuration				
+" ====================================================================
+
+"set termguicolors
+"let g:tokyonight_huue_inactive_statusline = 1	" hide statusline on inactive windows
+"let g:tokyonight_lualine_bold = 1		" bold section headers for the status line
+set background=dark " or light if you want light mode
+colorscheme gruvbox
+
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
+
+" ====================================================================
+"           VimWiki settings
+" ====================================================================
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+:nmap <Leader><CR> <Plug>VimwikiFollowLink

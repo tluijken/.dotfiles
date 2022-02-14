@@ -29,6 +29,8 @@ unset rc
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-export EDITOR='vim'
-export VISUAL='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 . "$HOME/.cargo/env"
+export _JAVA_AWT_WM_NONREPARENTING=1
+export EDITOR=nvim
