@@ -2,7 +2,7 @@ source ~/.config/nvim/modules/global-settings.vim
 call plug#begin('~/.vim/plugged')
 source ~/.config/nvim/modules/telescope.vim
 source ~/.config/nvim/modules/theme.vim
-source ~/.config/nvim/modules/vimwiki.vim
+" source ~/.config/nvim/modules/vimwiki.vim
 source ~/.config/nvim/modules/tabs-and-splits.vim
 source ~/.config/nvim/modules/rust.vim
 source ~/.config/nvim/modules/code-completion.vim
@@ -13,6 +13,9 @@ source ~/.config/nvim/modules/orgmode.vim
 source ~/.config/nvim/modules/lualine.vim
 source ~/.config/nvim/modules/vimfugitive.vim
 source ~/.config/nvim/modules/csharp.vim
+source ~/.config/nvim/modules/startify.vim
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
 call plug#end()
 
 " Configure LSP through rust-tools.nvim plugin.
@@ -129,5 +132,5 @@ require'lualine'.setup {
   extensions = {}
 }
 EOF
-
+let g:startify_custom_header = startify#pad(split(system('figlet -w 100 -f slant NEOVIM'), '\n'))
 colorscheme gruvbox
