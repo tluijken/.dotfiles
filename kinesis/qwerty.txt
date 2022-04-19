@@ -1,0 +1,6 @@
+[tab]>[escape]
+[caps]>[tab]
+[rwin]>[lwin]
+[kp-rwin]>[kp-ralt]
+[lctrl]>[lalt]
+[lalt]>[lctrl]
