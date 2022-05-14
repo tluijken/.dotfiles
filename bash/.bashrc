@@ -34,3 +34,6 @@ export VISUAL='nvim'
 . "$HOME/.cargo/env"
 export _JAVA_AWT_WM_NONREPARENTING=1
 export EDITOR=nvim
+
+export ZEPHYR_TOOLCHAIN_VARIANT=gnuarmemb
+export GNUARMEMB_TOOLCHAIN_PATH=~/gn/gnuarmemb/9_2019-q4-major
