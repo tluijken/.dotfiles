@@ -92,7 +92,7 @@ nvimtree.setup {
     view = {
         width = 35,
         height = 30,
-        hide_root_folder = true,
+        hide_root_folder = false,
         side = "left",
         mappings = {
             custom_only = false,
@@ -110,5 +110,8 @@ nvimtree.setup {
         change_dir = {
             global = false,
         },
+        open_file = {
+            resize_window = true
+        }
     },
 }

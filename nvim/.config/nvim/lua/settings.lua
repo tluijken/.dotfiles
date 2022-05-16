@@ -2,12 +2,12 @@ HOME = os.getenv("HOME")
 
 vim.g.mapleader = " "
 
-vim.cmd [[set fcs=eob:\ ]]
-vim.cmd [[filetype plugin indent on]]
+vim.cmd([[set fcs=eob:\ ]])
+vim.cmd([[filetype plugin indent on]])
 
-vim.cmd [[highlight ColorColumn ctermbg=0 guibg=grey]]
-vim.cmd [[syntax enable]]
-vim.cmd [[filetype plugin indent on]]
+vim.cmd([[highlight ColorColumn ctermbg=0 guibg=grey]])
+vim.cmd([[syntax enable]])
+vim.cmd([[filetype plugin indent on]])
 
 local options = {
     exrc = true,
