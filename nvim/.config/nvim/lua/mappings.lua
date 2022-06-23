@@ -17,23 +17,24 @@ nmap("<leader>fd", "<cmd>lua require('telescope.builtin').file_browser()<cr>")
 nmap("<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>")
 
 
+
 -- Move to previous/next
-nmap("<A-,>", ":BufferPrevious<CR>")
-nmap("<A-.>", ":BufferNext<CR>")
+nmap("<A-,>", ":BufferLineCyclePrev<CR>")
+nmap("<A-.>", ":BufferLineCycleNext<CR>")
 
 -- Re-order to previous/next
-nmap("<A-<>", ":BufferMovePrevious<CR>")
-nmap("<A->>", ":BufferMoveNext<CR>")
+nmap("<A-<>", ":BufferLineMovePrev<CR>")
+nmap("<A->>", ":BufferLineMoveNext<CR>")
 -- Goto buffer in position...
-nmap("<A-1>", ":BufferGoto 1<CR>")
-nmap("<A-2>", ":BufferGoto 2<CR>")
-nmap("<A-3>", ":BufferGoto 3<CR>")
-nmap("<A-4>", ":BufferGoto 4<CR>")
-nmap("<A-5>", ":BufferGoto 5<CR>")
-nmap("<A-6>", ":BufferGoto 6<CR>")
-nmap("<A-7>", ":BufferGoto 7<CR>")
-nmap("<A-8>", ":BufferGoto 8<CR>")
-nmap("<A-9>", ":BufferGoto 9<CR>")
+nmap("<A-1>", ":BufferLineGoToBuffer  1<CR>")
+nmap("<A-2>", ":BufferLineGoToBuffer  2<CR>")
+nmap("<A-3>", ":BufferLineGoToBuffer  3<CR>")
+nmap("<A-4>", ":BufferLineGoToBuffer  4<CR>")
+nmap("<A-5>", ":BufferLineGoToBuffer  5<CR>")
+nmap("<A-6>", ":BufferLineGoToBuffer  6<CR>")
+nmap("<A-7>", ":BufferLineGoToBuffer  7<CR>")
+nmap("<A-8>", ":BufferLineGoToBuffer  8<CR>")
+nmap("<A-9>", ":BufferLineGoToBuffer  9<CR>")
 -- Pin/unpin buffer
 nmap("<A-p>", ":BufferPin<CR>")
 -- Close buffer
@@ -69,3 +70,12 @@ nmap("<Leader>tk", "<C-w>t<C-w>K")
 -- Removes pipes | that act as seperators on splits
 vim.opt.fillchars:append "vert\\"
 
+-- autocomplete pairs
+vim.cmd([[
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap < <><left>
+inoremap { {}<left>
+]]);

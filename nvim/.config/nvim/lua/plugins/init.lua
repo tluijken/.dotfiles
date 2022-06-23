@@ -64,6 +64,8 @@ return require('packer').startup(function()
         'hrsh7th/nvim-cmp',
         config = require "plugins.configs.cmp",
     }
+    -- Copilot
+   use 'github/copilot.vim'
 
     -- LSP completion source for nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
@@ -96,6 +98,15 @@ return require('packer').startup(function()
         },
         config = require "plugins.configs.nvimtree",
     }
+
+    -- install without yarn or npm
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
+    -- theming
+    use { "ellisonleao/gruvbox.nvim" }
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

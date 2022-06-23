@@ -2,12 +2,10 @@ HOME = os.getenv("HOME")
 
 vim.g.mapleader = " "
 
-vim.cmd([[set fcs=eob:\ ]])
-vim.cmd([[filetype plugin indent on]])
-
-vim.cmd([[highlight ColorColumn ctermbg=0 guibg=grey]])
-vim.cmd([[syntax enable]])
-vim.cmd([[filetype plugin indent on]])
+vim.cmd([[
+    syntax enable
+    highlight ColorColumn ctermbg=0 guibg=grey
+    filetype plugin indent on]])
 
 local options = {
     exrc = true,
@@ -54,4 +52,6 @@ for key, value in pairs(options) do
     vim.opt[key] = value
 end
 
+--vim.opt.background = "dark" -- or "light" for light mode
+--vim.cmd([[colorscheme gruvbox]])
 vim.g.gruvbox_material_enable_italic_comment = 1

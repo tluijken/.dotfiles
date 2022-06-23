@@ -32,9 +32,9 @@ function M.setup(cfg)
   set_default_global_options()
 
   vim.cmd('highlight clear')
-  if vim.fn.exists('syntax_on') then
-    vim.cmd('syntax reset')
-  end
+ -- if vim.fn.exists('syntax_on') then
+ --   vim.cmd('syntax reset')
+ -- end
   vim.o.background = "dark"
   vim.o.termguicolors = true
   vim.g.colors_name = "gruvbox-material"
