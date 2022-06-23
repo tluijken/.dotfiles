@@ -82,8 +82,6 @@ return require('packer').startup(function()
     use 'simrat39/rust-tools.nvim'
     use 'rust-lang/rust.vim'
 
-    use 'sbdchd/neoformat'
-
     -- Utilities
     use 'nvim-lua/plenary.nvim'
     use {
@@ -106,7 +104,7 @@ return require('packer').startup(function()
     })
 
     -- theming
-    use { "ellisonleao/gruvbox.nvim" }
+ --   use { "ellisonleao/gruvbox.nvim" }
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
