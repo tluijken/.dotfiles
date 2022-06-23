@@ -79,3 +79,16 @@ inoremap [ []<left>
 inoremap < <><left>
 inoremap { {}<left>
 ]]);
+
+
+-- code navigation
+nmap("<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
+nmap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+nmap("gD", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+nmap("<c-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+nmap("1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+nmap("gr", "<cmd>lua vim.lsp.buf.references()<CR>")
+nmap("g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+nmap("gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+nmap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+nmap("ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
