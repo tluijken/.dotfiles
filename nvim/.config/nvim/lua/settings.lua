@@ -52,6 +52,4 @@ for key, value in pairs(options) do
     vim.opt[key] = value
 end
 
---vim.opt.background = "dark" -- or "light" for light mode
---vim.cmd([[colorscheme gruvbox]])
 vim.g.gruvbox_material_enable_italic_comment = 1

@@ -80,8 +80,11 @@ return require('packer').startup(function()
     use {'neoclide/coc.nvim', branch = 'release'}
 
     -- RUST 
-    use 'simrat39/rust-tools.nvim'
     use 'rust-lang/rust.vim'
+    use {
+        'simrat39/rust-tools.nvim',
+        config = require "plugins.configs.rust-tools"
+    }
 
     -- Utilities
     use 'nvim-lua/plenary.nvim'

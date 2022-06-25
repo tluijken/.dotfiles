@@ -2,7 +2,7 @@ local nvim_lsp = require'lspconfig'
 
 local opts = {
     tools = { -- rust-tools options
-        autoSetHints = true,
+        autosethints = true,
         hover_with_actions = true,
         inlay_hints = {
             show_parameter_hints = false,
@@ -13,7 +13,7 @@ local opts = {
 
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/config.md#rust_analyzer
     server = {
         -- on_attach is a callback called when the language server attachs to the buffer
         -- on_attach = on_attach,
@@ -22,7 +22,7 @@ local opts = {
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
             ["rust-analyzer"] = {
                 -- enable clippy on save
-                checkOnSave = {
+                checkonsave = {
                     command = "clippy"
                 },
             }
@@ -34,29 +34,29 @@ require('rust-tools').setup(opts)
 
 local cmp = require'cmp'
 cmp.setup({
-  -- Enable LSP snippets
+  -- enable lsp snippets
   snippet = {
     expand = function(args)
         vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    -- Add tab support
-    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-    ['<Tab>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
-    })
+    ['<c-p>'] = cmp.mapping.select_prev_item(),
+    ['<c-n>'] = cmp.mapping.select_next_item(),
+    -- add tab support
+    ['<s-tab>'] = cmp.mapping.select_prev_item(),
+    ['<tab>'] = cmp.mapping.select_next_item(),
+    ['<c-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<c-f>'] = cmp.mapping.scroll_docs(4),
+    ['<c-space>'] = cmp.mapping.complete(),
+    ['<c-e>'] = cmp.mapping.close(),
+ --   ['<cr>'] = cmp.mapping.confirm({
+  --    behavior = cmp.confirmbehavior.insert,
+   --   select = true,
+   -- })
   },
 
-  -- Installed sources
+  -- installed sources
   sources = {
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
