@@ -1,11 +1,12 @@
+-- get colors here https://camo.githubusercontent.com/410b3ab80570bcd5b470a08d84f93caa5b4962ccd994ebceeb3d1f78364c2120/687474703a2f2f692e696d6775722e636f6d2f776136363678672e706e67
 local colors = {
-  red = '#ea6962',
-  orange = '#e78a4e',
-  yellow = '#d8a657',
-  green = '#a9b665',
-  aqua = '#89b482',
-  blue = "#7daea3",
-  purple = "#d3869b",
+  red = '#fb4934',
+  orange = '#fe8019',
+  yellow = '#fabd2f',
+  green = '#b8bb26',
+  aqua = '#8ec07c',
+  blue = "#83a598",
+  purple = "#d3869d",
 
   bg_yellow = '#d8a657',
   bg_red = '#ea6962',
@@ -19,8 +20,8 @@ local colors = {
   bg_diff_green = '#34381b',
   bg_diff_blue = '#0e363e',
 
-  fg0 = '#d4be98',
-  fg1 = '#ddc7a1',
+  fg0 = '#ebdbb2',
+  fg1 = '#d5c4a1',
 
   -- background = medium
   bg0 = '#282828',
@@ -29,14 +30,14 @@ local colors = {
   bg3 = '#45403d',
   bg4 = '#45403d',
   bg5 = '#5a524c',
-  bg_statusline1 = '#32302f',
-  bg_statusline2 = '#3a3735',
-  bg_statusline3 = '#504945',
-  bg_visual_green = '#3b4439',
-  bg_visual_red = '#4c3432',
-  bg_visual_blue = '#374141',
-  bg_visual_yellow = '#4f422e',
-  bg_current_word = '#3c3836',
+  bg_statusline1 = '#504945',
+  bg_statusline2 = '#3c3836',
+  bg_statusline3 = '#665c54',
+  bg_visual_green = '#b8bb26',
+  bg_visual_red = '#fb4934',
+  bg_visual_blue = '#83a598',
+  bg_visual_yellow = '#fabd2f',
+  bg_current_word = '#665c54',
 
   term = {
     bg5 = 239
