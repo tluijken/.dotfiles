@@ -70,17 +70,6 @@ nmap("<Leader>tk", "<C-w>t<C-w>K")
 -- Removes pipes | that act as seperators on splits
 vim.opt.fillchars:append "vert\\"
 
--- autocomplete pairs
-vim.cmd([[
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap < <><left>
-inoremap { {}<left>
-]]);
-
-
 -- code navigation
 nmap("<c-]>", "<cmd>lua vim.lsp.buf.definition()<CR>")
 nmap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")

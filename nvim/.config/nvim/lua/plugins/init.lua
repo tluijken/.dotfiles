@@ -107,7 +107,10 @@ return require('packer').startup(function()
         },
         config = require "plugins.configs.nvimtree",
     }
-
+    use {
+        "windwp/nvim-autopairs",
+        config = require "plugins.configs.autopairs"
+    }
     -- install without yarn or npm
     use({
         "iamcco/markdown-preview.nvim",
