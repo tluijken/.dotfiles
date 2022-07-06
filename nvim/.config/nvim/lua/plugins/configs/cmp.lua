@@ -1,4 +1,5 @@
 local cmp = require'cmp'
+
 cmp.setup({
   -- Enable LSP snippets
   snippet = {
@@ -24,6 +25,7 @@ cmp.setup({
 
   -- Installed sources
   sources = {
+    { name = 'treesitter'},
     { name = 'nvim_lsp' },
     { name = 'vsnip' },
     { name = 'path' },

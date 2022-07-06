@@ -33,7 +33,6 @@ packer.init {
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function()
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
@@ -58,7 +57,15 @@ return require('packer').startup(function()
     }
 
     -- Collection of common configurations for the Nvim LSP client
-    use 'neovim/nvim-lspconfig'
+    use {
+        "williamboman/nvim-lsp-installer",
+        "neovim/nvim-lspconfig",
+    }
+
+    use {
+        "RRethy/vim-illuminate",
+        config = require "plugins.configs.vim-illuminate"
+    }
 
     -- Completion framework
     use {
@@ -66,7 +73,7 @@ return require('packer').startup(function()
         config = require "plugins.configs.cmp",
     }
     -- Copilot
-   use 'github/copilot.vim'
+    use 'github/copilot.vim'
 
     -- LSP completion source for nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
