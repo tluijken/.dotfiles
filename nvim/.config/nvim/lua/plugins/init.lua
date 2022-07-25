@@ -117,8 +117,6 @@ return require('packer').startup(function()
         run = function() vim.fn["mkdp#util#install"]() end,
     })
 
-    -- theming
- --   use { "ellisonleao/gruvbox.nvim" }
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()
