@@ -41,8 +41,8 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<c-p>'] = cmp.mapping.select_prev_item(),
-    ['<c-n>'] = cmp.mapping.select_next_item(),
+    ['<Up>'] = cmp.mapping.select_prev_item(),
+    ['<Down>'] = cmp.mapping.select_next_item(),
     -- add tab support
     ['<s-tab>'] = cmp.mapping.select_prev_item(),
     ['<tab>'] = cmp.mapping.select_next_item(),
@@ -50,10 +50,10 @@ cmp.setup({
     ['<c-f>'] = cmp.mapping.scroll_docs(4),
     ['<c-space>'] = cmp.mapping.complete(),
     ['<c-e>'] = cmp.mapping.close(),
- --   ['<cr>'] = cmp.mapping.confirm({
-  --    behavior = cmp.confirmbehavior.insert,
-   --   select = true,
-   -- })
+    ['<cr>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    })
   },
 
   -- installed sources

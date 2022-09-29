@@ -5,6 +5,7 @@ vim.g.mapleader = " "
 vim.cmd([[
     syntax enable
     highlight ColorColumn ctermbg=0 guibg=grey
+    set fillchars=eob:\ ,fold:\ ,vert:\│
     filetype plugin indent on]])
 
 local options = {

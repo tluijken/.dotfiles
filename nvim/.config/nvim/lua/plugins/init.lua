@@ -68,10 +68,10 @@ return require('packer').startup(function()
     }
 
     -- Completion framework
-    use {
-        'hrsh7th/nvim-cmp',
-        config = require "plugins.configs.cmp",
-    }
+    -- use {
+    --    'hrsh7th/nvim-cmp',
+    --    config = require "plugins.configs.cmp",
+    -- }
     -- Copilot
     use 'github/copilot.vim'
 
