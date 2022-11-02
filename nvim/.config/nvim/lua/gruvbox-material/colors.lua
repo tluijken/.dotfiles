@@ -24,7 +24,7 @@ local colors = {
   fg1 = '#d5c4a1',
 
   -- background = medium
-  bg0 = '#282828',
+  bg0 = none, --'#282828',
   bg1 = '#32302f',
   bg2 = '#32302f',
   bg3 = '#45403d',
