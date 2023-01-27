@@ -36,8 +36,9 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
-    use {"rebelot/heirline.nvim"}
-    use { "ellisonleao/gruvbox.nvim" }
+    use { "terrortylor/nvim-comment" }
+    use { "rebelot/heirline.nvim" }
+    use { "sainnhe/gruvbox-material" }
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
@@ -45,16 +46,25 @@ return require('packer').startup(function(use)
     use {
         "folke/which-key.nvim",
         config = function()
-            require("which-key").setup {
+            require("wh ch-key").setup {
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
             }
         end
     }
-
+    use { "alexghergh/nvim-tmux-navigation" }
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
+
+    use { "akinsho/toggleterm.nvim", tag = '*' }
 end)

@@ -8,7 +8,17 @@ export EDITOR="nvim"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
+if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
+  # Display diamond when in a toolbox: ⬢ user@host.
+  typeset -g DRACULA_ARROW_ICON="⬢"
+  # When in a toolbox, forward aliasses to the host machine.
+  alias docker="flatpak-spawn --host podman"
+  alias docker-compose="flatpak-spawn --host podman-compose"
+else
+  # When not in a toolbox, use native aliasses.
+  alias docker="podman"
+  alias docker-compose="podman-compose"
+fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -130,11 +140,14 @@ alias vi="nvim"
 alias oldvim="vim"
 alias c="clear"
 alias cat="bat"
+alias ls="lsd -l"
 alias open="xdg-open"
 alias :q="exit"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias ports="sudo netstat -tulpn | grep LISTEN"
+alias dap="dotnet new $1 -n $2 -o $2"
 alias clean-local-git-branches="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -142,3 +155,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=${HOME}/gn:"$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform

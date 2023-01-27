@@ -1,2 +1,1 @@
 require("septimus")
-print("hello")
