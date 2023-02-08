@@ -14,10 +14,16 @@ if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
   # When in a toolbox, forward aliasses to the host machine.
   alias docker="flatpak-spawn --host podman"
   alias docker-compose="flatpak-spawn --host podman-compose"
+  alias vim="flatpak-spawn --host nvim"
+  alias nvim="flatpak-spawn --host nvim"
+  alias vi="flatpak-spawn --host nvim"
 else
   # When not in a toolbox, use native aliasses.
   alias docker="podman"
   alias docker-compose="podman-compose"
+  alias vim="nvim"
+  alias vi="nvim"
+  alias oldvim="vim"
 fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -135,9 +141,6 @@ source $ZSH/oh-my-zsh.sh
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 alias change-cluster=~/.config/kube-switch/kube-switch
-alias vim="nvim"
-alias vi="nvim"
-alias oldvim="vim"
 alias c="clear"
 alias cat="bat"
 alias ls="lsd -l"
@@ -147,7 +150,7 @@ alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %
 alias ports="sudo netstat -tulpn | grep LISTEN"
 alias dap="dotnet new $1 -n $2 -o $2"
 alias clean-local-git-branches="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
-
+alias tf="terraform"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
