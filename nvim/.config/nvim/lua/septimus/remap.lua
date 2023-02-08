@@ -40,3 +40,8 @@ vim.keymap.set("n", "<C-k>", "<C-w><Up>")
 vim.keymap.set("n", "<C-w>", "<C-w><Down>")
 vim.keymap.set("n", "<C-l>", "<C-w><Right>")
 vim.keymap.set("n", "<C-h>", "<C-w><Left>")
+
+vim.keymap.set({"", "!"}, "<Right>", "", {})
+vim.keymap.set({"", "!"}, "<Left>", "", {})
+vim.keymap.set({"", "!"}, "<Up>", "", {})
+vim.keymap.set({"", "!"}, "<Down>", "", {})
