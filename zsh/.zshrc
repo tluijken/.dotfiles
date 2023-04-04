@@ -19,8 +19,8 @@ if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
   alias vi="flatpak-spawn --host nvim"
 else
   # When not in a toolbox, use native aliasses.
-  alias docker="podman"
-  alias docker-compose="podman-compose"
+  # alias docker="podman"
+  # alias docker-compose="podman-compose"
   alias vim="nvim"
   alias vi="nvim"
   alias oldvim="vim"
@@ -151,6 +151,16 @@ alias ports="sudo netstat -tulpn | grep LISTEN"
 alias dap="dotnet new $1 -n $2 -o $2"
 alias clean-local-git-branches="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 alias tf="terraform"
+alias getip="curl ifconfig.co"
+alias dive=" docker run --rm -it \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    wagoodman/dive:latest $1"
+alias debug-kubectl="kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh"
+ffile() {find . -path ./.git -prune -o -iname "*$*"; }
+mkd() { mkdir -p "$1" ^ cd "$1"}
+
+
+
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

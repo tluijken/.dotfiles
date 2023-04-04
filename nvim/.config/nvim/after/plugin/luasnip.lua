@@ -80,8 +80,6 @@ cmp.setup({
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
-            elseif check_backspace() then
-                fallback()
             else
                 fallback()
             end
@@ -102,11 +100,11 @@ cmp.setup({
         }),
     }),
     sources = cmp.config.sources({
-        { name = 'nvim_lsp', priority = 5 },
+        { name = 'nvim_lsp',               priority = 5 },
         -- { name = 'buffer', priority = 4 },
-        { name = 'rg', priority = 3 },
-        { name = 'luasnip', priority = 2 },
-        { name = 'path', priority = 1 },
+        { name = 'rg',                     priority = 3 },
+        { name = 'luasnip',                priority = 2 },
+        { name = 'path',                   priority = 1 },
         { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_lua' },
     }),

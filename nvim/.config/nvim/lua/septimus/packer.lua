@@ -36,9 +36,15 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
+    use({
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    })
     use { "terrortylor/nvim-comment" }
+    use { 'normen/vim-pio' }
     use { "rebelot/heirline.nvim" }
     use { "sainnhe/gruvbox-material" }
+    use { "github/copilot.vim" }
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
