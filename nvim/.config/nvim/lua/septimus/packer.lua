@@ -42,8 +42,10 @@ return require('packer').startup(function(use)
     })
     use { "terrortylor/nvim-comment" }
     use { 'normen/vim-pio' }
+    use { 'nvim-treesitter/nvim-treesitter-refactor' }
     use { "rebelot/heirline.nvim" }
     use { "sainnhe/gruvbox-material" }
+    use("nvim-treesitter/nvim-treesitter-context");
     use { "github/copilot.vim" }
     use {
         "windwp/nvim-autopairs",
@@ -59,6 +61,10 @@ return require('packer').startup(function(use)
             }
         end
     }
+    use {
+        "folke/trouble.nvim",
+        requires = "nvim-tree/nvim-web-devicons",
+    }
     use { "alexghergh/nvim-tmux-navigation" }
     use {
         'nvim-lualine/lualine.nvim',
@@ -69,7 +75,7 @@ return require('packer').startup(function(use)
         requires = {
             'nvim-tree/nvim-web-devicons', -- optional, for file icons
         },
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+        tag = 'nightly'                    -- optional, updated every week. (see issue #1193)
     }
 
     use { "akinsho/toggleterm.nvim", tag = '*' }
