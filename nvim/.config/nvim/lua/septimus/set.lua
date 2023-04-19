@@ -31,6 +31,3 @@ vim.opt.colorcolumn = "80"
 vim.g.mapleader = " "
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.fillchars = { eob = " " }
-
-vim.g.chat_gpt_key = "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"
-vim.g.chat_gpt_max_tokens = 2000

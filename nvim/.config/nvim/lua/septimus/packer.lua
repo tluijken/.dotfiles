@@ -54,7 +54,6 @@ return require('packer').startup(function(use)
     use { "rebelot/heirline.nvim" }
     use { "sainnhe/gruvbox-material" }
     use { "nvim-treesitter/nvim-treesitter-context" }
-    use { "CoderCookE/vim-chatgpt" }
     use { "github/copilot.vim" }
     use {
         "windwp/nvim-autopairs",
