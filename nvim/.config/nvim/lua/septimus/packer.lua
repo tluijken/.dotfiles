@@ -9,7 +9,10 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { 'nvim-telescope/telescope-live-grep-args.nvim' }
+        }
     }
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('ThePrimeagen/harpoon')
@@ -40,12 +43,18 @@ return require('packer').startup(function(use)
         "kylechui/nvim-surround",
         tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     })
+    use {
+        'saecki/crates.nvim',
+    }
+    use { "simrat39/rust-tools.nvim" }
+    use { "mfussenegger/nvim-dap" }
     use { "terrortylor/nvim-comment" }
     use { 'normen/vim-pio' }
     use { 'nvim-treesitter/nvim-treesitter-refactor' }
     use { "rebelot/heirline.nvim" }
     use { "sainnhe/gruvbox-material" }
-    use("nvim-treesitter/nvim-treesitter-context");
+    use { "nvim-treesitter/nvim-treesitter-context" }
+    use { "CoderCookE/vim-chatgpt" }
     use { "github/copilot.vim" }
     use {
         "windwp/nvim-autopairs",
@@ -54,7 +63,7 @@ return require('packer').startup(function(use)
     use {
         "folke/which-key.nvim",
         config = function()
-            require("wh ch-key").setup {
+            require("which-key").setup {
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below

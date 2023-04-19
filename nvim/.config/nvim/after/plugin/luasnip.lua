@@ -107,5 +107,6 @@ cmp.setup({
         { name = 'path',                   priority = 1 },
         { name = 'nvim_lsp_signature_help' },
         { name = 'nvim_lua' },
+        { name = "crates" },
     }),
 })
