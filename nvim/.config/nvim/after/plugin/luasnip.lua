@@ -36,6 +36,19 @@ local icons = {
     Value = ' ',
     Variable = ' ',
 }
+
+local function border(hl_name)
+    return {
+        { "╭", hl_name },
+        { "─", hl_name },
+        { "╮", hl_name },
+        { "│", hl_name },
+        { "╯", hl_name },
+        { "─", hl_name },
+        { "╰", hl_name },
+        { "│", hl_name },
+    }
+end
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -46,14 +59,15 @@ cmp.setup({
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, item)
             item.kind = string.format('%s', icons[item.kind])
-            item.menu = ({
-                buffer = '[Buffer]',
-                luasnip = '[Snip]',
-                nvim_lsp = '[LSP]',
-                nvim_lua = '[API]',
-                path = '[Path]',
-                rg = '[RG]',
-            })[entry.source.name]
+            -- item.menu = ({
+
+            --     buffer = '[Buffer]',
+            --     luasnip = '[Snip]',
+            --     nvim_lsp = '[LSP]',
+            --     nvim_lua = '[API]',
+            --     path = '[Path]',
+            --     rg = '[RG]',
+            -- })[entry.source.name]
             return item
         end,
     },

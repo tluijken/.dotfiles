@@ -1,33 +1,53 @@
-vim.opt.nu = true
-vim.opt.relativenumber = true
+local opt = vim.opt
+local g = vim.g
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+opt.nu = true
+opt.laststatus = 3
+opt.showmode = false
+opt.relativenumber = true
+-- highlights the current line
+opt.cursorline = false
 
-vim.opt.smartindent = true
+-- Indenting
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.smartindent = true
+opt.tabstop = 2
+opt.softtabstop = 2
 
-vim.opt.wrap = false
+opt.fillchars = { eob = " " }
+opt.ignorecase = true
+opt.smartcase = true
+opt.mouse = "a"
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+-- Numbers
+opt.number = true
+opt.numberwidth = 2
+opt.ruler = false
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+opt.wrap = false
 
-vim.opt.termguicolors = true
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
+opt.hlsearch = false
+opt.incsearch = true
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+opt.termguicolors = true
 
-vim.opt.updatetime = 50
+opt.splitbelow = true
+opt.splitright = true
+opt.termguicolors = true
+opt.timeoutlen = 400
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")
 
-vim.opt.colorcolumn = "80"
+opt.updatetime = 50
 
-vim.g.mapleader = " "
-vim.opt.clipboard = 'unnamedplus'
-vim.opt.fillchars = { eob = " " }
+opt.colorcolumn = "80"
+
+g.mapleader = " "
+opt.clipboard = 'unnamedplus'
+opt.fillchars = { eob = " " }
