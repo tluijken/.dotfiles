@@ -46,8 +46,9 @@ opt.isfname:append("@-@")
 
 opt.updatetime = 50
 
-opt.colorcolumn = "80"
-
+-- opt.colorcolumn = "80"
 g.mapleader = " "
 opt.clipboard = 'unnamedplus'
 opt.fillchars = { eob = " " }
+opt.spelllang = { "en", "nl" }
+opt.spell = true
