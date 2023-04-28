@@ -1,4 +1,8 @@
-require'toggleterm'.setup {
+if isModuleAvailable('toggleterm') == false then
+  print('toggleterm is not available')
+  return
+end
+require 'toggleterm'.setup {
   shade_terminals = false,
   direction = 'float',
 }
@@ -11,4 +15,3 @@ vim.cmd([[autocmd TermEnter term://*toggleterm#*
 nnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm"<CR>
 inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . "ToggleTerm"<CR>
 ]])
-

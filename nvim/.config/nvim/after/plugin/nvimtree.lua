@@ -1,4 +1,8 @@
 -- examples for your init.lua
+if isModuleAvailable('nvim-tree') == false then
+  print('nvim-tree not available')
+  return
+end
 
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1

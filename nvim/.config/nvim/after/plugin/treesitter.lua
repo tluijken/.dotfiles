@@ -1,3 +1,7 @@
+if isModuleAvailable('nvim-treesitter.configs') == false then
+  print('nvim-treesitter.configs is not available')
+  return
+end
 require 'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = {

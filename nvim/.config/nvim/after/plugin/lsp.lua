@@ -1,3 +1,7 @@
+if isModuleAvailable('lsp-zero') == false then
+  print('lsp-zero not available')
+  return
+end
 local lsp = require('lsp-zero')
 
 lsp.preset('recommended')

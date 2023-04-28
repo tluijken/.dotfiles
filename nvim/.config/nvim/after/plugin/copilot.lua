@@ -1,3 +1,7 @@
+if isModuleAvailable('copilot') == false then
+  return
+end
+
 require('copilot').setup({
   panel = {
     enabled = false,
