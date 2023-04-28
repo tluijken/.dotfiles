@@ -56,7 +56,6 @@ return require('packer').startup(function(use)
   use { "mfussenegger/nvim-dap" }
   use { "terrortylor/nvim-comment" }
   use { 'normen/vim-pio' }
-  use { 'nvim-treesitter/nvim-treesitter-refactor' }
   use { 'hashivim/vim-terraform' }
   use { "rebelot/heirline.nvim" }
   use { "sainnhe/gruvbox-material" }
