@@ -5,21 +5,6 @@ end
 local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'rust_analyzer',
-  'arduino_language_server',
-  'bashls',
-  'clangd',
-  'jdtls',
-  'jsonls',
-  'lemminx',
-  'lua_ls',
-  'taplo',
-  'terraformls',
-})
-
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
