@@ -29,7 +29,10 @@ return require('packer').startup(function(use)
     requires = {
       -- LSP Support
       { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
+      {
+        "williamboman/mason.nvim",
+        run = ":MasonUpdate" -- :MasonUpdate updates registry contents
+      },
       { 'williamboman/mason-lspconfig.nvim' },
 
       -- Autocompletion
