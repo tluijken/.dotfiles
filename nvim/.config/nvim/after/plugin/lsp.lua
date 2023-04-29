@@ -6,7 +6,7 @@ local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
 lsp.ensure_installed({
-  'taplo', 'terraformls', 'lemminx', 'tflint', 'jdtls', 'eslint', 'jsonls', 'rust_analyzer', 'clangd',
+  'taplo', 'terraformls', 'tflint', 'jdtls', 'eslint', 'jsonls', 'rust_analyzer',
   'arduino_language_server', 'lua_ls', 'tsserver'
 })
 
