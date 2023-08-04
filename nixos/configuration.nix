@@ -143,4 +143,9 @@
     	  theme = "robbyrussell";
       };
   };
+
+  fonts.fonts = with pkgs; [
+      jetbrains-mono
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
 }
