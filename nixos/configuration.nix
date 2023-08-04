@@ -49,7 +49,7 @@
     # videoDrivers = ["nvidia"];
     displayManager.gdm = {
         enable = true;
-	      wayland = true;
+        wayland = true;
     };
     layout = "us";
     xkbVariant = "";
@@ -60,7 +60,29 @@
   #    nvidia.modesetting.enable = true;
   # }
 
-  programs.sway.enable = true;
+  programs.sway = {
+      enable = true;
+      extraPackages = with pkgs; [
+          swaylock
+              swayidle
+              wl-clipboard
+              wf-recorder
+              mako # notification daemon
+              grim
+              waybar
+              #kanshi
+              slurp
+              alacritty # Alacritty is the default terminal in the config
+              dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+      ];
+      extraSessionCommands = ''
+          export SDL_VIDEODRIVER=wayland
+          export QT_QPA_PLATFORM=wayland
+          export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+          export _JAVA_AWT_WM_NONREPARENTING=1
+          export MOZ_ENABLE_WAYLAND=1
+          '';
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.thomas = {
@@ -77,10 +99,10 @@
   programs.git = {
       enable = true;
       config = {
-         user = {
-             name = "Thomas Luijken";
-             email = "thomas@luijken.dev";
-         };
+          user = {
+              name = "Thomas Luijken";
+              email = "thomas@luijken.dev";
+          };
       };
   };
 
@@ -97,6 +119,7 @@
     tmux
     lsd
     wget
+    firefox
     wdisplays
   ];
 
