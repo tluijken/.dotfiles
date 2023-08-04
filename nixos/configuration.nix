@@ -64,16 +64,16 @@
       enable = true;
       extraPackages = with pkgs; [
           swaylock
-              swayidle
-              wl-clipboard
-              wf-recorder
-              mako # notification daemon
-              grim
-              waybar
-              #kanshi
-              slurp
-              alacritty # Alacritty is the default terminal in the config
-              dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+          swayidle
+          wl-clipboard
+          wf-recorder
+          mako # notification daemon
+          grim
+          waybar
+          #kanshi
+          slurp
+          alacritty # Alacritty is the default terminal in the config
+          wofi 
       ];
       extraSessionCommands = ''
           export SDL_VIDEODRIVER=wayland

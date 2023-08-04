@@ -16,7 +16,7 @@ default_border pixel 0
 for_window [class=".*"] border pixel 0
 gaps inner 10
 gaps outer 10
-exec --no-startup-id env LIBGL_ALWAYS_INDIRECT=0 sway
+# exec --no-startup-id env LIBGL_ALWAYS_INDIRECT=0 sway
 
 #font mononoki Nerd Font 14px 
 #titlebar_border_thickness 2
@@ -51,7 +51,7 @@ assign [title="Rider"] 3
 ## Variables
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
+set $mod mod1
 # Home row direction keys, like vim
 set $left h
 set $down j

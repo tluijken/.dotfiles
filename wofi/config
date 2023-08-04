@@ -1,6 +1,4 @@
 style=/home/thomas/.config/wofi/style.css
-xoffset=710
-yoffset=275
 show=drun
 width=600
 height=350
