@@ -17,4 +17,4 @@ ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
 ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
 
 # Create syslink for alacritty
-ln -sf ~/.dotfiles/alacritty/alacritty.yml alacritty/alacritty.yml
+ln -s ~/.dotfiles/alacritty/ ~/.config/alacritty
