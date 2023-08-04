@@ -7,9 +7,6 @@
 #
 # chsh -s $(which zsh)
 
-# Create syslink for nixconfiguration
-ln -s /etc/nixos/configuration.nix ~/.dotfiles/nixos/configuration.nix
-
 # Syslink tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
 

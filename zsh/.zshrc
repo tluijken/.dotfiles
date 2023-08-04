@@ -98,6 +98,7 @@ alias dive=" docker run --rm -it \
     -v /var/run/docker.sock:/var/run/docker.sock \
     wagoodman/dive:latest $1"
 alias debug-kubectl="kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh"
+alias rebuild-nix="sudo nixos-rebuild switch -I nixos-config=$HOME/.dotfiles/nixos/configuration.nix"
 ffile() {find . -path ./.git -prune -o -iname "*$*"; }
 mkd() { mkdir -p "$1" ^ cd "$1"}
 
