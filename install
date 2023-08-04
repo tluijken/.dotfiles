@@ -19,5 +19,7 @@ ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
 # Create syslink for alacritty
 ln -s ~/.dotfiles/alacritty/ ~/.config/alacritty
 
-# Create syslink for sway
+# Create syslinks for sway
 ln -sf ~/.dotfiles/sway ~/.config/sway
+ln -sf ~/.dotfiles/waybar ~/.config/waybar
+ln -sf ~/.dotfiles/wofi ~/.config/wofi
