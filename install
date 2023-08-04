@@ -1,8 +1,21 @@
-#!/usr/bin/env zsh
-for folder in */
-do
-    stow -D $folder
-    stow $folder
-done
+#!/usr/bin/bash
+# for folder in */
+# do
+#     stow -D $folder
+#     stow $folder
+# done
+#
+# chsh -s $(which zsh)
 
-chsh -s $(which zsh)
+# Create syslink for nixconfiguration
+ln -s /etc/nixos/configuration.nix ~/.dotfiles/nixos/configuration.nix
+
+# Syslink tmux
+ln -s ~/.dotfiles/tmux ~/.config/tmux
+
+# Create syslink for zshrc
+ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
+
+# Create syslink for nvim
+ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
+

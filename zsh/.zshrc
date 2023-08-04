@@ -4,7 +4,6 @@ export EDITOR="nvim"
 
 # Enable colors and change prompt:
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -42,12 +41,11 @@ export PATH="$HOME/projects/open_source/hyprland/swww/target/release/:$PATH"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-	zsh-syntax-highlighting
-	zsh-autosuggestions
-	dnf
-	docker
-    autojump
-	)
+	  zsh-syntax-highlighting
+	  zsh-autosuggestions
+	  dnf
+	  docker
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -124,5 +122,6 @@ export PATH=${HOME}/gn:"$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
