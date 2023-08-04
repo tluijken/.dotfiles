@@ -93,10 +93,12 @@ alias ports="sudo netstat -tulpn | grep LISTEN"
 alias dap="dotnet new $1 -n $2 -o $2"
 alias clean-local-git-branches="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 alias tf="terraform"
-alias getip="curl ifconfig.co"
+alias getip="curl -4 ifconfig.co"
 alias dive=" docker run --rm -it \
     -v /var/run/docker.sock:/var/run/docker.sock \
     wagoodman/dive:latest $1"
+
+# alias k9s="docker run --rm -it -v ~/.kube/config:/root/.kube/config -v ~/.config/k9s:/root/.config/k9s k9s-docker:latest"
 alias debug-kubectl="kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh"
 alias update="sudo nixos-rebuild switch -I nixos-config=$HOME/.dotfiles/nixos/configuration.nix"
 ffile() {find . -path ./.git -prune -o -iname "*$*"; }
