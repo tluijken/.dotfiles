@@ -49,7 +49,7 @@
     # videoDrivers = ["nvidia"];
     displayManager.gdm = {
         enable = true;
-	wayland = true;
+	      wayland = true;
     };
     layout = "us";
     xkbVariant = "";
@@ -130,6 +130,8 @@
   #zsh
   programs.zsh = {
       enable = true;
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
       shellAliases = {
     	  ll = "ls -l";
     	  update = "sudo nixos-rebuild switch -I nixos-config=$HOME/.dotfiles/nixos/configuration.nix"; #-I nixpkgs=$HOME/Projects/nixpkgs  when starting to use packages

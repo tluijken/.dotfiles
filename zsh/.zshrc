@@ -41,8 +41,8 @@ export PATH="$HOME/projects/open_source/hyprland/swww/target/release/:$PATH"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-	  zsh-syntax-highlighting
-	  zsh-autosuggestions
+	  # zsh-syntax-highlighting
+	  # zsh-autosuggestions
 	  dnf
 	  docker
 )
@@ -98,7 +98,7 @@ alias dive=" docker run --rm -it \
     -v /var/run/docker.sock:/var/run/docker.sock \
     wagoodman/dive:latest $1"
 alias debug-kubectl="kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh"
-alias rebuild-nix="sudo nixos-rebuild switch -I nixos-config=$HOME/.dotfiles/nixos/configuration.nix"
+alias update="sudo nixos-rebuild switch -I nixos-config=$HOME/.dotfiles/nixos/configuration.nix"
 ffile() {find . -path ./.git -prune -o -iname "*$*"; }
 mkd() { mkdir -p "$1" ^ cd "$1"}
 
