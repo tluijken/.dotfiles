@@ -70,7 +70,7 @@ set $menu wofi --hide-scroll | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/Wallpapers/y3a8pbl6fmu91.jpg fill
+output * bg ~/.dotfiles/wallpaper/background.png fill
 #
 # Example configuration:
 #
