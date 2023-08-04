@@ -1,6 +1,6 @@
 if isModuleAvailable('lspconfig') == false then
-  print('lspconfig is not available')
-  return
+    print('lspconfig is not available')
+    return
 end
 require 'lspconfig'.terraformls.setup({})
 require 'lspconfig'.tflint.setup({})

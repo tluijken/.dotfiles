@@ -16,10 +16,10 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -41,7 +41,7 @@ vim.keymap.set("n", "<C-w>", "<C-w><Down>")
 vim.keymap.set("n", "<C-l>", "<C-w><Right>")
 vim.keymap.set("n", "<C-h>", "<C-w><Left>")
 
-vim.keymap.set({"", "!"}, "<Right>", "", {})
-vim.keymap.set({"", "!"}, "<Left>", "", {})
-vim.keymap.set({"", "!"}, "<Up>", "", {})
-vim.keymap.set({"", "!"}, "<Down>", "", {})
+vim.keymap.set({ "", "!" }, "<Right>", "", {})
+vim.keymap.set({ "", "!" }, "<Left>", "", {})
+vim.keymap.set({ "", "!" }, "<Up>", "", {})
+vim.keymap.set({ "", "!" }, "<Down>", "", {})
