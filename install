@@ -34,3 +34,7 @@ ln -sf ~/.dotfiles/cava ~/.config/cava
 # dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-7 "['<Super><Shift>7']" 
 # dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-8 "['<Super>8']"
 # dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-8 "['<Super><Shift>8']" 
+# disable dynamic workspaces
+# dconf write /org/gnome/mutter/dynamic-workspaces false
+# set number of workspaces
+# dconf write /org/gnome/desktop/wm/preferences/num-workspaces 8
