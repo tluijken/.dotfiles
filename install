@@ -7,14 +7,16 @@
 #
 # chsh -s $(which zsh)
 
+# Install tmux 
+sudo dnf -y install tmux
+
 # Syslink tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
 
-# Create syslink for zshrc
-ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
 
 # Create syslink for nvim
 ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
+ln -s ~/.dotfiles/fonts/ ~/.local/share/fonts
 
 # Create syslink for alacritty
 ln -s ~/.dotfiles/alacritty/ ~/.config/alacritty
@@ -25,6 +27,17 @@ ln -sf ~/.dotfiles/waybar ~/.config/waybar
 ln -sf ~/.dotfiles/wofi ~/.config/wofi
 ln -sf ~/.dotfiles/cava ~/.config/cava
 
+#Install zsh
+sudo dnf -y install zsh
+
+# Create syslink for zshrc
+ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# Install zsh plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 # GNOME WORKSPACE SELECTION
 # dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-5 "['<Super>5']"
 # dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-5 "['<Super><Shift>5']" 
