@@ -13,21 +13,23 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
   # Display diamond when in a toolbox: ⬢ user@host.
-  typeset -g DRACULA_ARROW_ICON="⬢"
+  # typeset -g DRACULA_ARROW_ICON="⬢"
   # When in a toolbox, forward aliasses to the host machine.
   alias docker="flatpak-spawn --host podman"
   alias docker-compose="flatpak-spawn --host podman-compose"
-  alias vim="flatpak-spawn --host nvim"
-  alias nvim="flatpak-spawn --host nvim"
-  alias vi="flatpak-spawn --host nvim"
+  alias jb="nohup /opt/ideaIU-2023.2.2/idea-IU-232.9921.47/bin/idea.sh > /dev/null 2>&1 &"
+  alias rider="nohup /opt/JetBrains_Rider-2023.2.1/bin/rider.sh > /dev/null 2>&1 &"
+#  alias vim="flatpak-spawn --host nvim"
+ # alias nvim="flatpak-spawn --host nvim"
+ # alias vi="flatpak-spawn --host nvim"
 else
   # When not in a toolbox, use native aliasses.
-  # alias docker="podman"
-  # alias docker-compose="podman-compose"
-  alias vim="nvim"
-  alias vi="nvim"
-  alias oldvim="vim"
+  alias docker="podman"
+  alias docker-compose="podman-compose"
 fi
+alias vim="nvim"
+alias vi="nvim"
+alias oldvim="vim"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -41,8 +43,8 @@ export PATH="$HOME/projects/open_source/hyprland/swww/target/release/:$PATH"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-	  # zsh-syntax-highlighting
-	  # zsh-autosuggestions
+	  zsh-syntax-highlighting
+	  zsh-autosuggestions
 	  dnf
 	  docker
 )
@@ -84,8 +86,8 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 export _JAVA_AWT_WM_NONREPARENTING=1
 alias change-cluster=~/.config/kube-switch/kube-switch
 alias c="clear"
-alias cat="bat"
-alias ls="lsd -l"
+#alias cat="bat"
+#alias ls="lsd -l"
 alias open="xdg-open"
 alias :q="exit"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -94,6 +96,7 @@ alias dap="dotnet new $1 -n $2 -o $2"
 alias clean-local-git-branches="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
 alias tf="terraform"
 alias getip="curl -4 ifconfig.co"
+alias j="autojump"
 alias dive=" docker run --rm -it \
     -v /var/run/docker.sock:/var/run/docker.sock \
     wagoodman/dive:latest $1"
