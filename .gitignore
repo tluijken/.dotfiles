@@ -1,0 +1,8 @@
+# Ignore syslinks
+alacritty/alacritty
+cava/cava
+nvim/.config/nvim/nvim
+sway/sway
+tmux/tmux
+waybar/waybar
+wofi/wofi
