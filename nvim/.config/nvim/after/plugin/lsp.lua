@@ -6,10 +6,6 @@ end
 local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
-lsp.ensure_installed({
-    'taplo', 'terraformls', 'tflint', 'jdtls', 'eslint', 'jsonls', 'rust_analyzer',
-    'arduino_language_server', 'lua_ls', 'tsserver'
-})
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
@@ -40,3 +36,10 @@ require('lspconfig').tsserver.setup({
     },
 })
 lsp.setup()
+
+require('lspconfig').lua_ls.setup({
+})
+require('lspconfig').rust_analyzer.setup({})
+require('lspconfig').terraformls.setup({
+      pattern = {"*.tf", "*.tfvars"},
+})
