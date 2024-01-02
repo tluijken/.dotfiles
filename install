@@ -1,14 +1,4 @@
 #!/usr/bin/bash
-# for folder in */
-# do
-#     stow -D $folder
-#     stow $folder
-# done
-#
-# chsh -s $(which zsh)
-
-# Install tmux 
-# sudo dnf -y install tmux
 # Install packages as overlay via rpm-ostree
 rpm-ostree install gcc neovim wdisplays zsh tmux
 
@@ -17,19 +7,22 @@ ln -s ~/.dotfiles/tmux ~/.config/tmux
 
 # Create syslink for nvim
 ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
+
+# Create syslink for fonts
 ln -s ~/.dotfiles/fonts/ ~/.local/share/fonts
 
 # Create syslink for alacritty
-ln -s ~/.dotfiles/alacritty/ ~/.config/alacritty
+ln -s ~/.dotfiles/foot/ ~/.config/foot/
 
 # Create syslinks for sway
 ln -sf ~/.dotfiles/sway ~/.config/sway
 ln -sf ~/.dotfiles/waybar ~/.config/waybar
-ln -sf ~/.dotfiles/wofi ~/.config/wofi
-ln -sf ~/.dotfiles/cava ~/.config/cava
+ln -sf ~/.dotfiles/rofi ~/.config/rofi
+# ln -sf ~/.dotfiles/cava ~/.config/cava
 
-#Install zsh
-# sudo dnf -y install zsh
+# Create syslink for zshrc
+mkdir -p ~/.config/bg
+ln -sf ~/.dotfiles/wallpaper/wallpaper.jpg ~/.config/bg/wallpaper.jpg
 
 # Create syslink for zshrc
 ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
