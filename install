@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 # Install packages as overlay via rpm-ostree
 rpm-ostree install gcc neovim wdisplays zsh tmux
+# in case we want virt manager to run some virtual machines
+#rpm-ostree install virt-manager qemu-system-aarch64
 
 # Syslink tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
