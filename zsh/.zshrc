@@ -84,7 +84,7 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 export _JAVA_AWT_WM_NONREPARENTING=1
-alias change-cluster=~/.config/kube-switch/kube-switch
+alias change-cluster=~/.config/kube-switch
 alias c="clear"
 #alias cat="bat"
 #alias ls="lsd -l"
@@ -124,6 +124,7 @@ bindkey -s '^o' 'rangercd\n'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH=${HOME}/.local/bin:"$PATH"
 export PATH=${HOME}/gn:"$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
