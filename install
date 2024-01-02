@@ -8,11 +8,12 @@
 # chsh -s $(which zsh)
 
 # Install tmux 
-sudo dnf -y install tmux
+# sudo dnf -y install tmux
+# Install packages as overlay via rpm-ostree
+rpm-ostree install gcc neovim wdisplays zsh tmux
 
 # Syslink tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
-
 
 # Create syslink for nvim
 ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
@@ -28,7 +29,7 @@ ln -sf ~/.dotfiles/wofi ~/.config/wofi
 ln -sf ~/.dotfiles/cava ~/.config/cava
 
 #Install zsh
-sudo dnf -y install zsh
+# sudo dnf -y install zsh
 
 # Create syslink for zshrc
 ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
