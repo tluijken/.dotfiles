@@ -197,6 +197,15 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+## Special keys
+bindsym --locked XF86AudioRaiseVolume exec sh -c "amixer sset Master 2%+"
+bindsym --locked XF86AudioLowerVolume exec sh -c "amixer sset Master 2%-"
+bindsym --locked XF86AudioMute exec "amixer sset Master toggle"
+bindsym XF86MonBrightnessUp exec light -A 4 && notify-send " Light" "Brightness: $(light)%"
+bindsym XF86MonBrightnessDown exec light -U 4 && notify-send " Light" "Brightness: $(light)%"
+bindsym --locked XF86AudioPlay exec mpc toggle
+bindsym --locked XF86AudioNext exec mpc next
+bindsym --locked XF86AudioPrev exec mpc prev
 #
 # Status Bar:
 #
