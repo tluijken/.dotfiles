@@ -1,8 +1,6 @@
 #!/usr/bin/bash
 # Install packages as overlay via rpm-ostree
-rpm-ostree install gcc neovim wdisplays zsh tmux
-# in case we want virt manager to run some virtual machines
-#rpm-ostree install virt-manager qemu-system-aarch64
+rpm-ostree install gcc neovim nodejs podman-compose tailscale tmux wdisplays zsh
 
 # Syslink tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
@@ -14,7 +12,7 @@ ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
 ln -s ~/.dotfiles/fonts/ ~/.local/share/fonts
 
 # Create syslink for alacritty
-ln -s ~/.dotfiles/foot/ ~/.config/foot/
+ln -s ~/.dotfiles/foot/ ~/.config/foot
 
 # Create syslinks for sway
 ln -sf ~/.dotfiles/sway ~/.config/sway
@@ -25,7 +23,6 @@ ln -sf ~/.dotfiles/rofi ~/.config/rofi
 # Create syslink for zshrc
 mkdir -p ~/.config/bg
 ln -sf ~/.dotfiles/wallpaper/wallpaper.jpg ~/.config/bg/wallpaper.jpg
-
 # Create syslink for zshrc
 ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
 
@@ -47,3 +44,16 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 # dconf write /org/gnome/mutter/dynamic-workspaces false
 # set number of workspaces
 # dconf write /org/gnome/desktop/wm/preferences/num-workspaces 8
+#
+# Install kubernetes tools
+mkdir -p ~/.local/bin
+wget -O ~/.config/kube-switch https://raw.githubusercontent.com/tluijken/kube-switch/main/kube-switch 
+chmod +x ~/.config/kube-switch
+# Install kubectl
+cd ~/.local/bin
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ~/.local/bin/kubectl
+# install fzf
+wget https://github.com/junegunn/fzf/releases/download/0.45.0/fzf-0.45.0-linux_amd64.tar.gz
+tar -xvzf fzf-0.45.0-linux_amd64.tar.gz
+rm fzf-0.45.0-linux_amd64.tar.gz
