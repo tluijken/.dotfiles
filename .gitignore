@@ -6,3 +6,5 @@ sway/sway
 tmux/tmux
 waybar/waybar
 wofi/wofi
+# Ignore neovim packed plugins
+nvim/.config/nvim/pack/
