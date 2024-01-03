@@ -45,6 +45,17 @@ tooltip {
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
+#workspaces button.current_output.focused {
+    background: @wb-act-bg;
+    color: @wb-act-fg;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    animation: gradient_f 20s ease-in infinite;
+}
+
 #workspaces button:hover {
     background: @wb-hvr-bg;
     color: @wb-hvr-fg;
