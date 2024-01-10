@@ -17,7 +17,7 @@ if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
   # When in a toolbox, forward aliasses to the host machine.
   alias docker="flatpak-spawn --host podman"
   alias docker-compose="flatpak-spawn --host podman-compose"
-  alias jb="nohup /opt/opt/idea-IU-233.13135.103/bin/idea.sh  > /dev/null 2>&1 &"
+  alias jb="nohup /opt/idea-IU-233.13135.103/bin/idea.sh  > /dev/null 2>&1 &"
   alias rider="nohup /opt/JetBrains\ Rider-2023.3.2/bin/rider.sh > /dev/null 2>&1 &"
 #  alias vim="flatpak-spawn --host nvim"
  # alias nvim="flatpak-spawn --host nvim"
