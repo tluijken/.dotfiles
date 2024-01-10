@@ -47,6 +47,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 #
 # Install kubernetes tools
 mkdir -p ~/.local/bin
+ln -s /home/thomas/.dotfiles/rofi/rofi-power-menu ~/.local/bin/rofi-power-menu
 wget -O ~/.config/kube-switch https://raw.githubusercontent.com/tluijken/kube-switch/main/kube-switch 
 chmod +x ~/.config/kube-switch
 # Install kubectl
