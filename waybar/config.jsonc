@@ -11,14 +11,14 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "margin-left": 8,
-    "margin-top": 3,
+    "margin-top": 8,
     "margin-bottom": 0,
     "margin-right": 8,
 
 // positions generated based on config.ctl //
 
 	"modules-left": [
-        "custom/padd",
+        //"custom/padd",
         "custom/l_end",
         "sway/workspaces",
         "custom/r_end",
@@ -40,7 +40,8 @@
         "pulseaudio",
         //"pulseaudio#microphone",
         "custom/r_end",
-        "custom/padd"
+        "custom/power",
+        "custom/padd",
     ],
 
 // sourced from modules based on config.ctl //
@@ -48,7 +49,7 @@
     "custom/power": {
         "format": "{}",
         "exec": "echo ; echo  logout",
-        "on-click": "~/.config/hypr/scripts/logoutlaunch.sh 2",
+        "on-click": "rofi -show p -modi p:'/home/thomas/.local/bin/rofi-power-menu' -theme-str 'window {width: 10em;} listview {lines: 6;}'",
         "interval" : 86400, // once every day
         "tooltip": true
     },
