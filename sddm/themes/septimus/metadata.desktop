@@ -1,0 +1,16 @@
+[SddmGreeterTheme]
+Name=Septimus
+Description=Custom SDDM themes based on Gruvbox
+Author=Thomas Luijken
+Copyright=(c) 2024, Thomas Luijken
+License=MIT
+Type=sddm-theme
+Version=0.1
+Website=https://pagure.io/lxqt-themes-fedora
+Screenshot=septimus.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+TranslationsDirectory=translations
+Email=thomas@luijken.dev
+Theme-Id=septimus
+Theme-API=2.0
