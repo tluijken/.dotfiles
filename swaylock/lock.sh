@@ -1,0 +1,23 @@
+swaylock \
+  --indicator-radius 160 \
+  --indicator-thickness 40 \
+  --inside-color 00000000 \
+  --inside-clear-color 00000000 \
+  --inside-ver-color 00000000 \
+  --inside-wrong-color 00000000 \
+  --key-hl-color 458588 \
+  --bs-hl-color B16286 \
+  --ring-color fbf1c7 \
+  --ring-clear-color ebdbb2 \
+  --ring-wrong-color cc241d \
+  --ring-ver-color b8bb26 \
+  --line-uses-ring \
+  --line-color 00000000 \
+  --font 'NotoSans Nerd Font Mono:style=Thin,Regular 40' \
+  --text-color 00000000 \
+  --text-clear-color 00000000 \
+  --text-wrong-color 00000000 \
+  --text-ver-color 00000000 \
+  --separator-color 00000000 \
+  --image "$HOME/.dotfiles/sddm/themes/septimus/Background.png" \
+  --daemonize
