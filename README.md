@@ -17,4 +17,4 @@ Firefox:
 ![image](https://github.com/tluijken/.dotfiles/assets/35781348/5f4cc9b7-7872-4090-a0cb-dd90e812e08e)
 
 CMUS + Cava:
-![image](https://github.com/tluijken/.dotfiles/assets/35781348/6b45ac2a-efb6-4339-a4c4-3456cd6acb85)
+![image](https://github.com/tluijken/.dotfiles/assets/35781348/8b7a8ae9-db3a-406d-8008-89c21f539329)
