@@ -1,3 +1,20 @@
+# Dotfiles
+
+Welcome to my dotfiles repository. My themes are mainly focussed on the Gruvbox
+Color pallette.
+
+The current installation works best on the current immutable Fedora distibutions
+such as Silverblue (Gnome) and Sericea (Sway). 
+
+```shell
+git clone https://github.com/tluijken/.dotfiles
+cd .dotfiles
+./install
+```
+For Sericea, I wanted to stick with the as much as possible with the standard
+tooling provided with Sericea, such as SDDM, Waybar, Rofi and Foot.
+
+## Screenshots
 Login screen (SDDM):
 ![image](https://github.com/tluijken/.dotfiles/assets/35781348/09303df5-ce24-42b4-8f89-c3126243fed3)
 
