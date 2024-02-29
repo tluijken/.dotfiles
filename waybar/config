@@ -1,0 +1,93 @@
+{
+    "layer": "top",
+    "height": 25,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["custom/vpn","idle_inhibitor", "pulseaudio", "network", "backlight", "battery", "clock"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1 ",
+            "2": "2 ",
+            "3": "3 ",
+            "4": "4 ",
+            "5": "5 ",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10"
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["", ""]
+    },
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "",
+        "format-full": "100% ",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+    	"format": "{ifname}",
+	    "format-ethernet": "{ifname} ",
+        "format-wifi": "{essid} ",
+        "format-linked": "{ifname} (No IP) ",
+       	"format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "scroll-step": 0,
+ //       "format": "{icon} {volume}    {format_source}",
+        "format": "{icon} {volume}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/vpn": {
+        "format": "Homelab ",
+        "exec": "echo '{\"class\": \"connected\"}'",
+        "exec-if": "test -d /proc/sys/net/ipv4/conf/homelab",
+        "return-type": "json",
+        "interval": 5
+    }
+}

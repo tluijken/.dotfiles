@@ -6,14 +6,14 @@
     "layer": "top",
     "position": "top",
     "mod": "dock",
-    "height": 31,
+    "height": 35,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "margin-left": 8,
-    "margin-top": 8,
+    "margin-left": 18,
+    "margin-top": 0,
     "margin-bottom": 0,
-    "margin-right": 8,
+    "margin-right": 18,
 
 // positions generated based on config.ctl //
 
@@ -43,8 +43,6 @@
         "custom/power",
         "custom/padd",
     ],
-
-// sourced from modules based on config.ctl //
 
     "custom/power": {
         "format": "{}",
@@ -126,8 +124,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "󰥔",
-            "deactivated": ""
+            "activated": "󰥔 ",
+            "deactivated": " "
         }
     },
 
