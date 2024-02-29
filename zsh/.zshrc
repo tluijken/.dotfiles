@@ -16,7 +16,7 @@ if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
   # typeset -g DRACULA_ARROW_ICON="⬢"
   # When in a toolbox, forward aliasses to the host machine.
   alias docker="flatpak-spawn --host podman"
-  alias docker-compose="flatpak-spawn --host podman-compose"
+  #alias docker-compose="flatpak-spawn --host podman-compose"
   alias jb="nohup /opt/idea-IU-233.13135.103/bin/idea.sh  > /dev/null 2>&1 &"
   alias rider="nohup /opt/JetBrains\ Rider-2023.3.2/bin/rider.sh > /dev/null 2>&1 &"
 #  alias vim="flatpak-spawn --host nvim"
@@ -25,7 +25,7 @@ if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
 else
   # When not in a toolbox, use native aliasses.
   alias docker="podman"
-  alias docker-compose="podman-compose"
+  # alias docker-compose="podman-compose"
 fi
 alias vim="nvim"
 alias vi="nvim"
@@ -104,6 +104,17 @@ alias dive=" docker run --rm -it \
 # alias k9s="docker run --rm -it -v ~/.kube/config:/root/.kube/config -v ~/.config/k9s:/root/.config/k9s k9s-docker:latest"
 alias debug-kubectl="kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh"
 alias update="sudo nixos-rebuild switch -I nixos-config=$HOME/.dotfiles/nixos/configuration.nix"
+
+# folder shortcuts
+alias iv="cd ~/projects/unicon/source/ivenza"
+alias un="cd ~/projects/unicon"
+alias ivd="cd ~/projects/unicon/source/ivenza-deployment"
+alias stellar= "cd ~/projects/baseflow/stellar-rust-sdk"
+alias baseflow="cd ~/projects/baseflow"
+alias vsm="cd ~/projects/voortman"
+alias pds="cd ~/projects/voortman/source/plate-sorter-management-system"
+
+
 ffile() {find . -path ./.git -prune -o -iname "*$*"; }
 mkd() { mkdir -p "$1" ^ cd "$1"}
 
