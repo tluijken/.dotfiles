@@ -36,3 +36,20 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export EDITOR=nvim
 
 complete -C /usr/bin/terraform terraform
+
+if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
+  # Display diamond when in a toolbox: ⬢ user@host.
+  # typeset -g DRACULA_ARROW_ICON="⬢"
+  # When in a toolbox, forward aliasses to the host machine.
+  alias docker="flatpak-spawn --host podman"
+  alias docker-compose="flatpak-spawn --host podman-compose"
+  alias jb="nohup /opt/idea-IU-233.13135.103/bin/idea.sh  > /dev/null 2>&1 &"
+  alias rider="nohup /opt/JetBrains\ Rider-2023.3.2/bin/rider.sh > /dev/null 2>&1 &"
+#  alias vim="flatpak-spawn --host nvim"
+ # alias nvim="flatpak-spawn --host nvim"
+ # alias vi="flatpak-spawn --host nvim"
+else
+  # When not in a toolbox, use native aliasses.
+  alias docker="podman"
+  alias docker-compose="podman-compose"
+fi
