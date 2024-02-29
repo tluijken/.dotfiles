@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 # Install packages as overlay via rpm-ostree
-rpm-ostree install gcc neovim nodejs podman-compose tailscale tmux wdisplays zsh
+# rpm-ostree install gcc neovim nodejs podman-compose tailscale tmux wdisplays zsh
+rpm-ostree install autofs docker-compose gcc neovim nodejs tailscale tmux wdisplays zsh
 
 # Syslink tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
