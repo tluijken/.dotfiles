@@ -31,11 +31,10 @@ alias vim="nvim"
 alias vi="nvim"
 alias oldvim="vim"
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/thomas/.oh-my-zsh"
-export PATH="$HOME/projects/open_source/hyprland/swww/target/release/:$PATH"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -97,9 +96,9 @@ alias clean-local-git-branches="git fetch -p ; git branch -r | awk '{print $1}' 
 alias tf="terraform"
 alias getip="curl -4 ifconfig.co"
 alias j="autojump"
-alias dive=" docker run --rm -it \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    wagoodman/dive:latest $1"
+# alias dive=" docker run --rm -it \
+#     -v /var/run/docker.sock:/var/run/docker.sock \
+#     wagoodman/dive:latest $1"
 
 # alias k9s="docker run --rm -it -v ~/.kube/config:/root/.kube/config -v ~/.config/k9s:/root/.config/k9s k9s-docker:latest"
 alias debug-kubectl="kubectl run -i --tty --rm debug --image=busybox --restart=Never -- sh"

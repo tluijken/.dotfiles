@@ -58,6 +58,7 @@ return require('packer').startup(function(use)
     use { "zbirenbaum/copilot.lua" }
     use { "windwp/nvim-autopairs" }
     use { "folke/which-key.nvim" }
+    use { "folke/twilight.nvim" }
     use { "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons", }
     use { "alexghergh/nvim-tmux-navigation" }
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }

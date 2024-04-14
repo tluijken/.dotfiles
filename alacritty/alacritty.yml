@@ -429,6 +429,8 @@ colors: *GruvboxDark
 
 # Inner padding
 window:
+  startup_mode: Maximized
+  # When true, alacritty starts maximized.
   decorations: None
   opacity: 0.95
   padding:
