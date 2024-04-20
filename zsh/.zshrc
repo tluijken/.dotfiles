@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR="nvim"
-# export TERM="xterm-256color"
+export TERM="alacritty"
 
 # Enable colors and change prompt:
 autoload -U colors && colors
@@ -140,6 +140,15 @@ export PATH=${HOME}/gn:"$PATH"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+get_toolbox_name() {
+	sed -nr 's/^name="(.*)"$/\1/p' /run/.containerenv
+}
+
+if [[ -f /run/.containerenv && -f /run/.toolboxenv ]]; then
+    PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}$(get_toolbox_name) %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+else
+    PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+fi
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
