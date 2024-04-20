@@ -24,8 +24,7 @@ window#waybar {
 .modules-left {
   margin-left: 10;
   background-color: #45403d;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 5 0 5 20;
   padding: 1px 0px;
   border-radius: 10px;
 }

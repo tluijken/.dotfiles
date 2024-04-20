@@ -17,7 +17,7 @@
     "battery",
     "pulseaudio",
     "backlight",
-    "custom/cycle_wall",
+    // "custom/cycle_wall",
     "hyprland/language",
     "tray"
   ],
