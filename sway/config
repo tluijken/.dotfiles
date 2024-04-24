@@ -24,7 +24,7 @@ set $menu rofi -show drun
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-output * bg ~/.config/bg/wallpaper.webp fill
+output * bg ~/.config/bg/lantern.jpg fill 
 #
 # Example configuration:
 #
