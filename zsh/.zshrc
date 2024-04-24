@@ -129,6 +129,7 @@ rangercd () {
         [ --datadir "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"                                               
     fi
 }
+
 bindkey -s '^o' 'rangercd\n'
 
 export NVM_DIR="$HOME/.nvm"
