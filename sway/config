@@ -24,11 +24,11 @@ set $menu rofi -show drun
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-output * bg ~/.config/bg/lantern.jpg fill 
+output * bg ~/.dotfiles/wallpaper/record.jpeg fill 
 #
 # Example configuration:
 #
-output eDP-1 resolution 3840x2160 position 0,0 scale 2
+output eDP-1 resolution 3840x2160 position 0,0 scale 1.75
 output DP-1 resolution 3840x2160 position 1920,0 scale 1.5
 output DP-2 resolution 3840x2160 position 1920,0 scale 1.5
 output DP-3 resolution 3840x2160 position 1920,0 scale 1.5
@@ -237,13 +237,13 @@ bar {
 }
 default_border pixel 2
 # # class                   border      bground     text        indicator   child_border
-client.focused              #ebdbb2     #ebdbb2     #ebdbb2     #ebdbb2     #ebdbb2
+client.focused              #8ec07c     #8ec07c     #8ec07c     #8ec07c     #8ec07c
 client.unfocused            #453a3a     #453a3a     #453a3a     #453a3a     #453a3a
 client.focused_inactive     #453a3a     #453a3a     #453a3a     #453a3a     #453a3a
 
-smart_gaps on
-gaps inner 10
-gaps outer -10
+#smart_gaps off
+gaps inner 5
+gaps outer 5
 gaps bottom 1
 gaps top 1
 

@@ -9,7 +9,7 @@
   "passthrough": false,
   "gtk-layer-shell": true,
 
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["sway/workspaces"],
   "modules-right": [
     "memory",
     "cpu",
@@ -21,7 +21,7 @@
     "hyprland/language",
     "tray"
   ],
-  "modules-center": ["clock", "custom/weather"],
+  "modules-center": ["clock"],
   "custom/cycle_wall": {
     "format": " ",
     "on-click": "~/.config/hypr/scripts/wall",

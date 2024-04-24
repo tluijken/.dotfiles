@@ -10,7 +10,7 @@ window#waybar {
   background-color: transparent;
   border-radius: 10px;
   padding-top: 0px;
-  margin-top: 0;
+  margin: 10px;
 }
 
 .modules-right {
@@ -18,11 +18,11 @@ window#waybar {
   background-color: #45403d;
   border-radius: 10px;
   padding: 0;
-  margin: 5 0 5 0;
+  margin: 5 10 5 0;
 }
 
 .modules-left {
-  margin-left: 0.1rem;
+  margin-left: 10;
   background-color: #45403d;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -63,6 +63,8 @@ tooltip * {
   font-style: normal;
   margin: 0.2rem 0.1rem;
   border-radius: 20px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #workspaces button:hover {
@@ -71,6 +73,18 @@ tooltip * {
   background-color: #d4be98;
   color: #45403d;
   border-radius: 10px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+#workspaces button.current_output.focused {
+    background: rgba(125, 174, 163, 0.9);
+    color: @wb-act-fg;
+    margin-left: 3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-right: 3px;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    animation: gradient_f 20s ease-in infinite;
 }
 
 #workspaces button.active {
@@ -79,6 +93,8 @@ tooltip * {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.818);
   transition: all 0.1s ease-in-out;
   border-radius: 20px;
+  animation: gradient_f 20s ease-in infinite;
+  transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #clock,
@@ -92,8 +108,8 @@ tooltip * {
 }
 
 #clock {
-  padding: 0 0 0 1.5em;
-  border-radius: 10 0 0 10;
+  padding:  0 1.5em;
+  border-radius: 10 10 10 10;
 }
 
 #custom-updates {
