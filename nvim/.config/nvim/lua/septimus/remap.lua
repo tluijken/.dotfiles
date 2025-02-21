@@ -45,3 +45,5 @@ vim.keymap.set({ "", "!" }, "<Right>", "", {})
 vim.keymap.set({ "", "!" }, "<Left>", "", {})
 vim.keymap.set({ "", "!" }, "<Up>", "", {})
 vim.keymap.set({ "", "!" }, "<Down>", "", {})
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", {desc = "Open parent directory"})

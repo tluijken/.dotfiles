@@ -1,0 +1,46 @@
+markup=1
+actions=1
+
+default-timeout=5000
+
+# Format
+font=Fira Code 12
+border-color=#8ec07c
+border-size=2
+background-color=#282828
+text-color=#bdae93
+format=<b>%s</b> <span color="#93a1a1">(%a)</span>\n%b
+
+# icons
+icon-path=/usr/share/icons/Papirus-Adapta-Nokto-Maia:/usr/share/icons/Papirus-Maia:/usr/share/icons/Papirus
+
+# Hidden format
+[hidden]
+format=Hidden: %h [%t]
+
+[urgency=low]
+text-color=#fabd2f
+
+[urgency=low actionable]
+border-color=#d65d0e
+
+[urgency=normal actionable]
+border-color=#8ec07c
+
+[urgency=high]
+border-color=#cc241d
+
+[urgency=high actionable]
+border-color=#fb4934
+
+[app-name=playerctl]
+max-icon-size=96
+
+[app-name=clementine]
+max-icon-size=96
+
+[app-name=i3-hint]
+max-icon-size=48
+format=%s\n%b
+width=150
+

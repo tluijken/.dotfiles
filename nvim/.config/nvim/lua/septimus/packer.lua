@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
             { 'nvim-telescope/telescope-live-grep-args.nvim' }
         }
     }
+    use("stevearc/oil.nvim")
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('norcalli/nvim-colorizer.lua')
     use('tpope/vim-fugitive')
@@ -57,12 +58,13 @@ return require('packer').startup(function(use)
     use { "sainnhe/gruvbox-material" }
     use { "zbirenbaum/copilot.lua" }
     use { "windwp/nvim-autopairs" }
-    use { "folke/which-key.nvim" }
+    use { "folke/which-key.nvim", requires = "echasnovski/mini.icons" }
     use { "folke/twilight.nvim" }
     use { "folke/trouble.nvim", requires = "nvim-tree/nvim-web-devicons", }
     use { "alexghergh/nvim-tmux-navigation" }
     use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
-    use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' }, tag = 'nightly' }
+    use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
+    use { "williamboman/mason.nvim" }
     use { "akinsho/toggleterm.nvim", tag = '*' }
     if packer_bootstrap then
         require('packer').sync()

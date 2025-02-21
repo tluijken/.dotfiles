@@ -27,7 +27,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
-require('lspconfig').tsserver.setup({
+require('lspconfig').ts_ls.setup({
     init_options = {
         preferences = {
             disableSuggestions = true,
@@ -38,6 +38,8 @@ require('lspconfig').tsserver.setup({
 lsp.setup()
 
 require('lspconfig').lua_ls.setup({
+})
+require('lspconfig').csharp_ls.setup({
 })
 require('lspconfig').rust_analyzer.setup({})
 require('lspconfig').terraformls.setup({

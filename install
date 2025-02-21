@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # Install packages as overlay via rpm-ostree
 # rpm-ostree install gcc neovim nodejs podman-compose tailscale tmux wdisplays zsh
-rpm-ostree install autofs docker-compose gcc neovim nodejs tailscale tmux wdisplays zsh
+# rpm-ostree install autofs docker-compose gcc neovim nodejs tailscale tmux wdisplays zsh
 
 # Syslink tmux
 ln -s ~/.dotfiles/tmux ~/.config/tmux
@@ -28,7 +28,7 @@ ln -sf ~/.dotfiles/wallpaper/wallpaper.jpg ~/.config/bg/wallpaper.jpg
 ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
 
 # Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 # Install zsh plugins
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
@@ -48,7 +48,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 #
 # Install kubernetes tools
 mkdir -p ~/.local/bin
-ln -s /home/thomas/.dotfiles/rofi/rofi-power-menu ~/.local/bin/rofi-power-menu
+#ln -s /home/thomas/.dotfiles/rofi/rofi-power-menu ~/.local/bin/rofi-power-menu
 wget -O ~/.config/kube-switch https://raw.githubusercontent.com/tluijken/kube-switch/main/kube-switch 
 chmod +x ~/.config/kube-switch
 # Install kubectl

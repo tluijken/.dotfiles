@@ -1,0 +1,8 @@
+profile office {
+	output eDP-1 disable
+	output "LG Electronics LG HDR 4K 0x000A97CC" mode 3840x2160 position 1920,0 scale 1.5
+}
+
+profile default {
+	output eDP-1 enable scale 1
+}
