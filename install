@@ -3,59 +3,67 @@
 # rpm-ostree install gcc neovim nodejs podman-compose tailscale tmux wdisplays zsh
 # rpm-ostree install autofs docker-compose gcc neovim nodejs tailscale tmux wdisplays zsh
 
-# Syslink tmux
-ln -s ~/.dotfiles/tmux ~/.config/tmux
 
-# Create syslink for nvim
-ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
+# Symlink home-manager
+ln -s ~/.dotfiles/home-manager ~/.config/home-manager
+home-manager switch
 
-# Create syslink for fonts
-ln -s ~/.dotfiles/fonts/ ~/.local/share/fonts
-
-# Create syslink for alacritty
-ln -s ~/.dotfiles/foot/ ~/.config/foot
-
-# Create syslinks for sway
-ln -sf ~/.dotfiles/sway ~/.config/sway
-ln -sf ~/.dotfiles/waybar ~/.config/waybar
-ln -sf ~/.dotfiles/rofi ~/.config/rofi
-# ln -sf ~/.dotfiles/cava ~/.config/cava
-
-# Create syslink for zshrc
-mkdir -p ~/.config/bg
-ln -sf ~/.dotfiles/wallpaper/wallpaper.jpg ~/.config/bg/wallpaper.jpg
-# Create syslink for zshrc
-ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
-
-# Install oh-my-zsh
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# Install zsh plugins
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-# GNOME WORKSPACE SELECTION
-# dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-5 "['<Super>5']"
-# dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-5 "['<Super><Shift>5']" 
-# dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-6 "['<Super>6']"
-# dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-6 "['<Super><Shift>6']" 
-# dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-7 "['<Super>7']"
-# dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-7 "['<Super><Shift>7']" 
-# dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-8 "['<Super>8']"
-# dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-8 "['<Super><Shift>8']" 
-# disable dynamic workspaces
-# dconf write /org/gnome/mutter/dynamic-workspaces false
-# set number of workspaces
-# dconf write /org/gnome/desktop/wm/preferences/num-workspaces 8
+# Home manager should take care of all of this...
 #
-# Install kubernetes tools
-mkdir -p ~/.local/bin
-#ln -s /home/thomas/.dotfiles/rofi/rofi-power-menu ~/.local/bin/rofi-power-menu
-wget -O ~/.config/kube-switch https://raw.githubusercontent.com/tluijken/kube-switch/main/kube-switch 
-chmod +x ~/.config/kube-switch
-# Install kubectl
-cd ~/.local/bin
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x ~/.local/bin/kubectl
-# install fzf
-wget https://github.com/junegunn/fzf/releases/download/0.45.0/fzf-0.45.0-linux_amd64.tar.gz
-tar -xvzf fzf-0.45.0-linux_amd64.tar.gz
-rm fzf-0.45.0-linux_amd64.tar.gz
+
+# Syslink tmux
+# ln -s ~/.dotfiles/tmux ~/.config/tmux
+#
+# # Create syslink for nvim
+# ln -s ~/.dotfiles/nvim/.config/nvim/ ~/.config/nvim
+#
+# # Create syslink for fonts
+# ln -s ~/.dotfiles/fonts/ ~/.local/share/fonts
+#
+# # Create syslink for alacritty
+# ln -s ~/.dotfiles/foot/ ~/.config/foot
+#
+# # Create syslinks for sway
+# ln -sf ~/.dotfiles/sway ~/.config/sway
+# ln -sf ~/.dotfiles/waybar ~/.config/waybar
+# ln -sf ~/.dotfiles/rofi ~/.config/rofi
+# # ln -sf ~/.dotfiles/cava ~/.config/cava
+#
+# # Create syslink for zshrc
+# mkdir -p ~/.config/bg
+# ln -sf ~/.dotfiles/wallpaper/wallpaper.jpg ~/.config/bg/wallpaper.jpg
+# # Create syslink for zshrc
+# ln -sf /home/thomas/.dotfiles/zsh/.zshrc /home/thomas/.zshrc
+#
+# # Install oh-my-zsh
+# #sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# # Install zsh plugins
+# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+# # GNOME WORKSPACE SELECTION
+# # dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-5 "['<Super>5']"
+# # dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-5 "['<Super><Shift>5']" 
+# # dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-6 "['<Super>6']"
+# # dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-6 "['<Super><Shift>6']" 
+# # dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-7 "['<Super>7']"
+# # dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-7 "['<Super><Shift>7']" 
+# # dconf write /org/gnome/desktop/wm/keybindings/switch-to-workspace-8 "['<Super>8']"
+# # dconf write /org/gnome/desktop/wm/keybindings/move-to-workspace-8 "['<Super><Shift>8']" 
+# # disable dynamic workspaces
+# # dconf write /org/gnome/mutter/dynamic-workspaces false
+# # set number of workspaces
+# # dconf write /org/gnome/desktop/wm/preferences/num-workspaces 8
+# #
+# # Install kubernetes tools
+# mkdir -p ~/.local/bin
+# #ln -s /home/thomas/.dotfiles/rofi/rofi-power-menu ~/.local/bin/rofi-power-menu
+# wget -O ~/.config/kube-switch https://raw.githubusercontent.com/tluijken/kube-switch/main/kube-switch 
+# chmod +x ~/.config/kube-switch
+# # Install kubectl
+# cd ~/.local/bin
+# curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+# chmod +x ~/.local/bin/kubectl
+# # install fzf
+# wget https://github.com/junegunn/fzf/releases/download/0.45.0/fzf-0.45.0-linux_amd64.tar.gz
+# tar -xvzf fzf-0.45.0-linux_amd64.tar.gz
+# rm fzf-0.45.0-linux_amd64.tar.gz
