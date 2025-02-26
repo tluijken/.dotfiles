@@ -131,6 +131,10 @@ in
      pkgs.btop
      pkgs.kanshi
      pkgs.workstyle
+     pkgs.imv
+     pkgs.mpv
+     pkgs.ranger
+     pkgs.swaybg
      myMergeTool
 
    # # Adds the 'hello' command to your environment. It prints a friendly
@@ -166,6 +170,7 @@ in
     ".config/kanshi".source = ~/.dotfiles/kanshi;
     ".config/workstyle".source = ~/.dotfiles/workstyle;
     ".config/neofetch".source = ~/.dotfiles/neofetch;
+    ".config/sway".source = ~/.dotfiles/sway;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
