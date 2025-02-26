@@ -2,7 +2,7 @@
 swaybg -i $(find ~/.dotfiles/wallpaper/. -type f | shuf -n1) -m fill &
 OLD_PID=$!
 while true; do
-    sleep 600
+    sleep 6000
     swaybg -i $(find ~/.dotfiles/wallpaper/. -type f | shuf -n1) -m fill &
     NEXT_PID=$!
     sleep 5
