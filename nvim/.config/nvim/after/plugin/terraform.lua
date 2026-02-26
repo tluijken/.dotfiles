@@ -2,8 +2,6 @@ if isModuleAvailable('lspconfig') == false then
     print('lspconfig is not available')
     return
 end
-require 'lspconfig'.terraformls.setup({})
-require 'lspconfig'.tflint.setup({})
 
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
 vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])

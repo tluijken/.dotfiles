@@ -119,7 +119,7 @@
     tmux
     lsd
     wget
-    firefox
+    #firefox
     wdisplays
   ];
 

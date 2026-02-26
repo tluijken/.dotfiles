@@ -127,10 +127,10 @@ crates.setup {
       jump_back = { "<c-o>", "<C-RightMouse>" },
     },
   },
-  null_ls = {
-    enabled = false,
-    name = "Crates",
-  },
+  -- null_ls = {
+  --   enabled = false,
+  --   name = "Crates",
+  -- },
 }
 
 local opts = { silent = false }

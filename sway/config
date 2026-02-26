@@ -21,6 +21,12 @@ set $base0D #83a598
 set $base0E #d3869b
 set $base0F #d65d0e
 
+#auto starts
+exec_always exec kanshi &> /tmp/kanshi.log
+exec workstyle &> /tmp/workstyle.log
+# start local .sh file
+exec ~/.dotfiles/sway/dynamic-wallpaper.sh &> /tmp/dynamic-wallpaper.log
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -33,6 +39,7 @@ set {
         $right l
 # Your preferred terminal emulator
         $term foot
+        $browser app.zen_browser.zen
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -69,7 +76,7 @@ set {
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
-output * bg ~/.dotfiles/wallpaper/red-forest.jpg fill 
+# output * bg ~/.dotfiles/wallpaper/red-forest.jpg fill 
 #
 # Example configuration:
 #
@@ -112,6 +119,9 @@ output * bg ~/.dotfiles/wallpaper/red-forest.jpg fill
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+
+    # Start a browser
+    bindsym $mod+z exec $browser
 
     # Kill focused window
     bindsym $mod+q kill
@@ -321,8 +331,3 @@ gaps bottom 1
 gaps top 1
 include /etc/sway/config.d/*
 
-#auto starts
-exec_always exec kanshi &> /tmp/kanshi.log
-exec workstyle &> /tmp/workstyle.log
-# start local .sh file
-exec_always ~/.dotfiles/sway/dynamic-wallpaper.sh &> /tmp/dynamic-wallpaper.log

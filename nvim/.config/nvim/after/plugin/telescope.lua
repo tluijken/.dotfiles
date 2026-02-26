@@ -11,6 +11,8 @@ vim.keymap.set('n', '<leader>ps', function()
 end)
 vim.keymap.set('n', '<leader>fg', require("telescope").extensions.live_grep_args.live_grep_args, { noremap = true })
 
+require("telescope").load_extension("yaml_schema")
+
 require("telescope").setup({
     defaults = {
         vimgrep_arguments = {

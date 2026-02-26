@@ -15,11 +15,13 @@ return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.4',
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
         -- or                            , branch = '0.1.x',
         requires = {
             { 'nvim-lua/plenary.nvim' },
-            { 'nvim-telescope/telescope-live-grep-args.nvim' }
+            { "neovim/nvim-lspconfig" },
+            { 'nvim-telescope/telescope-live-grep-args.nvim' },
+            { 'someone-stole-my-name/yaml-companion.nvim'}
         }
     }
     use("stevearc/oil.nvim")
@@ -49,7 +51,7 @@ return require('packer').startup(function(use)
     use {
         'saecki/crates.nvim',
     }
-    use { "simrat39/rust-tools.nvim" }
+    use { "mrcjkb/rustaceanvim" }
     use { "mfussenegger/nvim-dap" }
     use { "terrortylor/nvim-comment" }
     use { 'normen/vim-pio' }
@@ -66,6 +68,8 @@ return require('packer').startup(function(use)
     use { 'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons' } }
     use { "williamboman/mason.nvim" }
     use { "akinsho/toggleterm.nvim", tag = '*' }
+    use { "folke/zen-mode.nvim" }
+    use { "preservim/vim-pencil" }
     if packer_bootstrap then
         require('packer').sync()
     end

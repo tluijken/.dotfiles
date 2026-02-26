@@ -8,17 +8,22 @@ in
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [
       "slack"
-      "plexamp"
-      "spotify"
       "obsidian"
       "datagrip"
-      "idea-ultimate"
     ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "thomas";
   home.homeDirectory = "/home/thomas";
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors; # Or another cursor theme package
+    name = "Bibata-Modern-Ice";
+    size = 22; # Adjust this value
+  };
+
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -34,19 +39,19 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Thomas Luijken";
-    userEmail = "thomas@luijken.dev";
     # Custom git configuration
-    extraConfig = {
-        merge = {
-            tool = "kdiff3";
+    settings = {
+        user = {
+            name = "Thomas Luijken";
+            email = "thomas@luijken.dev";
         };
-        mergetool = {
-            kdiff3 = {
-                cmd = "${myMergeTool}/bin/kdiff3 --auto --L1 $LOCAL --L2 $BASE --L3 $REMOTE -o $MERGED";
-                trustExitCode = true;
-            };
-        };
+        # core.editor = "nvim";
+        # merge.tool = {
+        #     kdiff3 = {
+        #         cmd = "${myMergeTool}/bin/kdiff3 --auto --L1 $LOCAL --L2 $BASE --L3 $REMOTE -o $MERGED";
+        #         trustExitCode = true;
+        #     };
+        # };
     };
   };
 
@@ -63,6 +68,11 @@ in
           vim = "nvim";
           vi = "nvim";
           ll = "ls -l";
+          ls = "lsd";
+          l="ls -l";
+          la="ls -a";
+          lla="ls -la";
+          lt="ls --tree";
           update = "sudo nixos-rebuild switch";
           c = "clear";
           open = "xdg-open";
@@ -81,13 +91,13 @@ in
           pds = "cd ~/projects/voortman/source/plate-sorter-management-system";
           updateNix = "sudo nixos-rebuild switch";
           updateHome = "sudo -i nix-channel --update && home-manager switch";
-          debugk8s = " nix-shell -p kubectl --run \"kubectl run -i --tty --rm debug --image=progrium/busybox --restart=Never -- sh\"";
+          debugk8s = "nix-shell -p kubectl --run \"kubectl run -i --tty --rm debug --image=alpine --restart=Never -- sh\"";
       };
       history = {
           size = 10000;
           path = "${config.xdg.dataHome}/zsh/history";
       };
-      initExtra = ''
+      initContent = ''
             PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
             if command -v keychain > /dev/null 2>&1; then eval $(keychain --eval --nogui ~/.ssh/github.com --quiet); fi
           '';
@@ -104,40 +114,40 @@ in
   };
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-     pkgs.neofetch
-     pkgs.slack
-     pkgs.thunderbird
-     pkgs.plexamp
-     pkgs.teams-for-linux
-     pkgs.spotify
-     pkgs.lua-language-server
-     pkgs.ripgrep
-     pkgs.pamixer
-     pkgs.wdisplays
-     pkgs.obsidian
-     pkgs.swaylock
-     pkgs.nodejs
-     pkgs.pkg-config
-     pkgs.openssl
-     pkgs.pavucontrol
-     pkgs.nautilus
-     pkgs.insomnia
-     pkgs.plex-media-player
-     pkgs.dmenu
-     pkgs.proton-pass
-     pkgs.jetbrains.datagrip
-     pkgs.jetbrains.idea-ultimate
-     pkgs.btop
-     pkgs.kanshi
-     pkgs.workstyle
-     pkgs.imv
-     pkgs.mpv
-     pkgs.ranger
-     pkgs.swaybg
+  home.packages = with pkgs; [
+     slack
+     thunderbird
+     lua-language-server
+     ripgrep
+     wdisplays
+     obsidian
+     swaylock
+     nodejs
+     pkg-config
+     openssl
+     nautilus
+     insomnia
+     dmenu
+     proton-pass
+     kanshi
+     workstyle
+     mpv
+     swaybg
+     lsd
+     feh
+     direnv
      myMergeTool
+     firefox
+     protonvpn-gui
+     youtube-music
+     wofi
+     waybar
+     rocketchat-desktop
+     jetbrains.datagrip
+     helvum
 
-   # # Adds the 'hello' command to your environment. It prints a friendly
+
+    # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
 
@@ -171,6 +181,9 @@ in
     ".config/workstyle".source = ~/.dotfiles/workstyle;
     ".config/neofetch".source = ~/.dotfiles/neofetch;
     ".config/sway".source = ~/.dotfiles/sway;
+    ".config/hypr".source = ~/.dotfiles/hypr;
+    ".config/waybar".source = ~/.dotfiles/waybar;
+    ".config/wofi".source = ~/.dotfiles/wofi;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -178,6 +191,23 @@ in
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "x-scheme-handler/msteams" = "teams-for-linux.desktop";
+      "text/html" = "app.zen_browser.zen.desktop";
+
+      "x-scheme-handler/http" = "app.zen_browser.zen.desktop";
+      "x-scheme-handler/https" = "app.zen_browser.zen.desktop";
+      "x-scheme-handler/ftp" = "app.zen_browser.zen.desktop";
+      "x-scheme-handler/about" = "app.zen_browser.zen.desktop";
+      # Add other URL schemes if needed, like mailto, etc.
+      # "x-scheme-handler/mailto" = "com.zen.ZenBrowser.desktop";
+      # "x-scheme-handler/gemini" = "com.zen.ZenBrowser.desktop";
+    };
+  };
+
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
