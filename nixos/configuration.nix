@@ -7,16 +7,16 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ./virtualization.nix
       ./hardware-configuration.nix
     ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  boot.initrd.luks.devices."luks-ee3b61bb-a03e-4153-848f-ea5d40727985".device = "/dev/disk/by-uuid/ee3b61bb-a03e-4153-848f-ea5d40727985";
+  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -24,6 +24,21 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = "1";
+    # Optional: enable IPv6 forwarding too
+    "net.ipv6.conf.all.forwarding" = "1";
+  };
+  systemd.services.NetworkManager-wait-online.enable = false;
+  networking.extraHosts =
+  ''
+    127.0.0.1 keycloak
+    172.18.255.200 dev.test
+  '';
+  networking.nameservers = [ "86.54.11.13" "1.1.1.1" "9.9.9.9" ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -43,86 +58,60 @@
     LC_TIME = "nl_NL.UTF-8";
   };
 
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    # videoDrivers = ["nvidia"];
-    displayManager.gdm = {
-        enable = true;
-        wayland = true;
+  hardware.bluetooth = {
+    enable = true; # enables support for Bluetooth
+    powerOnBoot = true; # powers up the default Bluetooth controller on boot
+    settings = {
+        General = {
+            ControllerMode = "dual";
+            Experimental = true;
+        };
     };
-    layout = "us";
-    xkbVariant = "";
   };
 
-  # hardware {
-  #    opengl.enable = true;
-  #    nvidia.modesetting.enable = true;
-  # }
+  # to ensure the D-Bus services are actually installed and known to the system
+  xdg.portal.enable = true;
 
-  programs.sway = {
-      enable = true;
-      extraPackages = with pkgs; [
-          swaylock
-          swayidle
-          wl-clipboard
-          wf-recorder
-          mako # notification daemon
-          grim
-          waybar
-          #kanshi
-          slurp
-          alacritty # Alacritty is the default terminal in the config
-          wofi 
-      ];
-      extraSessionCommands = ''
-          export SDL_VIDEODRIVER=wayland
-          export QT_QPA_PLATFORM=wayland
-          export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-          export _JAVA_AWT_WM_NONREPARENTING=1
-          export MOZ_ENABLE_WAYLAND=1
-          '';
-  };
+  # .enable = true; # enables support for Bluetooth
+  # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.thomas = {
-    isNormalUser = true;
-    description = "thomas";
-    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
+    isNormalUser = true;
+    description = "Thomas";
+    ignoreShellProgramCheck = true;
+    extraGroups = [ "networkmanager" "wheel" "docker" "dialout"];
     packages = with pkgs; [];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  programs.git = {
-      enable = true;
-      config = {
-          user = {
-              name = "Thomas Luijken";
-              email = "thomas@luijken.dev";
-          };
-      };
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim
-    alacritty
-    bat
-    neofetch
-    unzip
-    nodejs
-    gcc
-    tmux
-    lsd
-    wget
-    #firefox
-    wdisplays
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+     neovim
+     curl
+     grim
+     slurp
+     wl-clipboard
+     #firefox
+     devbox
+     gcc
+     home-manager
+     cifs-utils
+     keychain
+     mako
+     cups
   ];
 
+  services.gvfs.enable = true;
+  environment.variables.editor = "neovim";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -130,11 +119,65 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+  
+  # Used to fix resolving paths such as /bin/bash and more
+  services.envfs.enable = true;
 
   # List services that you want to enable:
+  services.upower = {
+      enable = true;
+      percentageLow = 15;
+      percentageCritical = 5;
+      percentageAction = 4;
+      criticalPowerAction = "Hibernate";
+  };
+
+  services.tailscale.enable = true;
+
+  programs.sway = {
+     enable = true;
+     wrapperFeatures.gtk = true;
+  };
+
+  programs.hyprland.enable = true; # enable Hyprland
+
+  # rtkit is optional but recommended
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+    jack.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+  };
+  services.pipewire.extraConfig.pipewire."70-custom" = {
+    "context.properties" = {
+      "default.clock.rate" = 44100;
+      "default.clock.allowed-rates" = [ 44100 48000 ];
+      "default.clock.quantum" = 512;
+      "default.clock.min-quantum" = 256;
+      "default.clock.max-quantum" = 1024;
+    };
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+  # Enable autodiscovery of network printers
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
+ services.gnome.gnome-keyring.enable = true;
+ # security.pam.services.lightdm.enableGnomeKeyring = true;
+ # programs.ssh.startAgent = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -142,33 +185,30 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  networking.firewall = {
+    enable = true; # or false, if you're managing it manually
+    checkReversePath = false; # Important for tailscale routing
+    allowedUDPPorts = [ 41641 53 67 ]; # Tailscale and virtmanager
+    allowedTCPPorts = [  53 ]; # Virt-manager
+    trustedInterfaces = [ "tailscale0" "virbr0" "docker0" ]; # Trust Tailscale and virtual bridge interfaces
+  };
+
+  networking.nat.enable = false; # NAT handled by tailscale itself
+
+  services.fwupd.enable = true;
+
+  # Nodig om D-Bus services zoals die van KeePassXC vindbaar te maken
+  services.dbus.enable = true;
+
+  # Soms helpt dit om libraries voor certificaten (GCR) correct te laden
+  programs.dconf.enable = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-  
-  #zsh
-  programs.zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      syntaxHighlighting.enable = true;
-      shellAliases = {
-    	  ll = "ls -l";
-    	  update = "sudo nixos-rebuild switch -I nixos-config=$HOME/.dotfiles/nixos/configuration.nix"; #-I nixpkgs=$HOME/Projects/nixpkgs  when starting to use packages
-	      editconfig = "vim ~/.dotfiles/nixos/configuration.nix";
-      };
-      ohMyZsh = {
-	  enable = true;
-    	  plugins = [ "git" ];
-    	  theme = "robbyrussell";
-      };
-  };
+  system.stateVersion = "24.05"; # Did you read the comment?
 
-  fonts.fonts = with pkgs; [
-      jetbrains-mono
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
 }
