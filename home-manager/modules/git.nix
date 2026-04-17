@@ -9,7 +9,7 @@ in
     enable = true;
     signing = {
       format = "ssh";
-      key = "~/.ssh/github.com.pub";
+      key = "${config.home.homeDirectory}/.ssh/github.com.pub";
       signByDefault = true;
     };
     settings = {
@@ -24,7 +24,7 @@ in
         trustExitCode = true;
       };
       mergetool.keepBackup = false;
-      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";  # needed for verification
+      gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";  # needed for verification
     };
   };
 }

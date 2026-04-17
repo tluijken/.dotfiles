@@ -1,6 +1,0 @@
-#!/usr/bin/env zsh
-for folder in */
-do
-    echo "Removing $folder"
-    stow -D $folder
-done

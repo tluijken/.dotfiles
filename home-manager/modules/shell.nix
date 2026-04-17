@@ -17,7 +17,6 @@
           la="ls -a";
           lla="ls -la";
           lt="ls --tree";
-          update = "sudo nixos-rebuild switch";
           c = "clear";
           open = "xdg-open";
           gl = "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
@@ -25,9 +24,8 @@
           clean-local-git-branches = "git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d";
           tf = "terraform";
           getip = "curl -4 ifconfig.co";
-          updateNix  = "sudo nixos-rebuild switch --flake ~/.dotfiles#thomas";
-          updateHome = "sudo nixos-rebuild switch --flake ~/.dotfiles#thomas";
-          updateAll  = "cd ~/.dotfiles && nix flake update && sudo nixos-rebuild switch --flake ~/.dotfiles#thomas";
+          update    = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+          upgrade   = "cd ~/.dotfiles && nix flake update && sudo nixos-rebuild switch --flake ~/.dotfiles";
           debugk8s = "nix-shell -p kubectl --run \"kubectl run -i --tty --rm debug --image=alpine --restart=Never -- sh\"";
       };
       history = {

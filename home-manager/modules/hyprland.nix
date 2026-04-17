@@ -8,7 +8,7 @@
     ];
   
     extraConfig = ''
-      source = ~/.dotfiles/hypr/hyprland.conf
+      source = ${config.home.homeDirectory}/.dotfiles/hypr/hyprland.conf
     '';
   };
   

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, dotfilesPath, ... }:
 let
   # Add the tool you want to use here
   myMergeTool = pkgs.kdiff3;
@@ -23,6 +23,8 @@ in
   # manage.
   home.username = "thomas";
   home.homeDirectory = "/home/thomas";
+
+  fonts.fontconfig.enable = true;
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -77,7 +79,7 @@ in
      reaper
      obs-studio
      tuxguitar
-     jetbrains-mono
+     nerd-fonts.jetbrains-mono
   ];
 
 
@@ -87,12 +89,12 @@ in
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
-    ".config/nvim".source = ~/.dotfiles/nvim/.config/nvim;
-    ".config/mako".source = ~/.dotfiles/mako;
-    ".config/neofetch".source = ~/.dotfiles/neofetch;
-    ".config/sway".source = ~/.dotfiles/sway;
-    ".config/waybar".source = ~/.dotfiles/waybar;
-    ".config/wofi".source = ~/.dotfiles/wofi;
+    ".config/nvim".source    = "${dotfilesPath}/nvim/.config/nvim";
+    ".config/mako".source    = "${dotfilesPath}/mako";
+    ".config/neofetch".source = "${dotfilesPath}/neofetch";
+    ".config/sway".source    = "${dotfilesPath}/sway";
+    ".config/waybar".source  = "${dotfilesPath}/waybar";
+    ".config/wofi".source    = "${dotfilesPath}/wofi";
   };
 
   xdg.portal = {
