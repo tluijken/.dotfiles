@@ -1,90 +1,54 @@
 {
   "layer": "top",
-    "modules-left": [ "hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["backlight", "pulseaudio", "bluetooth", "network", "battery", "tray"],
-    "hyprland/workspaces": {
-      "format": "{name}",
-      "format": "{icon}",
-      "tooltip": false,
-      "all-outputs": true,
-      "format-icons": {
-        "active": "",
-        "default": ""
-      }
-    },
-    "hyprland/window": {
-      "format": "{}",
-      "separate-outputs": true,
-      "rewrite": {
-        "(.*) — Mozilla Firefox": "󰈹    $1",
-        "(.*) — Zen Browser": "󰈹    $1",
-        "(.*)Mozilla Firefox": "󰈹    Firefox",
-        "(.*)Zen Browser": "󰈹    $1",
-        "(.*) - Visual Studio Code": "󰨞    $1",
-        "(.*)Visual Studio Code": "󰨞    Code",
-        "(.*) Nautilus": "󰉋    $1",
-        "(.*)Spotify": "󰓇    Spotify",
-        "(.*)Steam": "󰓓    Steam",
-        "(.*)YouTube Music": "    $1",
-        "nvim(.*)": "    $1",
-        "^(.*) - (alacritty|kitty|wezterm|foot)$": "    $1",
-        "(.*)Thunderbird": "    Mail",
-        "(.*)Slack": "    Slack",
-        "(.*) — Google Chrome": "    $1",
-        "(.*) — Chromium": "     $1", 
-        "(.*)Google Chrome": "    $1", 
-        "(.*)Chromium": "    $1",
-      }
-	},
-    "clock": {
-      "interval": 1,
-      "format": "<span color='#d79921'> </span> {:%d-%m-%Y <span color='#d79921'> </span> %H:%M:%S}"
-    },
-    "backlight": {
-      "device": "intel_backlight",
-      "format": "<span color='#d79921'>{icon}</span> {percent}%",
-      "format-icons": ["", "", "", "", "", "", ""]
-    },
-    "pulseaudio": {
-    "format": "<span color='#d79921'>{icon}</span> {volume}%",
-      "on-click": "pavucontrol",
-      "format-muted": "",
-      "tooltip": false,
-      "format-icons": {
-        "headphone": "",
-        "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]
-      },
-      "scroll-step": 1
-    },
-    "bluetooth": {
-      "on-click": "blueman-manager",
-      "format": "<span color='#d79921'></span> {status}",
-      "format-disabled": "", // an empty format will hide the module
-      "format-connected": "<span color='#d79921'></span> {num_connections}",
-      "tooltip-format": "{device_enumerate}",
-      "tooltip-format-enumerate-connected": "{device_alias}   {device_address}"
-    },
-    "network": {
-      "format": "{ifname}",
-      "format-wifi": "<span color='#d79921'> </span> {essid} ({signalStrength}%)",
-      "format-ethernet": "<span color='#d79921'>󰛳 </span> {ipaddr}/{cidr}",
-      "format-disconnected": "<span color='#d79921'>󰖪 </span> No Network",
-      "tooltip": false
-    },
-    "battery": {
-      "format": "<span color='#d79921'>{icon}</span>  {capacity}%",
-      "format-icons": ["", "", "", "", ""],
-      "format-charging": "<span color='#d79921'>󰚥</span> {capacity}%",
-      "tooltip": false
-    },
-    "wlr/workspaces": {
-      "format": "{icon}",
-      "format-active": "{icon}",
-      "on-click": "activate"
-    },
-    "tray": {
-      "on-click": "ls",
-      "spacing": 10
+  "position": "top",
+  "margin-top": 20,
+  "margin-left": 20,
+  "margin-right": 20,
+  // "modules-left": [ "hyprland/workspaces", "hyprland/window"],
+  "modules-center": ["clock", "hyprland/workspaces", "pulseaudio", "network", "battery"],
+  // "modules-right": ["backlight", "pulseaudio", "bluetooth", "network", "battery", "tray"],
+  
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "tooltip": false,
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "*": [ 1, 2, 3, 4, 5 ]
     }
+  },
+  
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M}"
+  },
+  
+  "pulseaudio": {
+    "format": "<span color='#d79921'>{icon}</span>",
+    "on-click": "pavucontrol",
+    "format-muted": "",
+    "tooltip": true,
+    "tooltip-format": "Volume: {volume}%",
+    "format-icons": {
+      "headphone": "",
+      "default": ["", "", "󰕾", "󰕾", "󰕾", "", "", ""]
+    },
+    "scroll-step": 1
+  },
+  
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "<span color='#d79921'> </span>",
+    "format-ethernet": "<span color='#d79921'>󰛳 </span>",
+    "format-disconnected": "<span color='#d79921'>󰖪 </span>",
+    "tooltip-format-wifi": "{essid}\nSignal Strength: {signalStrength}%\nIP: {ipaddr}/{cidr}",
+    "tooltip-format-ethernet": "IP: {ipaddr}/{cidr}"
+  },
+  
+  "battery": {
+    "format": "<span color='#d79921'>{icon}</span>",
+    "format-icons": ["", "", "", "", ""],
+    "format-charging": "<span color='#d79921'>󰚥</span> {capacity}%",
+    "tooltip": true,
+    "tooltip-format": "{capacity}% - {time}"
+  }
 }

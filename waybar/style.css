@@ -8,18 +8,25 @@
 
 window#waybar {
   background: transparent;
-  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #8ec07c; /* Inactive text color */
+    background: transparent;
+}
+
+/* How the active workspace number looks */
+#workspaces button.active {
+    color: #458588;
+    background: #d4be98; /* The highlight background color */
+    border-radius: 5px; /* Nice rounded corners for the highlight box */
 }
 
 #workspaces, #window {
-  background-color: rgba(60, 56, 54, 0.6);
+  background-color: rgba(60, 56, 54, 0.8);
   color: #8ec07c;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 10px;
-  padding-top: 1px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 5px 10px;
 }
 
 #custom-menu {
@@ -28,38 +35,28 @@ window#waybar {
   color: #cc241d;
 }
 
-#workspaces button {
-  color: #458588;
-}
-
-#workspaces button:hover {
-  background: none;
-  background-color: transparent;
-  border: none;
-  box-shadow: none;
-  text-shadow: none;
-  transition: none;
-}
-
 #clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #tray {
-  background-color: rgba(60, 56, 54, 0.6);
+  background-color: rgba(60, 56, 54, 0.8);
   color: #8ec07c;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-right: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#clock{
+    color: #d4be98;
+    font-weight: bold;
+    padding-left: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#battery {
+    padding-right: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 #backlight, #bluetooth {
   padding-right: 5px;
   margin-right: 0
-}
-
-#pulseaudio, #network {
-  padding-left: 5px;
-}
-
-#clock {
-  margin-right: 0;
 }

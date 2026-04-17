@@ -47,6 +47,12 @@ vim.lsp.config.dartls = {
     cmd = { "dart", "language-server", "--protocol=lsp" },
 }
 
+
+vim.lsp.config.angular_language_server = {
+    cmd = { "angular-language-server", "--stdio" },
+    filetypes = { "typescript", "html" },
+}
+
 -- 3. Enable Servers (This replaces .setup({}))
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("lua_ls")
@@ -56,3 +62,5 @@ vim.lsp.enable("terraformls")
 vim.lsp.enable("tflint")
 vim.lsp.enable("dartls")
 vim.lsp.enable("pyright")
+vim.lsp.enable("pyright")
+vim.lsp.enable("angular-language-server")
