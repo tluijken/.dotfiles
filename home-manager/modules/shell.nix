@@ -25,8 +25,9 @@
           clean-local-git-branches = "git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d";
           tf = "terraform";
           getip = "curl -4 ifconfig.co";
-          updateNix = "sudo nixos-rebuild switch";
-          updateHome = "sudo -i nix-channel --update && home-manager switch";
+          updateNix  = "sudo nixos-rebuild switch --flake ~/.dotfiles#thomas";
+          updateHome = "sudo nixos-rebuild switch --flake ~/.dotfiles#thomas";
+          updateAll  = "cd ~/.dotfiles && nix flake update && sudo nixos-rebuild switch --flake ~/.dotfiles#thomas";
           debugk8s = "nix-shell -p kubectl --run \"kubectl run -i --tty --rm debug --image=alpine --restart=Never -- sh\"";
       };
       history = {
