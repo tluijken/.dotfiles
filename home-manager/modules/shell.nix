@@ -24,8 +24,8 @@
           clean-local-git-branches = "git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d";
           tf = "terraform";
           getip = "curl -4 ifconfig.co";
-          update    = "sudo nixos-rebuild switch --flake ~/.dotfiles";
-          upgrade   = "cd ~/.dotfiles && nix flake update && sudo nixos-rebuild switch --flake ~/.dotfiles";
+          update  = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+          upgrade = "cd ~/.dotfiles && nix flake update && sudo nixos-rebuild switch --flake ~/.dotfiles";
           debugk8s = "nix-shell -p kubectl --run \"kubectl run -i --tty --rm debug --image=alpine --restart=Never -- sh\"";
       };
       history = {
@@ -39,17 +39,17 @@
         fi
       '';
       initContent = ''
-            PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-          '';
-      oh-my-zsh = {
-          enable = true;
-          plugins = [ 
-              "git" 
-              "z"
-              "docker"
-              "direnv"
-          ];
-          theme = "robbyrussell";
-      };
+        PROMPT="%B%F{red}[%F{yellow}%n%F{green}@%F{blue}%M %F{magenta}%~%F{red}]%f%b$ "
+      '';
+  };
+
+  programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+  };
+
+  programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
   };
 }
