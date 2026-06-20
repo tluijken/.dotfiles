@@ -10,6 +10,7 @@
       ./virtualization.nix
       ./hardware-configuration.nix
       ./nvidia.nix
+      ./audio.nix
     ];
 
   # Bootloader.

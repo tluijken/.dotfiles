@@ -11,6 +11,7 @@ in
     ./modules/git.nix
     ./modules/stylix.nix
     ./modules/foot.nix
+    ./modules/audio.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -84,6 +85,7 @@ in
     # # symlink to the Nix store copy.
     ".config/current-theme".text             = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme);
     ".config/nvim".source                    = "${dotfilesPath}/nvim/.config/nvim";
+    ".config/mako/config".source             = "${dotfilesPath}/mako/config";
     ".config/waybar/config.jsonc".source     = "${dotfilesPath}/waybar/config.jsonc";
     ".config/waybar/configTaskBar.jsonc".source = "${dotfilesPath}/waybar/configTaskBar.jsonc";
     ".config/waybar/styleTaskBar.css".source = "${dotfilesPath}/waybar/styleTaskBar.css";

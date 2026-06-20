@@ -12,9 +12,8 @@
         # ''${ is nix's escape for a literal ${ in ''...'' strings
         launch = ''xdg-open ''${url}'';
       };
-      "colors-dark" = {
-        # Stylix sets the palette; keep transparency
-        alpha = "0.95";
+      "colors-light" = {
+        alpha = lib.mkForce "0.95";
       };
     };
   };

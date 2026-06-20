@@ -32,8 +32,8 @@ hl.config({
         gaps_out = 20,
         border_size = 1,
         col = {
-            active_border   = "rgba(D4BE98FF)",
-            inactive_border = "rgba(ebdbb211)",
+            active_border   = "rgba(89b4faFF)",
+            inactive_border = "rgba(31324411)",
         },
         resize_on_border = false,
         layout           = "master",
@@ -44,9 +44,15 @@ hl.config({
         dim_inactive     = true,
         dim_strength     = 0.1,
         active_opacity   = 0.99,
-        inactive_opacity = 1,
+        inactive_opacity = 0.85,
         blur = {
-            enabled = false,
+            enabled           = true,
+            size              = 6,
+            passes            = 3,
+            new_optimizations = true,
+            noise             = 0.02,
+            contrast          = 1.0,
+            brightness        = 1.0,
         },
         shadow = {
             enabled = false,
