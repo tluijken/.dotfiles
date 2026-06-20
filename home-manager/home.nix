@@ -58,6 +58,7 @@ in
      swaynotificationcenter
      swayosd
      networkmanagerapplet
+     playerctl
      lsd
      myMergeTool
      lazygit
@@ -89,7 +90,9 @@ in
     ".config/current-theme".text             = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme);
     ".config/nvim".source                    = "${dotfilesPath}/nvim/.config/nvim";
     ".config/swaync/config.json".source      = "${dotfilesPath}/swaync/config.json";
-    ".config/swaync/style.css".source       = "${dotfilesPath}/swaync/style.css";
+    ".config/swaync/style.css".source        = "${dotfilesPath}/swaync/style.css";
+    ".config/wlogout/layout".source          = "${dotfilesPath}/wlogout/layout";
+    ".config/wlogout/style.css".source       = "${dotfilesPath}/wlogout/style.css";
     ".config/waybar/config.jsonc".source     = "${dotfilesPath}/waybar/config.jsonc";
     ".config/waybar/configTaskBar.jsonc".source = "${dotfilesPath}/waybar/configTaskBar.jsonc";
     ".config/waybar/styleTaskBar.css".source = "${dotfilesPath}/waybar/styleTaskBar.css";

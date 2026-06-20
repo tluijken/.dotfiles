@@ -7,7 +7,7 @@
 
   "modules-left":   ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right":  ["pulseaudio", "bluetooth", "network", "battery", "tray", "custom/notification"],
+  "modules-right":  ["custom/mpris", "pulseaudio", "bluetooth", "network", "battery", "tray", "custom/notification"],
 
   // ── Workspaces ──────────────────────────────────────────
   "hyprland/workspaces": {
@@ -83,6 +83,18 @@
   "tray": {
     "icon-size": 16,
     "spacing": 8
+  },
+
+  // ── MPRIS media player (playerctl-based, handles instance names) ──
+  "custom/mpris": {
+    "return-type": "json",
+    "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} — {{title}}\", \"tooltip\": \"{{playerName}}: {{artist}} — {{title}}\", \"alt\": \"{{status}}\"}' -F 2>/dev/null",
+    "format": "  {}",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+    "escape": true,
+    "max-length": 35
   },
 
   // ── Swaync notification bell ────────────────────────────

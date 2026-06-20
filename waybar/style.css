@@ -64,6 +64,7 @@ window#waybar #workspaces button.active {
 }
 
 /* ── Shared right-pill module style ─────────────────────── */
+#custom-mpris,
 #pulseaudio,
 #bluetooth,
 #network,
@@ -75,12 +76,20 @@ window#waybar #workspaces button.active {
   font-size: 16px;
 }
 
+#custom-mpris:hover,
 #pulseaudio:hover,
 #bluetooth:hover,
 #network:hover,
 #battery:hover,
 #custom-notification:hover {
   color: @base0D;
+}
+
+/* ── MPRIS separator ────────────────────────────────────── */
+#custom-mpris {
+  border-right: 1px solid @base03;
+  margin-right: 6px;
+  padding-right: 14px;
 }
 
 /* ── Audio ──────────────────────────────────────────────── */
