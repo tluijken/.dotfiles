@@ -5,12 +5,13 @@ default-timeout=5000
 max-visible=5
 sort=-time
 
-font=JetBrainsMono Nerd Font 12
+font=JetBrainsMono Nerd Font 18
 background-color=#1e1e2e
 text-color=#cdd6f4
 border-color=#313244
 border-size=2
 border-radius=8
+width=500
 padding=12
 
 format=<b>%s</b>\n%b

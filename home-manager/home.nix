@@ -55,6 +55,7 @@ in
      proton-pass
      mpv
      awww
+     swaynotificationcenter
      lsd
      myMergeTool
      lazygit
@@ -85,7 +86,8 @@ in
     # # symlink to the Nix store copy.
     ".config/current-theme".text             = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme);
     ".config/nvim".source                    = "${dotfilesPath}/nvim/.config/nvim";
-    ".config/mako/config".source             = "${dotfilesPath}/mako/config";
+    ".config/swaync/config.json".source      = "${dotfilesPath}/swaync/config.json";
+    ".config/swaync/style.css".source       = "${dotfilesPath}/swaync/style.css";
     ".config/waybar/config.jsonc".source     = "${dotfilesPath}/waybar/config.jsonc";
     ".config/waybar/configTaskBar.jsonc".source = "${dotfilesPath}/waybar/configTaskBar.jsonc";
     ".config/waybar/styleTaskBar.css".source = "${dotfilesPath}/waybar/styleTaskBar.css";

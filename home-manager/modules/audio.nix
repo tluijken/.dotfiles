@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     pavucontrol  # per-app/device volume routing
     qpwgraph     # PipeWire graph patchbay (useful for debugging routing)
+    libnotify    # provides notify-send
   ];
 
   # EasyEffects runs as a background service — no GUI needed for noise cancellation

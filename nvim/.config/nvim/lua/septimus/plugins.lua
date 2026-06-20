@@ -54,7 +54,7 @@ require("lazy").setup({
     { 'tpope/vim-fugitive' },
 
     -- UI
-    { "sainnhe/gruvbox-material" },
+    { "catppuccin/nvim", name = "catppuccin" },
     { 'nvim-lualine/lualine.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
     { 'NvChad/nvim-colorizer.lua' },
     { "folke/which-key.nvim", dependencies = { "echasnovski/mini.icons" } },
