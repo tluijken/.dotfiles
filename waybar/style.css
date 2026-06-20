@@ -1,55 +1,122 @@
 * {
   font-family: 'JetBrainsMono Nerd Font';
-  font-size: 16px;
-  border-radius: 0px;
+  font-size: 15px;
+  border: none;
+  border-radius: 0;
   margin: 0;
+  padding: 0;
+  min-height: 0;
+  transition: all 200ms ease;
 }
 
 window#waybar {
   background: transparent;
 }
 
+/* ── Three floating pills ───────────────────────────────── */
+.modules-left,
+.modules-center,
+.modules-right {
+  background: alpha(@base00, 0.85);
+  border: 1px solid alpha(@base02, 0.7);
+  border-radius: 14px;
+  padding: 4px 6px;
+}
+
+/* ── Workspaces ─────────────────────────────────────────── */
+#workspaces {
+  background: transparent;
+  padding: 0 2px;
+}
+
 #workspaces button {
-    padding: 0 5px;
-    color: @base0B;
-    background: transparent;
+  color: @base04;
+  background: transparent;
+  padding: 2px 12px;
+  border-radius: 10px;
 }
 
-#workspaces button.active {
-    color: @base0D;
-    background: @base05;
-    border-radius: 5px;
+#workspaces button:hover {
+  color: @base05;
+  background: alpha(@base02, 0.6);
 }
 
-#workspaces, #window {
-  background-color: alpha(@base00, 0.8);
-  color: @base0B;
-  padding: 5px 10px;
+window#waybar #workspaces button.active {
+  color: #1e1e2e;
+  background-color: #89b4fa;
+  background-image: none;
+  font-weight: bold;
+  padding: 2px 14px;
+  border-radius: 10px;
 }
 
-#custom-menu {
-  font-size: 20px;
-  margin-left: 10px;
-  color: @base08;
+#workspaces button.urgent {
+  background: @base08;
+  color: @base01;
 }
 
-#clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #tray {
-  background-color: alpha(@base00, 0.8);
-  color: @base0B;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
+/* ── Clock ──────────────────────────────────────────────── */
 #clock {
-    color: @base05;
-    font-weight: bold;
-    padding-left: 20px;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+  color: @base05;
+  font-weight: bold;
+  padding: 2px 16px;
 }
 
-#battery {
-    padding-right: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+/* ── Shared right-pill module style ─────────────────────── */
+#pulseaudio,
+#bluetooth,
+#network,
+#battery,
+#tray,
+#custom-notification {
+  color: @base05;
+  padding: 2px 10px;
+  font-size: 16px;
+}
+
+#pulseaudio:hover,
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#custom-notification:hover {
+  color: @base0D;
+}
+
+/* ── Audio ──────────────────────────────────────────────── */
+#pulseaudio.muted {
+  color: @base03;
+}
+
+/* ── Bluetooth ──────────────────────────────────────────── */
+#bluetooth.connected  { color: @base0D; }
+#bluetooth.disabled   { color: @base03; }
+
+/* ── Network ────────────────────────────────────────────── */
+#network.wifi         { color: @base0B; }
+#network.ethernet     { color: @base0D; }
+#network.disconnected { color: @base08; }
+
+/* ── Battery ────────────────────────────────────────────── */
+#battery.charging                 { color: @base0B; }
+#battery.warning:not(.charging)   { color: @base0A; }
+#battery.critical:not(.charging)  { color: @base08; }
+
+/* ── Notification bell ──────────────────────────────────── */
+#custom-notification {
+  font-size: 17px;
+}
+
+/* ── Tray ───────────────────────────────────────────────── */
+#tray {
+  font-size: 14px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background: alpha(@base08, 0.25);
+  border-radius: 8px;
 }

@@ -56,6 +56,7 @@ in
      mpv
      awww
      swaynotificationcenter
+     swayosd
      lsd
      myMergeTool
      lazygit

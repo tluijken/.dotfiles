@@ -84,6 +84,12 @@ hl.define_submap("resize", function()
     hl.bind("Return", hl.dsp.submap("reset"))
 end)
 
+-- Volume keys
+hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("swayosd-client --output-volume raise"))
+hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("swayosd-client --output-volume lower"))
+hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"))
+hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("swayosd-client --input-volume mute-toggle"))
+
 -- Mouse move/resize
 hl.bind(M .. " + mouse:272", hl.dsp.window.drag(),   { drag = true })
 hl.bind(M .. " + mouse:273", hl.dsp.window.resize(), { drag = true })
