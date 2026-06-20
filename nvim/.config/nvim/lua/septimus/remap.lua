@@ -47,3 +47,7 @@ vim.keymap.set({ "", "!" }, "<Up>", "", {})
 vim.keymap.set({ "", "!" }, "<Down>", "", {})
 
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", {desc = "Open parent directory"})
+
+-- Ctrl+/ to toggle comment (built-in since nvim 0.10)
+vim.keymap.set("n", "<C-_>", "gcc", { remap = true })
+vim.keymap.set("v", "<C-_>", "gc", { remap = true })

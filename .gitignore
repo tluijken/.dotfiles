@@ -8,3 +8,4 @@ waybar/waybar
 wofi/wofi
 # Ignore neovim packed plugins
 nvim/.config/nvim/pack/
+nvim/.config/nvim/plugin/packer_compiled.lua
