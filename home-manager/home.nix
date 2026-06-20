@@ -9,6 +9,8 @@ in
     ./modules/hyprland.nix
     ./modules/shell.nix
     ./modules/git.nix
+    ./modules/stylix.nix
+    ./modules/foot.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -17,13 +19,6 @@ in
   home.homeDirectory = "/home/thomas";
 
   fonts.fontconfig.enable = true;
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.bibata-cursors; # Or another cursor theme package
-    name = "Bibata-Modern-Ice";
-    size = 22; # Adjust this value
-  };
 
 
   # This value determines the Home Manager release that your configuration is
@@ -56,8 +51,10 @@ in
      mpv
      swaybg
      lsd
-     direnv
      myMergeTool
+     lazygit
+     fd
+     nh
      proton-vpn
      pear-desktop
      wofi
@@ -69,6 +66,9 @@ in
      obs-studio
      tuxguitar
      nerd-fonts.jetbrains-mono
+     wlogout
+     grim
+     slurp
   ];
 
 
