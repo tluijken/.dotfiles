@@ -7,12 +7,13 @@ local browser     = "app.zen_browser.zen"
 -- Apps
 hl.bind(M .. " + Return",  hl.dsp.exec_cmd(terminal))
 hl.bind(M .. " + Q",       hl.dsp.window.close())
-hl.bind(M .. " + M",       hl.dsp.exit())
+hl.bind(M .. " + M",       hl.dsp.exec_cmd("wlogout"))
 hl.bind(M .. " + F",       hl.dsp.window.fullscreen())
 hl.bind(M .. " + N",       hl.dsp.exec_cmd(fileManager))
 hl.bind(M .. " + D",       hl.dsp.exec_cmd(menu))
 hl.bind(M .. " + Z",       hl.dsp.exec_cmd(browser))
 hl.bind(M .. " + P",       hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
+hl.bind(M .. " + W",       hl.dsp.exec_cmd("bash ~/.dotfiles/hypr/next-wallpaper.sh"))
 hl.bind(M .. " + Escape",  hl.dsp.exec_cmd("hyprlock"))
 
 -- Floating — like sway's $mod+Shift+Space / $mod+Space

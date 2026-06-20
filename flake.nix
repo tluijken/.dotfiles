@@ -27,7 +27,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            sharedModules = [ stylix.homeManagerModules.stylix ];
+            sharedModules = [ stylix.homeModules.stylix ];
             extraSpecialArgs = {
               dotfilesPath = ./.;
             };

@@ -1,7 +1,6 @@
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
-    hl.exec_cmd("swaybg -i ~/.dotfiles/wallpaper/lantern.jpg")
-    hl.exec_cmd("hyprpm reload -n")
+    hl.exec_cmd("bash ~/.dotfiles/hypr/wallpaper.sh")
 end)
 
 hl.exec_cmd('gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"')

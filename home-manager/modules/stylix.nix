@@ -2,8 +2,8 @@
 {
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-    image = "${dotfilesPath}/wallpaper/lantern.jpg";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    image = "${dotfilesPath}/wallpaper/gruvbox-dark/lantern.jpg";
 
     cursor = {
       package = pkgs.bibata-cursors;
@@ -32,7 +32,7 @@
 
     targets = {
       # Keep manual configs for these
-      waybar.enable = false;
+      waybar.enable = true;
       neovim.enable = false;
       hyprland.enable = false;
       hyprlock.enable = false;

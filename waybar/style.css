@@ -1,7 +1,6 @@
 * {
   font-family: 'JetBrainsMono Nerd Font';
   font-size: 16px;
-  /* font-weight: bold; */
   border-radius: 0px;
   margin: 0;
 }
@@ -12,38 +11,37 @@ window#waybar {
 
 #workspaces button {
     padding: 0 5px;
-    color: #8ec07c; /* Inactive text color */
+    color: @base0B;
     background: transparent;
 }
 
-/* How the active workspace number looks */
 #workspaces button.active {
-    color: #458588;
-    background: #d4be98; /* The highlight background color */
-    border-radius: 5px; /* Nice rounded corners for the highlight box */
+    color: @base0D;
+    background: @base05;
+    border-radius: 5px;
 }
 
 #workspaces, #window {
-  background-color: rgba(60, 56, 54, 0.8);
-  color: #8ec07c;
+  background-color: alpha(@base00, 0.8);
+  color: @base0B;
   padding: 5px 10px;
 }
 
 #custom-menu {
   font-size: 20px;
   margin-left: 10px;
-  color: #cc241d;
+  color: @base08;
 }
 
 #clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #tray {
-  background-color: rgba(60, 56, 54, 0.8);
-  color: #8ec07c;
+  background-color: alpha(@base00, 0.8);
+  color: @base0B;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-#clock{
-    color: #d4be98;
+#clock {
+    color: @base05;
     font-weight: bold;
     padding-left: 20px;
     border-top-left-radius: 20px;
@@ -54,9 +52,4 @@ window#waybar {
     padding-right: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-}
-
-#backlight, #bluetooth {
-  padding-right: 5px;
-  margin-right: 0
 }

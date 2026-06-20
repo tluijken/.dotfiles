@@ -1,4 +1,4 @@
-{ config, pkgs, dotfilesPath, ... }:
+{ config, pkgs, lib, dotfilesPath, ... }:
 let
   # Add the tool you want to use here
   myMergeTool = pkgs.kdiff3;
@@ -17,6 +17,10 @@ in
   # manage.
   home.username = "thomas";
   home.homeDirectory = "/home/thomas";
+
+  # Stylix's homeModule adds overlays internally, but nixosModules.stylix already
+  # applies them at the system level. Clear them here to avoid the useGlobalPkgs warning.
+  nixpkgs.overlays = lib.mkForce [];
 
   fonts.fontconfig.enable = true;
 
@@ -49,7 +53,7 @@ in
      insomnia
      proton-pass
      mpv
-     swaybg
+     awww
      lsd
      myMergeTool
      lazygit
@@ -78,9 +82,19 @@ in
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
-    ".config/nvim".source    = "${dotfilesPath}/nvim/.config/nvim";
-".config/waybar".source  = "${dotfilesPath}/waybar";
-    ".config/wofi".source    = "${dotfilesPath}/wofi";
+    ".config/current-theme".text             = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme);
+    ".config/nvim".source                    = "${dotfilesPath}/nvim/.config/nvim";
+    ".config/waybar/config.jsonc".source     = "${dotfilesPath}/waybar/config.jsonc";
+    ".config/waybar/configTaskBar.jsonc".source = "${dotfilesPath}/waybar/configTaskBar.jsonc";
+    ".config/waybar/styleTaskBar.css".source = "${dotfilesPath}/waybar/styleTaskBar.css";
+    ".config/waybar/mediaplayer.py".source   = "${dotfilesPath}/waybar/mediaplayer.py";
+    ".config/waybar/updates.sh".source       = "${dotfilesPath}/waybar/updates.sh";
+    ".config/wofi".source                    = "${dotfilesPath}/wofi";
+  };
+
+  programs.waybar = {
+    enable = true;
+    style = builtins.readFile "${dotfilesPath}/waybar/style.css";
   };
 
   xdg.portal = {
@@ -129,6 +143,7 @@ in
   home.sessionVariables = {
     # EDITOR = "emacs";
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    WALLPAPER_THEME = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme); # kept for shell convenience
   };
 
   # Let Home Manager install and manage itself.

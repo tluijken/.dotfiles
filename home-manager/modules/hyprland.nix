@@ -69,18 +69,18 @@
           dots_center = true;
           fade_on_empty = false;
   
-          # Gruvbox dark colors
-          font_color = "rgb(235, 219, 178)";   # fg1 - warm cream
-          inner_color = "rgb(60, 56, 54)";     # bg2 - dark warm grey
-          outer_color = "rgb(214, 93, 14)";    # orange accent
-          check_color = "rgb(184, 187, 38)";   # yellow-green
-          fail_color = "rgb(204, 36, 29)";     # bright red
+          # Catppuccin Mocha
+          font_color = "rgb(205, 214, 244)";   # text
+          inner_color = "rgb(49, 50, 68)";     # surface0
+          outer_color = "rgb(203, 166, 247)";  # mauve
+          check_color = "rgb(166, 227, 161)";  # green
+          fail_color = "rgb(243, 139, 168)";   # red
           fail_text = "wrong password";
-  
+
           outline_thickness = 4;
-          placeholder_text = "<span foreground=\"##a89984\">🔒 password</span>";
+          placeholder_text = "<span foreground=\"##a6adc8\">🔒 password</span>";
           shadow_passes = 3;
-          shadow_color = "rgb(29, 32, 33)";    # bg hard shadow
+          shadow_color = "rgb(17, 17, 27)";    # crust
           shadow_boost = 1.2;
         }
       ];
@@ -92,42 +92,42 @@
           text = "$TIME";
           font_size = 96;
           font_family = "JetBrains Mono Bold";
-          color = "rgba(235, 219, 178, 0.9)";  # fg1 - warm cream
+          color = "rgba(205, 214, 244, 0.9)";  # text
           position = "0, 200";
           valign = "center";
           halign = "center";
           shadow_passes = 3;
-          shadow_color = "rgb(29, 32, 33)";
+          shadow_color = "rgb(17, 17, 27)";
           shadow_boost = 1.2;
         }
-  
+
         # Date
         {
           monitor = "";
           text = ''cmd[update:60000] date +"%-A, %-d %B %Y"'';
           font_size = 24;
           font_family = "JetBrains Mono";
-          color = "rgba(168, 153, 132, 0.9)";  # fg4 - muted warm grey
+          color = "rgba(166, 173, 200, 0.9)";  # subtext0
           position = "0, 100";
           valign = "center";
           halign = "center";
           shadow_passes = 3;
-          shadow_color = "rgb(29, 32, 33)";
+          shadow_color = "rgb(17, 17, 27)";
           shadow_boost = 1.2;
         }
-  
+
         # Username
         {
           monitor = "";
           text = "$USER";
           font_size = 18;
           font_family = "JetBrains Mono";
-          color = "rgba(214, 93, 14, 0.9)";    # orange accent
+          color = "rgba(203, 166, 247, 0.9)";  # mauve
           position = "0, -50";
           valign = "center";
           halign = "center";
           shadow_passes = 2;
-          shadow_color = "rgb(29, 32, 33)";
+          shadow_color = "rgb(17, 17, 27)";
         }
       ];
     };

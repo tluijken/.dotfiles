@@ -23,7 +23,7 @@
   },
   
   "pulseaudio": {
-    "format": "<span color='#d79921'>{icon}</span>",
+    "format": "<span color='#f9e2af'>{icon}</span>",
     "on-click": "pavucontrol",
     "format-muted": "",
     "tooltip": true,
@@ -37,17 +37,17 @@
   
   "network": {
     "format": "{ifname}",
-    "format-wifi": "<span color='#d79921'> </span>",
-    "format-ethernet": "<span color='#d79921'>󰛳 </span>",
-    "format-disconnected": "<span color='#d79921'>󰖪 </span>",
+    "format-wifi": "<span color='#f9e2af'> </span>",
+    "format-ethernet": "<span color='#f9e2af'>󰛳 </span>",
+    "format-disconnected": "<span color='#f9e2af'>󰖪 </span>",
     "tooltip-format-wifi": "{essid}\nSignal Strength: {signalStrength}%\nIP: {ipaddr}/{cidr}",
     "tooltip-format-ethernet": "IP: {ipaddr}/{cidr}"
   },
   
   "battery": {
-    "format": "<span color='#d79921'>{icon}</span>",
+    "format": "<span color='#f9e2af'>{icon}</span>",
     "format-icons": ["", "", "", "", ""],
-    "format-charging": "<span color='#d79921'>󰚥</span> {capacity}%",
+    "format-charging": "<span color='#f9e2af'>󰚥</span> {capacity}%",
     "tooltip": true,
     "tooltip-format": "{capacity}% - {time}"
   }
