@@ -57,6 +57,7 @@ in
      awww
      swaynotificationcenter
      swayosd
+     networkmanagerapplet
      lsd
      myMergeTool
      lazygit

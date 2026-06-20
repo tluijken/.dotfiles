@@ -17,10 +17,11 @@ window#waybar {
 .modules-left,
 .modules-center,
 .modules-right {
-  background: alpha(@base00, 0.85);
-  border: 1px solid alpha(@base02, 0.7);
+  background: alpha(@base00, 0.92);
+  border: 1px solid alpha(@base02, 0.8);
   border-radius: 14px;
   padding: 4px 6px;
+
 }
 
 /* ── Workspaces ─────────────────────────────────────────── */
