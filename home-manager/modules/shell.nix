@@ -32,9 +32,14 @@
           size = 10000;
           path = "${config.xdg.dataHome}/zsh/history";
       };
+      profileExtra = ''
+        if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = "1" ]; then
+          exec start-hyprland
+        fi
+      '';
       initContent = ''
             PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-            if command -v keychain > /dev/null 2>&1; then eval $(keychain --eval --nogui ~/.ssh/github.com --quiet); fi
+            if command -v keychain > /dev/null 2>&1; then eval $(keychain --eval --nogui ~/.ssh/github --quiet); fi
           '';
       oh-my-zsh = {
           enable = true;

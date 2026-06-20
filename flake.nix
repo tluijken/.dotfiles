@@ -2,10 +2,10 @@
   description = "Thomas' NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";  # match your current channel
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";  # match your current channel
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";  # must match nixpkgs
+      url = "github:nix-community/home-manager/release-26.05";  # must match nixpkgs
       inputs.nixpkgs.follows = "nixpkgs"; 
     };
   };

@@ -3,12 +3,14 @@
   wayland.windowManager.hyprland = {
     enable = true;
    
-    plugins = [
-      pkgs.hyprlandPlugins.hyprscrolling
-    ];
+    # plugins = [
+    #   pkgs.hyprlandPlugins.hyprscrolling
+    # ];
   
+    configType = "lua";
+
     extraConfig = ''
-      source = ${config.home.homeDirectory}/.dotfiles/hypr/hyprland.conf
+      dofile(os.getenv("HOME") .. "/.dotfiles/hypr/hyprland.lua")
     '';
   };
   

@@ -11,14 +11,6 @@ in
     ./modules/git.nix
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
-      "slack"
-      "obsidian"
-      "datagrip"
-      "reaper"
-    ];
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "thomas";
@@ -69,13 +61,13 @@ in
      direnv
      myMergeTool
      firefox
-     protonvpn-gui
-     youtube-music
+     proton-vpn
+     pear-desktop
      wofi
      waybar
      rocketchat-desktop
      jetbrains.datagrip
-     helvum
+     crosspipe 
      reaper
      obs-studio
      tuxguitar

@@ -9,7 +9,7 @@ in
     enable = true;
     signing = {
       format = "ssh";
-      key = "${config.home.homeDirectory}/.ssh/github.com.pub";
+      key = "${config.home.homeDirectory}/.ssh/github.pub";
       signByDefault = true;
     };
     settings = {

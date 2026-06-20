@@ -9,13 +9,14 @@
     [ # Include the results of the hardware scan.
       ./virtualization.nix
       ./hardware-configuration.nix
+      ./nvidia.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-ee3b61bb-a03e-4153-848f-ea5d40727985".device = "/dev/disk/by-uuid/ee3b61bb-a03e-4153-848f-ea5d40727985";
+  boot.initrd.luks.devices."luks-87a679bd-c6c2-4bd8-b114-437b63f0e4dc".device = "/dev/disk/by-uuid/87a679bd-c6c2-4bd8-b114-437b63f0e4dc";
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -59,13 +60,17 @@
   };
 
   hardware.bluetooth = {
-    enable = true; # enables support for Bluetooth
-    powerOnBoot = true; # powers up the default Bluetooth controller on boot
+    enable = true;
+    powerOnBoot = true;
     settings = {
-        General = {
-            ControllerMode = "dual";
-            Experimental = true;
-        };
+      General = {
+        Experimental = true;      # needed for BLE features on many mice
+        FastConnectable = true;
+        Privacy = "device";
+      };
+      Policy = {
+        AutoEnable = true;
+      };
     };
   };
 
@@ -139,10 +144,19 @@
      wrapperFeatures.gtk = true;
   };
 
+  services.syncthing = {
+      enable = true;
+      user = "thomas";
+      dataDir = "/home/thomas";
+      configDir = "/home/thomas/.config/syncthing";
+      openDefaultPorts = true;
+  };
+
   programs.hyprland.enable = true; # enable Hyprland
 
   # rtkit is optional but recommended
   security.rtkit.enable = true;
+  security.pam.services.hyprlock = {};
   services.pipewire = {
     enable = true;
     alsa.enable = true;
