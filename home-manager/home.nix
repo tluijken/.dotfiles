@@ -52,15 +52,12 @@ in
      openssl
      nautilus
      insomnia
-     dmenu
      proton-pass
      mpv
      swaybg
      lsd
-     feh
      direnv
      myMergeTool
-     firefox
      proton-vpn
      pear-desktop
      wofi
@@ -88,7 +85,7 @@ in
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
     config = {
       common = {
         default = [ "gtk" ];
