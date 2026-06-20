@@ -82,10 +82,7 @@ in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     ".config/nvim".source    = "${dotfilesPath}/nvim/.config/nvim";
-    ".config/mako".source    = "${dotfilesPath}/mako";
-    ".config/neofetch".source = "${dotfilesPath}/neofetch";
-    ".config/sway".source    = "${dotfilesPath}/sway";
-    ".config/waybar".source  = "${dotfilesPath}/waybar";
+".config/waybar".source  = "${dotfilesPath}/waybar";
     ".config/wofi".source    = "${dotfilesPath}/wofi";
   };
 

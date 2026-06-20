@@ -53,7 +53,7 @@ vim.g.rustaceanvim = {
     -- but you can override it here if you need your specific 'rt_lldb' setup.
     adapter = {
       type = "executable",
-      command = "lldb-vscode",
+      command = "lldb-dap",
       name = "rt_lldb",
     },
   },

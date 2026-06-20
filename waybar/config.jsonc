@@ -18,7 +18,7 @@
   },
   
   "clock": {
-    "interval": 1,
+    "interval": 60,
     "format": "{:%H:%M}"
   },
   
