@@ -27,6 +27,8 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+            # Back up (rather than fail on) any unmanaged file in the way of activation
+            backupFileExtension = "hm-bak";
             sharedModules = [ stylix.homeModules.stylix ];
             extraSpecialArgs = {
               dotfilesPath = ./.;

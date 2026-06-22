@@ -43,6 +43,7 @@
       '';
       initContent = ''
         PROMPT="%B%F{red}[%F{yellow}%n%F{green}@%F{blue}%M %F{magenta}%~%F{red}]%f%b$ "
+        setopt AUTO_CD
       '';
   };
 
