@@ -42,6 +42,14 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Reclaim store space automatically
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+  nix.settings.auto-optimise-store = true;
+
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
@@ -111,7 +119,6 @@
      home-manager
      cifs-utils
      keychain
-     mako
      cups
   ];
 
@@ -139,11 +146,6 @@
   };
 
   services.tailscale.enable = true;
-
-  programs.sway = {
-     enable = true;
-     wrapperFeatures.gtk = true;
-  };
 
   services.syncthing = {
       enable = true;

@@ -1,6 +1,6 @@
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
-    hl.exec_cmd("swaync")
+    -- swaync now runs as a systemd user service (services.swaync)
     hl.exec_cmd("swayosd-server")
     hl.exec_cmd("bash ~/.dotfiles/hypr/wallpaper.sh")
 end)
