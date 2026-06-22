@@ -1,4 +1,5 @@
-local M = "SUPER"
+local M    = "SUPER"
+local home = os.getenv("HOME")
 local terminal    = "foot"
 local fileManager = "nautilus"
 local menu        = "wofi --show drun"
@@ -28,10 +29,9 @@ hl.bind(M .. " + B", hl.dsp.layout("togglesplit"))
 hl.bind(M .. " + SHIFT + Return", hl.dsp.layout("swapwithmaster"))
 
 -- Launch or toggle special workspaces
-hl.bind(M .. " + T", hl.dsp.exec_cmd(
-    "pgrep thunderbird && hyprctl dispatch togglespecialworkspace mail || thunderbird &"))
-hl.bind(M .. " + S", hl.dsp.exec_cmd(
-    "pgrep slack && hyprctl dispatch togglespecialworkspace slack || slack &"))
+local scripts = home .. "/.dotfiles/hypr/scripts"
+hl.bind(M .. " + T", hl.dsp.exec_cmd(scripts .. "/toggle-mail.sh"))
+hl.bind(M .. " + S", hl.dsp.exec_cmd(scripts .. "/toggle-slack.sh"))
 
 -- Move focus — vim keys
 hl.bind(M .. " + H", hl.dsp.focus({ direction = "l" }))
