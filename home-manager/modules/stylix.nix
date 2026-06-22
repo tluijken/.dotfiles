@@ -3,7 +3,7 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    image = "${dotfilesPath}/wallpaper/gruvbox-dark/lantern.jpg";
+    image = "${dotfilesPath}/wallpaper/catppuccin-mocha/wallhaven-mlgqv8.png";
 
     cursor = {
       package = pkgs.bibata-cursors;
@@ -17,12 +17,12 @@
         name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
+        package = pkgs.inter;
+        name = "Inter";
       };
       serif = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrainsMono Nerd Font";
+        package = pkgs.noto-fonts;
+        name = "Noto Serif";
       };
       sizes = {
         terminal = 10;

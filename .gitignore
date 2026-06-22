@@ -9,3 +9,14 @@ wofi/wofi
 # Ignore neovim packed plugins
 nvim/.config/nvim/pack/
 nvim/.config/nvim/plugin/packer_compiled.lua
+# Leftover from pre-Nix (Stow) setup
+.env
+errors.log
+# Untracked wallpaper theme collections (kept locally, not in the flake source)
+wallpaper/dracula/
+wallpaper/everforest/
+wallpaper/gruvbox-material/
+wallpaper/nord/
+wallpaper/one-dark/
+wallpaper/rose-pine/
+wallpaper/solarized-dark/

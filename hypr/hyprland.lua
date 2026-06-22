@@ -55,7 +55,11 @@ hl.config({
             brightness        = 1.0,
         },
         shadow = {
-            enabled = false,
+            enabled        = true,
+            range          = 12,
+            render_power   = 4,
+            color          = "rgba(89b4fa28)",
+            color_inactive = "rgba(00000000)",
         },
     },
     misc = {

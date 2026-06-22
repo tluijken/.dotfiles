@@ -7,7 +7,7 @@ local browser     = "app.zen_browser.zen"
 -- Apps
 hl.bind(M .. " + Return",  hl.dsp.exec_cmd(terminal))
 hl.bind(M .. " + Q",       hl.dsp.window.close())
-hl.bind(M .. " + M",       hl.dsp.exec_cmd("wlogout --layout ~/.config/wlogout/layout --css ~/.config/wlogout/style.css --protocol layer-shell"))
+hl.bind(M .. " + M",       hl.dsp.exec_cmd("wlogout --layout ~/.config/wlogout/layout --css ~/.config/wlogout/style.css --protocol layer-shell -b 5 -T 720 -B 720"))
 hl.bind(M .. " + F",       hl.dsp.window.fullscreen())
 hl.bind(M .. " + E",       hl.dsp.exec_cmd(fileManager))
 hl.bind(M .. " + N",       hl.dsp.exec_cmd("swaync-client -t"))
@@ -89,6 +89,17 @@ hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("swayosd-client --output-volume
 hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("swayosd-client --output-volume lower"))
 hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"))
 hl.bind("XF86AudioMicMute",      hl.dsp.exec_cmd("swayosd-client --input-volume mute-toggle"))
+
+-- Media keys
+hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"))
+hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"))
+hl.bind("XF86AudioStop",  hl.dsp.exec_cmd("playerctl stop"))
+
+-- Brightness keys
+hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("swayosd-client --brightness raise"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lower"))
 
 -- Mouse move/resize
 hl.bind(M .. " + mouse:272", hl.dsp.window.drag(),   { drag = true })

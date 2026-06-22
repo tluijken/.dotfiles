@@ -12,6 +12,10 @@ in
     ./modules/stylix.nix
     ./modules/foot.nix
     ./modules/audio.nix
+    ./modules/waybar.nix
+    ./modules/wofi.nix
+    ./modules/swaync.nix
+    ./modules/wlogout.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -55,7 +59,6 @@ in
      proton-pass
      mpv
      awww
-     swaynotificationcenter
      swayosd
      networkmanagerapplet
      playerctl
@@ -66,18 +69,15 @@ in
      nh
      proton-vpn
      pear-desktop
-     wofi
-     waybar
      rocketchat-desktop
      jetbrains.datagrip
-     crosspipe 
+     crosspipe
      reaper
      obs-studio
      tuxguitar
      nerd-fonts.jetbrains-mono
-     wlogout
-     grim
-     slurp
+     inter
+     noto-fonts
   ];
 
 
@@ -89,21 +89,16 @@ in
     # # symlink to the Nix store copy.
     ".config/current-theme".text             = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme);
     ".config/nvim".source                    = "${dotfilesPath}/nvim/.config/nvim";
-    ".config/swaync/config.json".source      = "${dotfilesPath}/swaync/config.json";
-    ".config/swaync/style.css".source        = "${dotfilesPath}/swaync/style.css";
-    ".config/wlogout/layout".source          = "${dotfilesPath}/wlogout/layout";
-    ".config/wlogout/style.css".source       = "${dotfilesPath}/wlogout/style.css";
-    ".config/waybar/config.jsonc".source     = "${dotfilesPath}/waybar/config.jsonc";
-    ".config/waybar/configTaskBar.jsonc".source = "${dotfilesPath}/waybar/configTaskBar.jsonc";
-    ".config/waybar/styleTaskBar.css".source = "${dotfilesPath}/waybar/styleTaskBar.css";
-    ".config/waybar/mediaplayer.py".source   = "${dotfilesPath}/waybar/mediaplayer.py";
-    ".config/waybar/updates.sh".source       = "${dotfilesPath}/waybar/updates.sh";
-    ".config/wofi".source                    = "${dotfilesPath}/wofi";
+    # waybar, wofi, swaync, wlogout are now managed by their home-manager modules
+    # (see ./modules/{waybar,wofi,swaync,wlogout}.nix)
   };
 
-  programs.waybar = {
+  gtk = {
     enable = true;
-    style = builtins.readFile "${dotfilesPath}/waybar/style.css";
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus-Dark";
+    };
   };
 
   xdg.portal = {
