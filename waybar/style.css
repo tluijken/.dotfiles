@@ -66,6 +66,7 @@ window#waybar #workspaces button.active {
 /* ── Shared right-pill module style ─────────────────────── */
 #custom-mpris,
 #pulseaudio,
+#pulseaudio.microphone,
 #bluetooth,
 #network,
 #battery,
@@ -78,6 +79,7 @@ window#waybar #workspaces button.active {
 
 #custom-mpris:hover,
 #pulseaudio:hover,
+#pulseaudio.microphone:hover,
 #bluetooth:hover,
 #network:hover,
 #battery:hover,
@@ -95,6 +97,10 @@ window#waybar #workspaces button.active {
 /* ── Audio ──────────────────────────────────────────────── */
 #pulseaudio.muted {
   color: @base03;
+}
+
+#pulseaudio.microphone.source-muted {
+  color: @base08;
 }
 
 /* ── Bluetooth ──────────────────────────────────────────── */

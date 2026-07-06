@@ -20,7 +20,9 @@
       system = "x86_64-linux";
       modules = [
         ./nixos/configuration.nix
-        ./nixos/hardware-configuration.nix
+        # Machine-specific configuration lives outside the repo.
+        # Requires building with --impure.
+        /etc/nixos/hardware-configuration.nix
         stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         {
@@ -36,7 +38,7 @@
             users.thomas = import ./home-manager/home.nix;
           };
         }
-      ];
+      ] ++ nixpkgs.lib.optional (builtins.pathExists /etc/nixos/local.nix) /etc/nixos/local.nix;
     };
   };
 }

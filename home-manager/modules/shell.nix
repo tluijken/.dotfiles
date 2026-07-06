@@ -7,7 +7,7 @@
       syntaxHighlighting.enable = true;
       sessionVariables = {
           EDITOR = "nvim";
-          FLAKE = "$HOME/.dotfiles";
+          NH_FLAKE = "$HOME/.dotfiles";
       };
       shellAliases = {
           vim = "nvim";
@@ -27,8 +27,9 @@
           clean-local-git-branches = "git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d";
           tf = "terraform";
           getip = "curl -4 ifconfig.co";
-          update  = "nh os switch ~/.dotfiles";
-          upgrade = "nh os switch --update ~/.dotfiles";
+          # --impure: the flake reads /etc/nixos/hardware-configuration.nix
+          update  = "nh os switch ~/.dotfiles -- --impure";
+          upgrade = "nh os switch --update ~/.dotfiles -- --impure";
           debugk8s = "nix-shell -p kubectl --run \"kubectl run -i --tty --rm debug --image=alpine --restart=Never -- sh\"";
       };
       history = {

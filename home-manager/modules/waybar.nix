@@ -14,6 +14,7 @@
       modules-center = [ "clock" ];
       modules-right = [
         "custom/mpris"
+        "pulseaudio#microphone"
         "pulseaudio"
         "bluetooth"
         "network"
@@ -36,6 +37,15 @@
         format = "{:%H:%M}";
         format-alt = "{:%A, %d %B %Y}";
         tooltip-format = "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>";
+      };
+
+      "pulseaudio#microphone" = {
+        format = "{format_source}";
+        format-source = "󰍬";
+        format-source-muted = "󰍭";
+        on-click = "swayosd-client --input-volume mute-toggle";
+        tooltip = true;
+        tooltip-format = "Mic: {source_desc}  {source_volume}%";
       };
 
       pulseaudio = {

@@ -78,6 +78,7 @@ in
      nerd-fonts.jetbrains-mono
      inter
      noto-fonts
+     wf-recorder
   ];
 
 

@@ -6,6 +6,7 @@
 hl.monitor({ output = "DP-3",  mode = "3840x2160@60",  position = "0x0",    scale = 1.25 })
 hl.monitor({ output = "DP-1",  mode = "3840x2160@60",  position = "2560x0", scale = 1.0  })
 hl.monitor({ output = "eDP-1", mode = "3840x2400@60",  position = "0x0",    scale = 1.5  })
+hl.monitor({ output = "",      mode = "preferred",      position = "auto",   scale = "auto" })
 
 local home = os.getenv("HOME")
 dofile(home .. "/.dotfiles/hypr/env.lua")

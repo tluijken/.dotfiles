@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+OUTPUT_DIR="$HOME/Videos/recordings"
+OUTPUT_FILE="$OUTPUT_DIR/recording_$(date +%Y%m%d_%H%M%S).mp4"
+
+if pgrep -x wf-recorder > /dev/null; then
+    pkill -SIGINT wf-recorder
+else
+    REGION=$(slurp 2>/dev/null) || exit 1
+    mkdir -p "$OUTPUT_DIR"
+    wf-recorder -g "$REGION" -f "$OUTPUT_FILE"
+fi

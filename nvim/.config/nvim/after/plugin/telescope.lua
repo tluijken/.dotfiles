@@ -54,6 +54,7 @@ require("telescope").setup({
         borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+        preview = { treesitter = false },
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         -- grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         -- qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,

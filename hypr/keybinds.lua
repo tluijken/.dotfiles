@@ -30,8 +30,10 @@ hl.bind(M .. " + SHIFT + Return", hl.dsp.layout("swapwithmaster"))
 
 -- Launch or toggle special workspaces
 local scripts = home .. "/.dotfiles/hypr/scripts"
-hl.bind(M .. " + T", hl.dsp.exec_cmd(scripts .. "/toggle-mail.sh"))
-hl.bind(M .. " + S", hl.dsp.exec_cmd(scripts .. "/toggle-slack.sh"))
+hl.bind(M .. " + T",         hl.dsp.exec_cmd(scripts .. "/toggle-mail.sh"))
+hl.bind(M .. " + S",         hl.dsp.exec_cmd(scripts .. "/toggle-slack.sh"))
+hl.bind(M .. " + SHIFT + R", hl.dsp.exec_cmd(scripts .. "/toggle-record.sh"))
+hl.bind(M .. " + CTRL + R",  hl.dsp.exec_cmd(scripts .. "/toggle-record-region.sh"))
 
 -- Move focus — vim keys
 hl.bind(M .. " + H", hl.dsp.focus({ direction = "l" }))
