@@ -1,6 +1,6 @@
 hl.window_rule({ match = { class = "thunderbird" },             workspace = "special:mail" })
 hl.window_rule({ match = { class = "slack" },                   workspace = "special:slack" })
-hl.window_rule({ match = { class = "app\\.zen_browser\\.zen" }, workspace = "1" })
+hl.window_rule({ match = { class = "zen-beta" }, workspace = "1" })
 
 -- Floating utility windows
 hl.window_rule({ match = { class = ".*pavucontrol.*" },      float = true, size = "800 500" })

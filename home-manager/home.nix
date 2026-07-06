@@ -1,4 +1,4 @@
-{ config, pkgs, lib, dotfilesPath, ... }:
+{ config, pkgs, lib, dotfilesPath, zen-browser, ... }:
 let
   # Add the tool you want to use here
   myMergeTool = pkgs.kdiff3;
@@ -79,6 +79,7 @@ in
      inter
      noto-fonts
      wf-recorder
+     zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
 
@@ -119,12 +120,12 @@ in
     enable = true;
     defaultApplications = {
       "x-scheme-handler/msteams" = "teams-for-linux.desktop";
-      "text/html" = "app.zen_browser.zen.desktop";
+      "text/html" = "zen-beta.desktop";
 
-      "x-scheme-handler/http" = "app.zen_browser.zen.desktop";
-      "x-scheme-handler/https" = "app.zen_browser.zen.desktop";
-      "x-scheme-handler/ftp" = "app.zen_browser.zen.desktop";
-      "x-scheme-handler/about" = "app.zen_browser.zen.desktop";
+      "x-scheme-handler/http" = "zen-beta.desktop";
+      "x-scheme-handler/https" = "zen-beta.desktop";
+      "x-scheme-handler/ftp" = "zen-beta.desktop";
+      "x-scheme-handler/about" = "zen-beta.desktop";
     };
   };
 

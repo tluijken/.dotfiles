@@ -13,9 +13,14 @@
       url = "github:danth/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }: {
+  outputs = { self, nixpkgs, home-manager, stylix, zen-browser, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -34,6 +39,7 @@
             sharedModules = [ stylix.homeModules.stylix ];
             extraSpecialArgs = {
               dotfilesPath = ./.;
+              inherit zen-browser;
             };
             users.thomas = import ./home-manager/home.nix;
           };

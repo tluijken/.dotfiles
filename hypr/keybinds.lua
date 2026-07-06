@@ -3,7 +3,7 @@ local home = os.getenv("HOME")
 local terminal    = "foot"
 local fileManager = "nautilus"
 local menu        = "wofi --show drun"
-local browser     = "app.zen_browser.zen"
+local browser     = "zen-beta"
 
 -- Apps
 hl.bind(M .. " + Return",  hl.dsp.exec_cmd(terminal))
