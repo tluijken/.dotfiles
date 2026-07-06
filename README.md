@@ -19,17 +19,19 @@ and all user-level dotfiles are managed together through NixOS + home-manager.
    nix-shell -p git --run "git clone https://github.com/tluijken/.dotfiles ~/.dotfiles"
    ```
 
-3. Create `/etc/nixos/local.nix` for machine-specific settings (see below).
-
-4. First rebuild — flakes aren't enabled yet on a fresh install, so enable
-   them inline this one time:
+3. Run the bootstrap script. It generates `/etc/nixos/local.nix` from the
+   installer-generated config (LUKS devices, `stateVersion`), detects an
+   NVIDIA GPU and PRIME bus IDs via `lspci`, and runs the first rebuild:
 
    ```shell
-   sudo NIX_CONFIG="experimental-features = nix-command flakes" \
-     nixos-rebuild switch --flake ~/.dotfiles#nixos --impure
+   cd ~/.dotfiles && ./bootstrap.sh
    ```
 
-5. Copy your SSH keys over (keychain expects `~/.ssh/github`) and flip the
+   Use `DRY_RUN=1 ./bootstrap.sh` to preview the generated `local.nix`
+   without writing anything. See below for what goes in `local.nix` if you
+   prefer to write it by hand.
+
+4. Copy your SSH keys over (keychain expects `~/.ssh/github`) and flip the
    remote to SSH:
 
    ```shell
