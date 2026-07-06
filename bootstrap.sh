@@ -81,6 +81,17 @@ elif [[ -n $gpus ]]; then
     echo "no NVIDIA GPU detected; Intel/AMD graphics work without extra config"
 fi
 
+# --- hibernate resume device ---------------------------------------------------
+# hardware-configuration.nix declares swapDevices but NixOS does not infer
+# resume from it; without boot.resumeDevice hibernate writes an image the
+# kernel never resumes from.
+resume_line=""
+swap_device=$(grep -A3 'swapDevices' "$HW_CONFIG" | grep -oE 'device = "[^"]+"' \
+    | head -1 | grep -oE '"[^"]+"' | tr -d '"' || true)
+if [[ -n $swap_device ]]; then
+    resume_line="  boot.resumeDevice = \"$swap_device\";"$'\n'
+fi
+
 # --- generate local.nix ---------------------------------------------------------
 local_nix=$(cat <<EOF
 # Machine-specific configuration for this host.
@@ -88,7 +99,7 @@ local_nix=$(cat <<EOF
 { ... }:
 
 {
-${nvidia_section}${luks_lines}
+${nvidia_section}${luks_lines}${resume_line}
   system.stateVersion = "$state_version";
 }
 EOF

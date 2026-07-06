@@ -42,6 +42,10 @@
     };
   };
   
+  # Polkit authentication agent — without one, actions that need auth
+  # (fprintd-enroll, GUI mounts, etc.) are denied with no prompt shown.
+  services.hyprpolkitagent.enable = true;
+
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -51,7 +55,13 @@
         hide_cursor = true;
         no_fade_in = false;
       };
-  
+
+      # Talks to fprintd directly; no-op on machines without a reader
+      auth = {
+        "fingerprint:enabled" = true;
+        "fingerprint:ready_message" = "(or scan fingerprint)";
+      };
+
       background = [
         {
           path = "screenshot";

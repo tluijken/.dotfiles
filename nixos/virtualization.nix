@@ -24,6 +24,11 @@
       docker = {
           enable = true;
 
+          # Socket-activated: starts on first `docker` command instead of
+          # at boot. Containers with restart=always won't come up until
+          # the socket is touched.
+          enableOnBoot = false;
+
           # rootless = {
           #     enable = true;
           #     setSocketVariable = true;

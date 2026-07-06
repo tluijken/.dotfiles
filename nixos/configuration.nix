@@ -38,6 +38,13 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Run builds at low CPU/IO priority so rebuilds don't lag the desktop.
+  nix.daemonCPUSchedPolicy = "batch";
+  nix.daemonIOSchedClass = "idle";
+
+  nix.settings.substituters = [ "https://nix-community.cachix.org" ];
+  nix.settings.trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+
   # Reclaim store space automatically
   nix.gc = {
     automatic = true;
@@ -209,6 +216,19 @@
   networking.nat.enable = false; # NAT handled by tailscale itself
 
   services.fwupd.enable = true;
+
+  # Periodic SSD TRIM
+  services.fstrim.enable = true;
+
+  # Skip access-time writes on reads
+  fileSystems."/".options = [ "noatime" ];
+
+  # Compressed in-RAM swap; the disk swap partition remains the
+  # hibernate target.
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+  };
 
   # Nodig om D-Bus services zoals die van KeePassXC vindbaar te maken
   services.dbus.enable = true;
