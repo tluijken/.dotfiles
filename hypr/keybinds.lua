@@ -16,7 +16,9 @@ hl.bind(M .. " + D",       hl.dsp.exec_cmd(menu))
 hl.bind(M .. " + Z",       hl.dsp.exec_cmd(browser))
 hl.bind(M .. " + P",       hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
 hl.bind(M .. " + W",       hl.dsp.exec_cmd("bash ~/.dotfiles/hypr/next-wallpaper.sh"))
-hl.bind(M .. " + Escape",  hl.dsp.exec_cmd("hyprlock"))
+-- pidof-guarded so a double-press can't spawn a 2nd instance that would
+-- abort racing for the session lock (matches hypridle's lock_cmd).
+hl.bind(M .. " + Escape",  hl.dsp.exec_cmd("pidof hyprlock || hyprlock"))
 
 -- Floating — like sway's $mod+Shift+Space / $mod+Space
 hl.bind(M .. " + SHIFT + Space", hl.dsp.window.float({ action = "toggle" }))

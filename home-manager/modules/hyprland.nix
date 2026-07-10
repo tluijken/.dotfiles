@@ -19,15 +19,22 @@
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
-        before_sleep_cmd = "pidof hyprlock || hyprlock";
+        # Route every lock trigger through logind so only ONE code path
+        # (lock_cmd) ever spawns hyprlock. Firing `hyprlock` directly from
+        # multiple triggers races: pidof can return empty in two triggers at
+        # once (idle-timeout + suspend) and launch two instances, the second
+        # of which aborts failing to acquire the ext-session-lock.
+        before_sleep_cmd = "loginctl lock-session";
         ignore_dbus_inhibit = false;
-        lock_cmd = "pidof hyprlock || hyprlock";
+        # The single, pidof-guarded launcher. --grace is a CLI arg in
+        # hyprlock 0.9.5+ (it was removed as a `general` config option).
+        lock_cmd = "pidof hyprlock || hyprlock --grace 5";
       };
-  
+
       listener = [
         {
           timeout = 300;  # 5 min
-          on-timeout = "pidof hyprlock || hyprlock";
+          on-timeout = "loginctl lock-session";
         }
         {
           timeout = 600;  # 10 min
@@ -50,10 +57,12 @@
     enable = true;
     settings = {
       general = {
-        disable_loading_bar = false;
-        grace = 5;
+        # hyprlock 0.9.5 rejects `disable_loading_bar`, `grace`, and
+        # `no_fade_in` here (each logged a "config option does not exist"
+        # error on every launch). `grace` moved to a CLI arg (see lock_cmd
+        # above); the other two only set their own defaults, so dropping
+        # them is behaviourally a no-op.
         hide_cursor = true;
-        no_fade_in = false;
       };
 
       # Talks to fprintd directly; no-op on machines without a reader
