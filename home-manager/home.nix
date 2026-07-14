@@ -11,11 +11,15 @@ in
     ./modules/git.nix
     ./modules/stylix.nix
     ./modules/foot.nix
+    ./modules/kitty.nix
     ./modules/audio.nix
     ./modules/waybar.nix
     ./modules/wofi.nix
     ./modules/swaync.nix
     ./modules/wlogout.nix
+    ./modules/ranger.nix
+    ./modules/proton-drive.nix
+    ./modules/google-drive.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should

@@ -1,6 +1,6 @@
 local M    = "SUPER"
 local home = os.getenv("HOME")
-local terminal    = "foot"
+local terminal    = "kitty"
 local fileManager = "nautilus"
 local menu        = "wofi --show drun"
 local browser     = "zen-beta"

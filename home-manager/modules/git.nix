@@ -15,7 +15,7 @@ in
     settings = {
       user = {
         name = "Thomas Luijken";
-        email = "thomas@luijken.dev";
+        email = "github@luijken.dev";
       };
       merge.tool = "kdiff3";
       diff.tool = "kdiff3";

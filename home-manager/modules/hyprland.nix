@@ -41,10 +41,10 @@
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
-        {
-          timeout = 1800;  # 30 min
-          on-timeout = "systemctl suspend";
-        }
+        # No idle-triggered suspend/hibernate: inactivity only locks the
+        # session and turns the screen off, so long-running jobs keep
+        # running overnight. Sleep still happens on lid close (see
+        # HandleLidSwitch in nixos/laptop.nix).
       ];
     };
   };

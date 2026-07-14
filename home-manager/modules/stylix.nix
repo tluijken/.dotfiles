@@ -3,7 +3,7 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    image = "${dotfilesPath}/wallpaper/catppuccin-mocha/wallhaven-mlgqv8.png";
+    image = "${dotfilesPath}/wallpaper/catppuccin-mocha/wallhaven-je8p85.jpg";
 
     cursor = {
       package = pkgs.bibata-cursors;
