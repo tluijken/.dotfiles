@@ -18,9 +18,11 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, zen-browser, ... }: {
+  outputs = { self, nixpkgs, home-manager, stylix, zen-browser, nix-flatpak, ... }: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -36,7 +38,7 @@
             useUserPackages = true;
             # Back up (rather than fail on) any unmanaged file in the way of activation
             backupFileExtension = "hm-bak";
-            sharedModules = [ stylix.homeModules.stylix ];
+            sharedModules = [ stylix.homeModules.stylix nix-flatpak.homeManagerModules.nix-flatpak ];
             extraSpecialArgs = {
               dotfilesPath = ./.;
               inherit zen-browser;

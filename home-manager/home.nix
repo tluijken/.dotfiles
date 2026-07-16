@@ -21,6 +21,7 @@ in
     ./modules/proton-drive.nix
     ./modules/google-drive.nix
     ./modules/cloudbox.nix
+    ./modules/flatpak.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -28,9 +29,10 @@ in
   home.username = "thomas";
   home.homeDirectory = "/home/thomas";
 
-  # Stylix's homeModule adds overlays internally, but nixosModules.stylix already
-  # applies them at the system level. Clear them here to avoid the useGlobalPkgs warning.
-  nixpkgs.overlays = lib.mkForce [];
+  # The stylix home module sets nixpkgs.overlays, which home-manager ignores under
+  # useGlobalPkgs but still warns about. Force it back to null (the unset value the
+  # warning checks for); the overlays are already applied at the system level.
+  nixpkgs.overlays = lib.mkForce null;
 
   fonts.fontconfig.enable = true;
 
