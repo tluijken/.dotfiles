@@ -20,6 +20,7 @@ in
     ./modules/ranger.nix
     ./modules/proton-drive.nix
     ./modules/google-drive.nix
+    ./modules/cloudbox.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
