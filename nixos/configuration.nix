@@ -123,6 +123,7 @@
      cifs-utils
      keychain
      cups
+     system-config-printer
   ];
 
   services.gvfs.enable = true;
@@ -185,10 +186,14 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  # HP driver bundle as a fallback for models that are not fully driverless,
+  # and for the hp-setup wizard. Modern HP printers print driverless via IPP.
+  services.printing.drivers = [ pkgs.hplip ];
   # Enable autodiscovery of network printers
   services.avahi = {
     enable = true;
     nssmdns4 = true;
+    nssmdns6 = true;
     openFirewall = true;
   };
 

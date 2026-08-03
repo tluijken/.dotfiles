@@ -17,6 +17,7 @@
         + " -o StrictHostKeyChecking=accept-new"
         + " -o idmap=user";
       ExecStop = "${pkgs.fuse3}/bin/fusermount3 -u %h/Cloudbox";
+      ExecStopPost = "-${pkgs.fuse3}/bin/fusermount3 -uz %h/Cloudbox";
       Restart = "on-failure";
       RestartSec = "10s";
     };

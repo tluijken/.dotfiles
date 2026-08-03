@@ -8,6 +8,15 @@
   services.fprintd.enable = true;
   security.pam.services.hyprlock.fprintAuth = false;
 
+  # The Goodix reader (27c6:6594) drops off the USB bus under aggressive
+  # power management: autosuspend causes "Cannot run while suspended"
+  # verify errors, and repeated suspend/resume cycles eventually leave it
+  # un-enumerated until a full power cycle. Pin its runtime PM on and keep
+  # TLP's hands off it.
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="27c6", ATTR{idProduct}=="6594", ATTR{power/control}="on", ATTR{power/autosuspend}="-1"
+  '';
+
   # No thermald: ThinkPads expose Lenovo's DYTC firmware thermal
   # management and thermald refuses to run alongside it. TLP steers
   # it via PLATFORM_PROFILE below instead.
@@ -32,6 +41,10 @@
       # TLP's default (on) overrides the nvidia udev rule and keeps the
       # dGPU powered on AC, defeating RTD3. auto is also the BAT default.
       RUNTIME_PM_ON_AC = "auto";
+
+      # Keep TLP from re-enabling autosuspend on the Goodix fingerprint
+      # reader (see the udev rule above).
+      USB_DENYLIST = "27c6:6594";
     };
   };
 
