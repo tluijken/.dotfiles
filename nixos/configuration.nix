@@ -12,6 +12,7 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -213,14 +214,21 @@
   networking.firewall = {
     enable = true; # or false, if you're managing it manually
     checkReversePath = false; # Important for tailscale routing
-    allowedUDPPorts = [ 41641 53 67 ]; # Tailscale and virtmanager
-    allowedTCPPorts = [  53 ]; # Virt-manager
+    # libvirt's dnsmasq (DNS/DHCP) is reachable on virbr0, which is already
+    # a trusted interface, so 53 doesn't need opening on all interfaces.
+    allowedUDPPorts = [ 41641 67 ]; # Tailscale, libvirt DHCP
+    allowedTCPPorts = [ ];
     trustedInterfaces = [ "tailscale0" "virbr0" "docker0" ]; # Trust Tailscale and virtual bridge interfaces
   };
 
   networking.nat.enable = false; # NAT handled by tailscale itself
 
   services.fwupd.enable = true;
+
+  services.journald.extraConfig = ''
+    SystemMaxUse=500M
+    SystemMaxFileSize=50M
+  '';
 
   # Periodic SSD TRIM
   services.fstrim.enable = true;

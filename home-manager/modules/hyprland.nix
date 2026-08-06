@@ -1,4 +1,24 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
+let
+  # hyprlock 0.9.5 (and every release up to current main) hard-aborts via an
+  # RASSERT in its Wayland/DBus poll thread the moment a polled fd reports
+  # POLLHUP — which happens ~5s into every resume from suspend-then-hibernate
+  # when the compositor briefly drops the lock client. std::abort() can't be
+  # caught and upstream won't fix it (hyprwm/hyprlock#76, #638), so instead we
+  # make the lock self-heal: relaunch a fresh instance whenever hyprlock exits
+  # non-zero. Hyprland keeps the session locked between lock clients, so no
+  # unlocked content is ever exposed during the swap. Only the first lock gets
+  # a grace window; every crash-relaunch re-locks immediately (no grace) so a
+  # crash can never open a passwordless entry point. hyprlock exits 0 only on a
+  # genuine unlock, which is what ends the loop.
+  resilientLock = pkgs.writeShellScript "hyprlock-resilient" ''
+    ${pkgs-unstable.hyprlock}/bin/hyprlock --grace 5
+    while [ $? -ne 0 ]; do
+      sleep 1
+      ${pkgs-unstable.hyprlock}/bin/hyprlock
+    done
+  '';
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -18,7 +38,10 @@
     enable = true;
     settings = {
       general = {
-        after_sleep_cmd = "hyprctl dispatch dpms on";
+        # hyprctl talks to a lua-configured Hyprland, so `dispatch` parses its
+        # argument as lua: the bare `dpms on` form errors out ("')' expected").
+        # The dispatcher has to be named explicitly as hl.dsp.dpms("...").
+        after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms(\"on\")'";
         # Route every lock trigger through logind so only ONE code path
         # (lock_cmd) ever spawns hyprlock. Firing `hyprlock` directly from
         # multiple triggers races: pidof can return empty in two triggers at
@@ -26,9 +49,9 @@
         # of which aborts failing to acquire the ext-session-lock.
         before_sleep_cmd = "loginctl lock-session";
         ignore_dbus_inhibit = false;
-        # The single, pidof-guarded launcher. --grace is a CLI arg in
-        # hyprlock 0.9.5+ (it was removed as a `general` config option).
-        lock_cmd = "pidof hyprlock || hyprlock --grace 5";
+        # The single, pidof-guarded launcher; resilientLock re-locks if
+        # hyprlock aborts on resume (see the let-binding above).
+        lock_cmd = "pidof hyprlock || ${resilientLock}";
       };
 
       listener = [
@@ -38,8 +61,8 @@
         }
         {
           timeout = 600;  # 10 min
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
+          on-timeout = "hyprctl dispatch 'hl.dsp.dpms(\"off\")'";
+          on-resume = "hyprctl dispatch 'hl.dsp.dpms(\"on\")'";
         }
         # No idle-triggered suspend/hibernate: inactivity only locks the
         # session and turns the screen off, so long-running jobs keep
@@ -55,6 +78,7 @@
 
   programs.hyprlock = {
     enable = true;
+    package = pkgs-unstable.hyprlock;
     settings = {
       general = {
         # hyprlock 0.9.5 rejects `disable_loading_bar`, `grace`, and

@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
+    # hyprlock only: 26.05 pins 0.9.5, and 0.9.6 (unstable) moves the fprintd
+    # DBus connection off hyprlock's shared poll fd (hyprwm/hyprlock#1029),
+    # trimming one of the POLLHUP sources that abort it on resume.
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,9 +27,16 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, zen-browser, nix-flatpak, ... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, zen-browser, nix-flatpak, ... }:
+    let
       system = "x86_64-linux";
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      inherit system;
       modules = [
         ./nixos/configuration.nix
         # Machine-specific configuration lives outside the repo.
@@ -41,7 +53,7 @@
             sharedModules = [ stylix.homeModules.stylix nix-flatpak.homeManagerModules.nix-flatpak ];
             extraSpecialArgs = {
               dotfilesPath = ./.;
-              inherit zen-browser;
+              inherit zen-browser pkgs-unstable;
             };
             users.thomas = import ./home-manager/home.nix;
           };

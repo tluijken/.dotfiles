@@ -7,6 +7,7 @@ in
 
   imports = [
     ./modules/hyprland.nix
+    ./modules/thunderbird.nix
     ./modules/shell.nix
     ./modules/git.nix
     ./modules/stylix.nix
