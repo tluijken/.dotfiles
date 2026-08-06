@@ -11,6 +11,7 @@ let
     user_pref("calendar.notifications.times", "-PT15M");
     user_pref("calendar.alarms.show", false);
     user_pref("calendar.alarms.showmissed", false);
+    user_pref("mail.shell.checkDefaultClient", false);
   '';
 in
 {
