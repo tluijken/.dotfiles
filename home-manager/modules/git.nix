@@ -5,6 +5,8 @@ let
   myMergeTool = pkgs.kdiff3;
 in
 {
+  home.packages = [ myMergeTool ];
+
   programs.git = {
     enable = true;
     signing = {

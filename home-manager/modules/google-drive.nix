@@ -3,8 +3,8 @@ let
   mkGDriveService = { name, description, teamDriveId ? null }: {
     Unit = {
       Description = "Google Drive – ${description}";
-      After = [ "network-online.target" ];
-      Wants = [ "network-online.target" ];
+      # No network-online.target: it doesn't exist in the user manager, so it
+      # can't be waited on; the Restart loop below rides out early failures.
     };
     Service = {
       Type = "notify";

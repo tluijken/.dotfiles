@@ -24,7 +24,7 @@
           open = "xdg-open";
           lg = "lazygit";
           gl = "git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-          ports = "sudo netstat -tulpn | grep LISTEN";
+          ports = "sudo ss -tulpn";
           clean-local-git-branches = "git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d";
           tf = "terraform";
           getip = "curl -4 ifconfig.co";

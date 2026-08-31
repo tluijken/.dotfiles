@@ -1,7 +1,6 @@
 { config, pkgs, lib, dotfilesPath, zen-browser, ... }:
 let
-  # Add the tool you want to use here
-  myMergeTool = pkgs.kdiff3;
+  themeName = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme);
 in
 {
 
@@ -49,14 +48,10 @@ in
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  # Disable version check...
-  home.enableNixpkgsReleaseCheck = false;
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
      slack
-     thunderbird
      sops
      age
      lua-language-server
@@ -75,7 +70,6 @@ in
      networkmanagerapplet
      playerctl
      lsd
-     myMergeTool
      lazygit
      fd
      nh
@@ -101,7 +95,7 @@ in
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
-    ".config/current-theme".text             = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme);
+    ".config/current-theme".text             = themeName;
     ".config/nvim".source                    = "${dotfilesPath}/nvim/.config/nvim";
     # waybar, wofi, swaync, wlogout are now managed by their home-manager modules
     # (see ./modules/{waybar,wofi,swaync,wlogout}.nix)
@@ -148,7 +142,7 @@ in
   home.sessionVariables = {
     # EDITOR = "emacs";
     PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-    WALLPAPER_THEME = lib.removeSuffix ".yaml" (builtins.baseNameOf config.stylix.base16Scheme); # kept for shell convenience
+    WALLPAPER_THEME = themeName; # kept for shell convenience
   };
 
   # Let Home Manager install and manage itself.

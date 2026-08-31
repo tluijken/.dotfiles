@@ -31,8 +31,8 @@
     };
 
     targets = {
-      # Keep manual configs for these
       waybar.enable = true;
+      # Keep manual configs for these
       neovim.enable = false;
       hyprland.enable = false;
       hyprlock.enable = false;
