@@ -15,7 +15,20 @@
   # TLP's hands off it.
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="27c6", ATTR{idProduct}=="6594", ATTR{power/control}="on", ATTR{power/autosuspend}="-1"
+    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030200", ATTR{power/control}="auto"
   '';
+
+  # The discrete NVIDIA RTX A500 caused black screens on lid-open/resume and
+  # we run no GPU workloads, so render on the Intel iGPU only. Blacklist both
+  # the proprietary and nouveau drivers; the udev rule above then lets PCI
+  # runtime PM drop the unbound dGPU into D3cold for the battery win.
+  boot.blacklistedKernelModules = [
+    "nouveau"
+    "nvidia"
+    "nvidia_drm"
+    "nvidia_modeset"
+    "nvidia_uvm"
+  ];
 
   # No thermald: ThinkPads expose Lenovo's DYTC firmware thermal
   # management and thermald refuses to run alongside it. TLP steers
@@ -48,12 +61,8 @@
     };
   };
 
-  # This platform only supports s2idle (no S3 deep sleep), which drains
-  # the battery noticeably overnight. On lid close, suspend first, then
-  # transition to hibernate after 45 min. Requires boot.resumeDevice,
-  # which is machine-specific and set in /etc/nixos/local.nix.
-  services.logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
-  systemd.sleep.settings.Sleep.HibernateDelaySec = "45min";
+  # Lid close falls through to logind's default HandleLidSwitch = suspend;
+  # no hibernation.
 
   hardware.cpu.intel.updateMicrocode = true;
 

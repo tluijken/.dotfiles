@@ -2,8 +2,8 @@
 let
   # hyprlock 0.9.5 (and every release up to current main) hard-aborts via an
   # RASSERT in its Wayland/DBus poll thread the moment a polled fd reports
-  # POLLHUP — which happens ~5s into every resume from suspend-then-hibernate
-  # when the compositor briefly drops the lock client. std::abort() can't be
+  # POLLHUP — which happens ~5s into every resume from suspend when the
+  # compositor briefly drops the lock client. std::abort() can't be
   # caught and upstream won't fix it (hyprwm/hyprlock#76, #638), so instead we
   # make the lock self-heal: relaunch a fresh instance whenever hyprlock exits
   # non-zero. Hyprland keeps the session locked between lock clients, so no
@@ -22,7 +22,10 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-   
+    # Hyprland itself is installed by the NixOS module (programs.hyprland);
+    # this module only manages the user config.
+    package = null;
+
     # plugins = [
     #   pkgs.hyprlandPlugins.hyprscrolling
     # ];
@@ -38,10 +41,13 @@ in
     enable = true;
     settings = {
       general = {
-        # hyprctl talks to a lua-configured Hyprland, so `dispatch` parses its
-        # argument as lua: the bare `dpms on` form errors out ("')' expected").
-        # The dispatcher has to be named explicitly as hl.dsp.dpms("...").
-        after_sleep_cmd = "hyprctl dispatch 'hl.dsp.dpms(\"on\")'";
+        # Across suspend->resume Hyprland drops the internal panel into
+        # enabled=disabled / dpms=Off and doesn't restore it (black screen);
+        # relight-display.sh polls the DRM state and reloads to re-enable it.
+        # A plain dpms-on can't fix it and `hyprctl keyword` is rejected by
+        # the lua parser (see the script for the full rationale). The lid-open
+        # switch bind runs the same script; a lock keeps them from doubling.
+        after_sleep_cmd = "${config.home.homeDirectory}/.dotfiles/hypr/scripts/relight-display.sh";
         # Route every lock trigger through logind so only ONE code path
         # (lock_cmd) ever spawns hyprlock. Firing `hyprlock` directly from
         # multiple triggers races: pidof can return empty in two triggers at
@@ -59,15 +65,9 @@ in
           timeout = 300;  # 5 min
           on-timeout = "loginctl lock-session";
         }
-        {
-          timeout = 600;  # 10 min
-          on-timeout = "hyprctl dispatch 'hl.dsp.dpms(\"off\")'";
-          on-resume = "hyprctl dispatch 'hl.dsp.dpms(\"on\")'";
-        }
-        # No idle-triggered suspend/hibernate: inactivity only locks the
-        # session and turns the screen off, so long-running jobs keep
-        # running overnight. Sleep still happens on lid close (see
-        # HandleLidSwitch in nixos/laptop.nix).
+        # No idle-triggered screen-off or suspend: inactivity only locks the
+        # session, so long-running jobs keep running overnight and the display
+        # stays on. Suspend still happens on lid close (logind default).
       ];
     };
   };

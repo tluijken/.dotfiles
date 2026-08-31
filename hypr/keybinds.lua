@@ -108,3 +108,12 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lo
 -- Mouse move/resize
 hl.bind(M .. " + mouse:272", hl.dsp.window.drag(),   { drag = true })
 hl.bind(M .. " + mouse:273", hl.dsp.window.resize(), { drag = true })
+
+-- Suspend->resume leaves the internal panel disabled (black screen); the
+-- primary fix is hypridle's after_sleep_cmd, which runs relight-display.sh.
+-- But logind's resume signal (which drives after_sleep_cmd) can lag well
+-- behind the physical wake, so also relight the moment the lid lifts by
+-- running the same script from the lid-open switch. A lock in the script
+-- keeps the two invocations from doubling up. locked so it fires while the
+-- session is locked on resume.
+hl.bind("switch:off:Lid Switch", hl.dsp.exec_cmd(scripts .. "/relight-display.sh"), { locked = true })
