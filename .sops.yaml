@@ -1,0 +1,11 @@
+# sops creation rules. The recipient below is an age PUBLIC key: safe to commit.
+# Replace REPLACE_WITH_YOUR_AGE_PUBLIC_KEY with the age1... line printed by
+#   age-keygen -o ~/.config/sops/age/keys.txt
+# (Regenerate encrypted files after changing recipients: sops updatekeys <file>.)
+keys:
+  - &thomas age1ks59nptwgepkptlzv57843yh7t2hq3q2jagjt28yn7wdrvagfczqdnlpk5
+creation_rules:
+  - path_regex: home-manager/secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *thomas

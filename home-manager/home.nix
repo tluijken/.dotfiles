@@ -8,8 +8,10 @@ in
   imports = [
     ./modules/hyprland.nix
     ./modules/thunderbird.nix
+    ./modules/aerc.nix
     ./modules/shell.nix
     ./modules/git.nix
+    ./modules/claude-code.nix
     ./modules/stylix.nix
     ./modules/foot.nix
     ./modules/kitty.nix
@@ -55,6 +57,8 @@ in
   home.packages = with pkgs; [
      slack
      thunderbird
+     sops
+     age
      lua-language-server
      ripgrep
      wdisplays
@@ -108,19 +112,6 @@ in
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";
-    };
-  };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
-    config = {
-      common = {
-        default = [ "gtk" ];
-        # This ensures that "Open URI" requests (links) 
-        # are handled by the portal rather than a raw fork/exec
-        "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
-      };
     };
   };
 
