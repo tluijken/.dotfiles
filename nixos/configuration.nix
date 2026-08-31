@@ -31,9 +31,12 @@
     127.0.0.1 keycloak
     172.18.255.200 dev.test
   '';
-  # Let NetworkManager own resolv.conf; prepend our resolvers instead of
-  # setting networking.nameservers directly, which races NM over the file.
-  networking.networkmanager.insertNameservers = [ "86.54.11.13" "1.1.1.1" "9.9.9.9" ];
+  # systemd-resolved gives split DNS: tailscale routes *.ts.net to MagicDNS
+  # (100.100.100.100) while everything else uses these resolvers. Without it,
+  # glibc reads resolv.conf flat, only tries the first 3 nameservers, and
+  # MagicDNS names never resolve.
+  services.resolved.enable = true;
+  networking.nameservers = [ "86.54.11.13" "1.1.1.1" "9.9.9.9" ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
