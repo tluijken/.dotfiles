@@ -25,6 +25,8 @@
       url = "github:0xc000022070/zen-browser-flake";
       # zen-browser's package tracks nixos-unstable (needs ffmpeg_9, absent in 26.05).
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # Only its package output is consumed, so dedupe its home-manager input.
+      inputs.home-manager.follows = "home-manager";
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -33,9 +35,15 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Claude Code skills-framework plugin, consumed as a plain source tree.
+    superpowers = {
+      url = "github:obra/superpowers";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, zen-browser, nix-flatpak, sops-nix, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, stylix, zen-browser, nix-flatpak, sops-nix, superpowers, ... }:
     let
       system = "x86_64-linux";
       pkgs-unstable = import nixpkgs-unstable {
@@ -61,7 +69,7 @@
             sharedModules = [ stylix.homeModules.stylix nix-flatpak.homeManagerModules.nix-flatpak sops-nix.homeManagerModules.sops ];
             extraSpecialArgs = {
               dotfilesPath = ./.;
-              inherit zen-browser pkgs-unstable;
+              inherit zen-browser pkgs-unstable superpowers;
             };
             users.thomas = import ./home-manager/home.nix;
           };

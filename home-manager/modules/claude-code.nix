@@ -1,10 +1,11 @@
-{ pkgs-unstable, ... }:
+{ pkgs-unstable, superpowers, ... }:
 
 {
   programs.claude-code = {
     enable = true;
     # Claude Code releases weekly; the 26.05 channel lags too far behind.
     package = pkgs-unstable.claude-code;
+    plugins = [ superpowers.outPath ];
     agents = {
       nix-pro = ./claude-agents/nix-pro.md;
     };
