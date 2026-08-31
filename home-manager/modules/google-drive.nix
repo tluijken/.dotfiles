@@ -22,6 +22,8 @@ let
   };
 in
 {
+  home.packages = [ pkgs.rclone ];
+
   systemd.user.services.google-drive-personal = mkGDriveService {
     name = "Personal";
     description = "Personal";

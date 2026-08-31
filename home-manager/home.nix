@@ -20,7 +20,6 @@ in
     ./modules/swaync.nix
     ./modules/wlogout.nix
     ./modules/ranger.nix
-    ./modules/proton-drive.nix
     ./modules/google-drive.nix
     ./modules/cloudbox.nix
     ./modules/flatpak.nix
