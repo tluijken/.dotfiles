@@ -27,4 +27,9 @@ in
       gpg.ssh.allowedSignersFile = "${config.home.homeDirectory}/.ssh/allowed_signers";  # needed for verification
     };
   };
+
+  programs.gh = {
+    enable = true;
+    gitCredentialHelper.enable = true;
+  };
 }
