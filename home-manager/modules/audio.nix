@@ -30,26 +30,4 @@
     };
     Install.WantedBy = [ "default.target" ];
   };
-
-  # EasyEffects runs as a background service — no GUI needed for noise cancellation
-  services.easyeffects = {
-    enable = true;
-    preset = "meeting";
-  };
-
-  # RNNoise noise cancellation preset for the mic
-  home.file.".local/share/easyeffects/input/meeting.json".text = builtins.toJSON {
-    input = {
-      blocklist = [];
-      plugins_order = [ "rnnoise#0" ];
-      "rnnoise#0" = {
-        bypass      = false;
-        input-gain  = 0.0;
-        output-gain = 0.0;
-        release     = 20.0;
-        vad-thres   = 30.0;
-        wet         = 1.0;
-      };
-    };
-  };
 }
