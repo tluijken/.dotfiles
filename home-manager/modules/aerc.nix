@@ -1,11 +1,11 @@
-{ config, lib, dotfilesPath, ... }:
+{ config, lib, ... }:
 let
   # The encrypted secrets file is committed (sops keeps it safe); the age private
   # key that decrypts it lives only at ~/.config/sops/age/keys.txt and is never
-  # in the repo. Until that file exists the account (and its sops secret) is
-  # skipped so the whole config still evaluates and rebuilds.
-  secretsFile = "${dotfilesPath}/home-manager/secrets/mail.yaml";
-  mailConfigured = builtins.pathExists secretsFile;
+  # in the repo. Until that key exists the account (and its sops secret) is
+  # skipped so the whole config still evaluates and rebuilds. pathExists on a
+  # $HOME path needs the impure eval this flake already requires.
+  mailConfigured = builtins.pathExists "${config.home.homeDirectory}/.config/sops/age/keys.txt";
   c = config.lib.stylix.colors.withHashtag;
 in
 {
@@ -116,5 +116,6 @@ in
     realName = "Thomas Luijken";
     passwordCommand = [ "cat" config.sops.secrets."baseflow-mail".path ];
     aerc.enable = true;
+    thunderbird.enable = true;
   };
 }
