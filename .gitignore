@@ -20,3 +20,6 @@ wallpaper/nord/
 wallpaper/one-dark/
 wallpaper/rose-pine/
 wallpaper/solarized-dark/
+# Nix build outputs
+result
+result-*

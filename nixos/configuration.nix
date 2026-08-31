@@ -24,18 +24,15 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  boot.kernel.sysctl = {
-    "net.ipv4.ip_forward" = "1";
-    # Optional: enable IPv6 forwarding too
-    "net.ipv6.conf.all.forwarding" = "1";
-  };
   systemd.services.NetworkManager-wait-online.enable = false;
   networking.extraHosts =
   ''
     127.0.0.1 keycloak
     172.18.255.200 dev.test
   '';
-  networking.nameservers = [ "86.54.11.13" "1.1.1.1" "9.9.9.9" ];
+  # Let NetworkManager own resolv.conf; prepend our resolvers instead of
+  # setting networking.nameservers directly, which races NM over the file.
+  networking.networkmanager.insertNameservers = [ "86.54.11.13" "1.1.1.1" "9.9.9.9" ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -88,7 +85,16 @@
   };
 
   # to ensure the D-Bus services are actually installed and known to the system
-  xdg.portal.enable = true;
+  # programs.hyprland already ships xdg-desktop-portal-hyprland; gtk covers the
+  # interfaces (FileChooser, Settings, OpenURI) hyprland doesn't implement.
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common = {
+      default = [ "hyprland" "gtk" ];
+      "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
+    };
+  };
 
   # .enable = true; # enables support for Bluetooth
   # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -128,7 +134,7 @@
   ];
 
   services.gvfs.enable = true;
-  environment.variables.editor = "neovim";
+  environment.variables.EDITOR = "nvim";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -147,10 +153,13 @@
       percentageLow = 15;
       percentageCritical = 5;
       percentageAction = 4;
-      criticalPowerAction = "Hibernate";
+      criticalPowerAction = "PowerOff";
   };
 
   services.tailscale.enable = true;
+  # Sets loose rp_filter and IP forwarding, replacing the manual sysctl and
+  # firewall.checkReversePath workarounds.
+  services.tailscale.useRoutingFeatures = "both";
 
   services.syncthing = {
       enable = true;
@@ -213,10 +222,9 @@
 
   networking.firewall = {
     enable = true; # or false, if you're managing it manually
-    checkReversePath = false; # Important for tailscale routing
     # libvirt's dnsmasq (DNS/DHCP) is reachable on virbr0, which is already
     # a trusted interface, so 53 doesn't need opening on all interfaces.
-    allowedUDPPorts = [ 41641 67 ]; # Tailscale, libvirt DHCP
+    allowedUDPPorts = [ config.services.tailscale.port 67 ]; # Tailscale, libvirt DHCP
     allowedTCPPorts = [ ];
     trustedInterfaces = [ "tailscale0" "virbr0" "docker0" ]; # Trust Tailscale and virtual bridge interfaces
   };
@@ -236,8 +244,7 @@
   # Skip access-time writes on reads
   fileSystems."/".options = [ "noatime" ];
 
-  # Compressed in-RAM swap; the disk swap partition remains the
-  # hibernate target.
+  # Compressed in-RAM swap.
   zramSwap = {
     enable = true;
     memoryPercent = 50;
