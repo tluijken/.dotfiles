@@ -8,6 +8,7 @@
   imports =
     [ ./virtualization.nix
       ./audio.nix
+      ./laptop.nix
     ];
 
   # Bootloader.
@@ -106,7 +107,7 @@
     isNormalUser = true;
     description = "Thomas";
     ignoreShellProgramCheck = true;
-    extraGroups = [ "networkmanager" "wheel" "docker" "dialout"];
+    extraGroups = [ "networkmanager" "wheel" "dialout"];
     packages = with pkgs; [];
   };
 
@@ -126,7 +127,6 @@
      #firefox
      devbox
      gcc
-     home-manager
      cifs-utils
      keychain
      cups
@@ -166,7 +166,8 @@
       user = "thomas";
       dataDir = "/home/thomas";
       configDir = "/home/thomas/.config/syncthing";
-      openDefaultPorts = true;
+      # No openDefaultPorts: all peers are on the tailnet and tailscale0 is a
+      # trusted interface, so nothing needs exposing on untrusted networks.
   };
 
   programs.hyprland.enable = true; # enable Hyprland
@@ -181,8 +182,6 @@
     pulse.enable = true;
     wireplumber.enable = true;
     jack.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
   };
   services.pipewire.extraConfig.pipewire."70-custom" = {
     "context.properties" = {
@@ -226,7 +225,7 @@
     # a trusted interface, so 53 doesn't need opening on all interfaces.
     allowedUDPPorts = [ config.services.tailscale.port 67 ]; # Tailscale, libvirt DHCP
     allowedTCPPorts = [ ];
-    trustedInterfaces = [ "tailscale0" "virbr0" "docker0" ]; # Trust Tailscale and virtual bridge interfaces
+    trustedInterfaces = [ "tailscale0" "virbr0" ]; # Trust Tailscale and libvirt's bridge
   };
 
   networking.nat.enable = false; # NAT handled by tailscale itself

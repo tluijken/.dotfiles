@@ -22,17 +22,14 @@
   # Manage the virtualisation services
   virtualisation = {
       docker = {
-          enable = true;
+          # Rootless only: the daemon runs per-user, so no root-equivalent
+          # docker group is needed. Images/volumes live under ~/.local/share.
+          enable = false;
 
-          # Socket-activated: starts on first `docker` command instead of
-          # at boot. Containers with restart=always won't come up until
-          # the socket is touched.
-          enableOnBoot = false;
-
-          # rootless = {
-          #     enable = true;
-          #     setSocketVariable = true;
-          # };
+          rootless = {
+              enable = true;
+              setSocketVariable = true;
+          };
       };
     libvirtd = {
       enable = true;
