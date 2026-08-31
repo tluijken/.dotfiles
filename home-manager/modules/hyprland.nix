@@ -22,9 +22,11 @@ in
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    # Hyprland itself is installed by the NixOS module (programs.hyprland);
-    # this module only manages the user config.
+    # Hyprland itself is installed by the NixOS module (programs.hyprland),
+    # which also ships and configures the portal; this module only manages
+    # the user config.
     package = null;
+    portalPackage = null;
 
     # plugins = [
     #   pkgs.hyprlandPlugins.hyprscrolling
