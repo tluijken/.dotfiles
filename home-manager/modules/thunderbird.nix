@@ -1,10 +1,15 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   mailConfigured = builtins.pathExists "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-  # Thunderbird replaces file: image sources with inline (cid:) attachments
-  # when sending, so the logos ride along with the mail instead of being
-  # fetched from a remote host.
-  signature = builtins.replaceStrings [ "@signatureDir@" ] [ "file://${./thunderbird}" ]
+  # Thunderbird turns file: <img> sources into inline (cid:) attachments when
+  # sending, but leaves <source srcset> alone, so the dark-mode logo must be a
+  # data: URI to travel with the mail. A <picture> is used instead of CSS
+  # because Thunderbird strips conditional CSS (@media) from displayed mail.
+  logoWhiteData = "data:image/png;base64,"
+    + lib.fileContents (pkgs.runCommand "logo-white-b64" { } "base64 -w0 ${./thunderbird/logo-white.png} > $out");
+  signature = builtins.replaceStrings
+    [ "@signatureDir@" "@logoWhiteData@" ]
+    [ "file://${./thunderbird}" logoWhiteData ]
     (builtins.readFile ./thunderbird/signature.html);
 in
 {
