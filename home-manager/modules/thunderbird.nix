@@ -1,6 +1,25 @@
-{ ... }:
-
+{ config, lib, ... }:
+let
+  mailConfigured = builtins.pathExists "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+  # Thunderbird replaces file: image sources with inline (cid:) attachments
+  # when sending, so the logos ride along with the mail instead of being
+  # fetched from a remote host.
+  signature = builtins.replaceStrings [ "@signatureDir@" ] [ "file://${./thunderbird}" ]
+    (builtins.readFile ./thunderbird/signature.html);
+in
 {
+  accounts.email.accounts.baseflow = lib.mkIf mailConfigured {
+    signature = {
+      showSignature = "append";
+      htmlFormat = true;
+      text = signature;
+    };
+    thunderbird.perIdentitySettings = id: {
+      "mail.identity.id_${id}.reply_on_top" = 1;
+      "mail.identity.id_${id}.sig_bottom" = false;
+    };
+  };
+
   programs.thunderbird = {
     enable = true;
     # The profile name matches the pre-existing imperative profile directory
