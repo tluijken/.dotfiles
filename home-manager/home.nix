@@ -8,6 +8,7 @@ in
     ./modules/hyprland.nix
     ./modules/thunderbird.nix
     ./modules/aerc.nix
+    ./modules/protonmail.nix
     ./modules/shell.nix
     ./modules/git.nix
     ./modules/claude-code.nix
