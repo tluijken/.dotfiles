@@ -17,6 +17,15 @@ in
   # added through `protonmail-bridge --cli` -> `login` from a terminal.
   services.protonmail-bridge.enable = true;
 
+  # The bridge serves IMAP and SMTP under a self-signed CA it generates on first
+  # login and keeps inside its encrypted vault. Thunderbird's per-server security
+  # exception does not cover a certificate that is itself the authority, so the
+  # CA is installed into the profile instead. Only the public certificate is
+  # committed here; replacing the bridge vault invalidates it.
+  programs.thunderbird.policies.Certificates.Install = [
+    (toString ./protonmail-bridge-ca.pem)
+  ];
+
   # age.keyFile and defaultSopsFile are set once in aerc.nix; this adds a second
   # secret to that same mail.yaml.
   sops.secrets = lib.mkIf mailConfigured { "proton-bridge" = { }; };
