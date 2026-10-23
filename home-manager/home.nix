@@ -24,6 +24,7 @@ in
     ./modules/google-drive.nix
     ./modules/cloudbox.nix
     ./modules/flatpak.nix
+    ./modules/nextcloud-caldav.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
