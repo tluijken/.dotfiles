@@ -27,6 +27,11 @@
 
       # Don't nag on close.
       confirm_os_window_close = 0;
+
+      # Kitty persists the window state along with the size, so one maximized
+      # window makes every later one open maximized over the tiled layout.
+      # The compositor decides the size anyway.
+      remember_window_size = "no";
     };
   };
 }
