@@ -115,6 +115,7 @@ in
     defaultApplications = {
       "x-scheme-handler/msteams" = "teams-for-linux.desktop";
       "text/html" = "zen-beta.desktop";
+      "inode/directory" = "org.gnome.Nautilus.desktop";
 
       "x-scheme-handler/http" = "zen-beta.desktop";
       "x-scheme-handler/https" = "zen-beta.desktop";
